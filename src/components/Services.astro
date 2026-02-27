@@ -1,0 +1,135 @@
+---
+const services = [
+  {
+    id: 'raport-na-automacie',
+    title: 'Raport na Automacie',
+    tagline: 'Auto raporty PDF z danych klienta',
+    price: '2 000 PLN + 400/mies',
+    description:
+      'Połączenie z Twoją bazą danych (SQL Server, MySQL, PostgreSQL). Agregacje, wykresy, porównania r/r. Profesjonalny PDF z logo firmy — generowany automatycznie.',
+    tags: ['Python', 'SQL', 'LaTeX', 'PDF'],
+    ready: true,
+  },
+  {
+    id: 'mostek-danych',
+    title: 'Mostek Danych',
+    tagline: 'Konwersja formatów między systemami',
+    price: '1 000–2 000 PLN',
+    description:
+      'Twój system eksportuje dane w formacie X, a drugi oczekuje formatu Y. Buduję mostek — raz, działa na stałe. Przykład: MT940 (bank) → SIMPLE.ERP.',
+    tags: ['Python', 'ETL', 'API'],
+    ready: true,
+  },
+  {
+    id: 'narzedzie-bazodanowe',
+    title: 'Narzędzie Bazodanowe',
+    tagline: 'Dedykowana apka GUI do bazy klienta',
+    price: '2 000–4 000 PLN',
+    description:
+      'Stare programy przestały działać? Dane edytowane ręcznie w SSMS? Buduję dedykowaną apkę z GUI — filtrowanie, edycja, zapis. Jeden plik .exe, zero instalacji.',
+    tags: ['Python', 'tkinter', 'SQL Server'],
+    ready: true,
+    caseStudy: 'StaLab — 113k próbek, 45 kolumn, 12 MB .exe',
+  },
+  {
+    id: 'mcp-server',
+    title: 'MCP Server (API→AI)',
+    tagline: 'Zamiana REST API na MCP dla Claude',
+    price: '2 000–3 000 PLN',
+    description:
+      'Masz REST API lub dane w bazie — chcesz, żeby AI mogła z tego korzystać? Buduję MCP Server: Claude zyskuje dostęp do Twoich systemów w naturalnym języku.',
+    tags: ['MCP', 'Python', 'AI', 'Claude'],
+    ready: true,
+  },
+  {
+    id: 'arkusze-duchy',
+    title: 'Arkusze Duchy',
+    tagline: 'Reverse-engineering arkuszy Excel',
+    price: '2 000–5 000 PLN',
+    description:
+      'Masz arkusze Excel w użyciu, ale nikt nie wie jak działają? Przeprowadzam reverse-engineering: dokumentuję formuły, przejmuję kontrolę, eliminuję ryzyko awarii.',
+    tags: ['Excel', 'VBA', 'Python', 'Dokumentacja'],
+    ready: false,
+  },
+  {
+    id: 'audyt-jakosci-danych',
+    title: 'Audyt Jakości Danych',
+    tagline: 'Raport anomalii + rekomendacje',
+    price: '1 500–3 000 PLN',
+    description:
+      'Sprawdzam Twoje dane pod kątem duplikatów, luk, niespójności i anomalii. Dostarczam raport z konkretnymi rekomendacjami — zanim błędy danych uderzą w decyzje.',
+    tags: ['Python', 'Pandas', 'SQL', 'Analiza'],
+    ready: false,
+  },
+];
+---
+
+<section id="uslugi" class="px-6 py-24">
+  <div class="mx-auto max-w-5xl">
+    <!-- Section header -->
+    <div class="mb-12">
+      <span class="font-mono text-xs text-[#D97706]">// usługi</span>
+      <h2 class="mt-2 text-3xl font-bold text-[#E8E3D9] md:text-4xl">
+        Co mogę dla Ciebie zbudować
+      </h2>
+      <p class="mt-3 text-[#8A8480]">
+        Każda usługa rozwiązuje konkretny problem. Ceny wejściowe — końcowa zależy od skali.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <div class="group flex flex-col rounded border border-[#1E1E1E] bg-[#111111] p-5 transition-all hover:border-[#D97706]/30 hover:bg-[#131313]">
+          <!-- Top -->
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <h3 class="font-mono text-base font-semibold text-[#E8E3D9]">{s.title}</h3>
+              <p class="mt-0.5 font-mono text-xs text-[#8A8480]">{s.tagline}</p>
+            </div>
+            {s.ready ? (
+              <span class="shrink-0 rounded-full bg-[#D97706]/10 px-2 py-0.5 font-mono text-xs text-[#D97706]">
+                gotowe
+              </span>
+            ) : (
+              <span class="shrink-0 rounded-full bg-[#1E1E1E] px-2 py-0.5 font-mono text-xs text-[#8A8480]">
+                wkrótce
+              </span>
+            )}
+          </div>
+
+          <!-- Description -->
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-[#8A8480]">{s.description}</p>
+
+          {s.caseStudy && (
+            <div class="mt-3 rounded bg-[#0C0C0C] px-3 py-2">
+              <p class="font-mono text-xs text-[#D97706]">→ {s.caseStudy}</p>
+            </div>
+          )}
+
+          <!-- Footer -->
+          <div class="mt-4 flex items-center justify-between border-t border-[#1E1E1E] pt-3">
+            <span class="font-mono text-sm font-semibold text-[#E8E3D9]">{s.price}</span>
+            <div class="flex flex-wrap gap-1">
+              {s.tags.map((tag) => (
+                <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#8A8480]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10 text-center">
+      <a
+        href="/kontakt"
+        class="inline-block rounded bg-[#D97706] px-8 py-3 font-mono text-sm font-semibold text-[#0C0C0C] transition-all hover:bg-[#F59E0B]"
+      >
+        Porozmawiajmy o Twoim problemie
+      </a>
+    </div>
+  </div>
+</section>

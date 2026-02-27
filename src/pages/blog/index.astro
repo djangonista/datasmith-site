@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  title="Blog — DataSmith"
+  description="Automatyzacje, SQL, Python, AI. Konkretne rozwiązania problemów z danymi — build in public."
+>
+  <div class="px-6 py-16">
+    <div class="mx-auto max-w-5xl">
+      <!-- Header -->
+      <div class="mb-12">
+        <span class="font-mono text-xs text-[#D97706]">// blog</span>
+        <h1 class="mt-2 text-4xl font-bold text-[#E8E3D9]">Build in Public</h1>
+        <p class="mt-3 max-w-xl text-[#8A8480]">
+          Dokumentuję rozwiązywanie realnych problemów z danymi. Automatyzacje, narzędzia,
+          przemyślenia — co tydzień.
+        </p>
+      </div>
+
+      {posts.length === 0 ? (
+        <div class="rounded border border-[#1E1E1E] bg-[#111111] p-12 text-center">
+          <p class="font-mono text-[#8A8480]">Wkrótce pierwsze wpisy.</p>
+        </div>
+      ) : (
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              slug={post.slug}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

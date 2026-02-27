@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import CaseStudies from '../components/CaseStudies.astro';
+import BlogCard from '../components/BlogCard.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPosts = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <Hero />
+  <Services />
+  <CaseStudies />
+
+  <!-- Blog section -->
+  {latestPosts.length > 0 && (
+    <section id="blog" class="px-6 py-24">
+      <div class="mx-auto max-w-5xl">
+        <div class="mb-10 flex items-end justify-between">
+          <div>
+            <span class="font-mono text-xs text-[#D97706]">// blog</span>
+            <h2 class="mt-2 text-3xl font-bold text-[#E8E3D9]">Ostatnie wpisy</h2>
+          </div>
+          <a href="/blog" class="font-mono text-sm text-[#8A8480] hover:text-[#D97706]">
+            Wszystkie →
+          </a>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          {latestPosts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              slug={post.slug}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Newsletter />
+</BaseLayout>

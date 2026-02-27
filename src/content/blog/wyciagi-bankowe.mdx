@@ -1,0 +1,79 @@
+---
+title: "Wyciągi bankowe: 3 godziny miesięcznie w 8 sekund"
+description: "Jak zautomatyzowałem ręczne przepisywanie wyciągów bankowych PLN i EUR do arkusza Excel — od pomysłu do gotowego narzędzia."
+date: 2026-02-20
+tags: ["automatyzacja", "Python", "Excel", "biuro rachunkowe"]
+---
+
+Ania, właścicielka biura rachunkowego, co miesiąc spędza 2–3 godziny na przepisywaniu wyciągów bankowych do Excela.
+
+PLN — jeden bank. EUR — drugi bank, inne kolumny, inne daty, do tego kurs NBP do przeliczenia.
+
+Ręcznie. Co miesiąc. Od lat.
+
+---
+
+## Problem
+
+Brzmi banalnie, ale to klasyczny "cichy pożeracz czasu" — zadanie, które:
+
+- jest powtarzalne (zawsze te same kroki)
+- jest podatne na błędy (przeklejanie liczb)
+- nie daje żadnej wartości dodanej
+- jest za małe, żeby zatrudnić kogoś "do tego"
+- jest za duże, żeby ignorować
+
+W przypadku Ani: **~30 godzin rocznie** na samo przepisywanie. Przy stawce nawet 50 zł/h — to **1 500 zł zmarnowanej pracy** każdego roku.
+
+---
+
+## Jak to rozwiązałem
+
+### Faza 1 — wyciągi PLN
+
+Bank eksportuje wyciąg jako PDF. Napisałem skrypt Python, który:
+
+1. Wczytuje PDF (pdfplumber)
+2. Wyciąga tabelę transakcji
+3. Normalizuje kolumny (data, opis, kwota, saldo)
+4. Eksportuje do Excela z formatowaniem
+
+Ania zweryfikowała wyniki — **"wyszło identycznie"**.
+
+### Faza 2 — wyciągi EUR + kursy NBP
+
+EUR to drugi bank, inny format PDF. Dodałem:
+
+- Parser dla nowego formatu
+- Połączenie z API NBP — automatyczne pobieranie kursu z dnia transakcji
+- Przeliczenie EUR → PLN w każdym wierszu
+- Suma w PLN na dole arkusza
+
+Walidacja: każda kwota sprawdzona ręcznie. Zero rozbieżności.
+
+---
+
+## Wynik
+
+```
+Przed:  ~2-3 godziny miesięcznie (ręcznie)
+Po:     8 sekund (skrypt Python)
+```
+
+Narzędzie: jeden plik `.py`, uruchamiany lokalnie. Ania przeciąga PDF, klika Enter, dostaje Excel.
+
+---
+
+## Co z tego wynika dla Ciebie?
+
+Jeśli w Twojej pracy jest coś, co:
+
+- robisz ręcznie co miesiąc (lub co tydzień)
+- zajmuje więcej niż 30 minut
+- wygląda zawsze tak samo
+
+...prawdopodobnie można to zautomatyzować w ciągu 1–2 dni pracy.
+
+Nie potrzebujesz dużego projektu IT. Nie potrzebujesz przetargu. Potrzebujesz kogoś, kto rozumie dane i umie napisać skrypt.
+
+**Masz podobny przypadek?** [Napisz do mnie](/kontakt) — pierwsze 30 minut rozmowy jest bezpłatne.

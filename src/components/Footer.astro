@@ -1,0 +1,51 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[#1E1E1E] py-12">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <!-- Brand -->
+      <div>
+        <a href="/" class="font-mono text-lg font-bold text-[#E8E3D9] hover:text-[#D97706]">
+          DataSmith<span class="text-[#D97706]">.pl</span>
+        </a>
+        <p class="mt-1 font-mono text-xs text-[#8A8480]">
+          Każdy problem z danymi ma rozwiązanie.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div class="flex items-center gap-6">
+        <a
+          href="https://linkedin.com/in/pawelkowalczyk"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono text-sm text-[#8A8480] transition-colors hover:text-[#D97706]"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://x.com/plastyq"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono text-sm text-[#8A8480] transition-colors hover:text-[#D97706]"
+        >
+          X / Twitter
+        </a>
+        <a
+          href="mailto:pawel@datasmith.pl"
+          class="font-mono text-sm text-[#8A8480] transition-colors hover:text-[#D97706]"
+        >
+          Email
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t border-[#1E1E1E] pt-6">
+      <p class="font-mono text-xs text-[#8A8480]">
+        © {year} DataSmith — Paweł Kowalczyk. Wszelkie prawa zastrzeżone.
+      </p>
+    </div>
+  </div>
+</footer>

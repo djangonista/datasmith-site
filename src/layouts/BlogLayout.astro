@@ -1,0 +1,71 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags?: string[];
+}
+
+const { title, description, date, tags = [] } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('pl-PL', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={`${title} — DataSmith`} description={description}>
+  <article class="px-6 py-16">
+    <div class="mx-auto max-w-2xl">
+      <!-- Back link -->
+      <a href="/blog" class="mb-8 inline-flex items-center gap-2 font-mono text-sm text-[#8A8480] hover:text-[#D97706]">
+        ← Wszystkie wpisy
+      </a>
+
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="mb-4 flex flex-wrap items-center gap-3">
+          <time class="font-mono text-sm text-[#8A8480]">{formattedDate}</time>
+          {tags.map((tag) => (
+            <span class="rounded bg-[#111111] px-2 py-0.5 font-mono text-xs text-[#8A8480]">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h1 class="text-3xl font-bold leading-tight text-[#E8E3D9] md:text-4xl">{title}</h1>
+        <p class="mt-4 text-lg text-[#8A8480]">{description}</p>
+        <hr class="mt-8 border-[#1E1E1E]" />
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-invert max-w-none
+        prose-headings:font-bold prose-headings:text-[#E8E3D9]
+        prose-p:text-[#8A8480] prose-p:leading-relaxed
+        prose-a:text-[#D97706] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[#E8E3D9]
+        prose-code:font-mono prose-code:text-[#D97706] prose-code:bg-[#111111] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+        prose-pre:bg-[#111111] prose-pre:border prose-pre:border-[#1E1E1E] prose-pre:rounded
+        prose-blockquote:border-l-[#D97706] prose-blockquote:text-[#8A8480]
+        prose-hr:border-[#1E1E1E]
+        prose-li:text-[#8A8480]
+      ">
+        <slot />
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-16 border-t border-[#1E1E1E] pt-8">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p class="font-mono text-sm text-[#8A8480]">
+            Masz podobny problem? <a href="/kontakt" class="text-[#D97706] hover:underline">Napisz do mnie →</a>
+          </p>
+          <a href="/blog" class="font-mono text-sm text-[#8A8480] hover:text-[#D97706]">
+            ← Więcej wpisów
+          </a>
+        </div>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>

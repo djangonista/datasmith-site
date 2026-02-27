@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  slug: string;
+  tags?: string[];
+}
+
+const { title, description, date, slug, tags = [] } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('pl-PL', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<a
+  href={`/blog/${slug}`}
+  class="group flex flex-col rounded border border-[#1E1E1E] bg-[#111111] p-5 transition-all hover:border-[#D97706]/30 hover:bg-[#131313]"
+>
+  <div class="flex items-center justify-between gap-2">
+    <time class="font-mono text-xs text-[#8A8480]">{formattedDate}</time>
+    {tags.length > 0 && (
+      <div class="flex gap-1">
+        {tags.slice(0, 2).map((tag) => (
+          <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#8A8480]">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <h3 class="mt-3 text-base font-semibold text-[#E8E3D9] transition-colors group-hover:text-[#D97706]">
+    {title}
+  </h3>
+
+  <p class="mt-2 flex-1 text-sm leading-relaxed text-[#8A8480]">{description}</p>
+
+  <span class="mt-4 font-mono text-xs text-[#D97706]">
+    Czytaj dalej →
+  </span>
+</a>

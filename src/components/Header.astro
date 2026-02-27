@@ -1,0 +1,84 @@
+---
+const navLinks = [
+  { href: '/#uslugi', label: 'Usługi' },
+  { href: '/#case-studies', label: 'Realizacje' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 border-b border-[#1E1E1E] bg-[#0C0C0C]/90 backdrop-blur-sm">
+  <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="/" class="group flex items-center gap-2">
+      <span class="font-mono text-lg font-bold text-[#E8E3D9] transition-colors group-hover:text-[#D97706]">
+        DataSmith
+      </span>
+      <span class="font-mono text-xs text-[#D97706]">.pl</span>
+    </a>
+
+    <!-- Nav links -->
+    <ul class="hidden items-center gap-6 md:flex">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class="font-mono text-sm text-[#8A8480] transition-colors hover:text-[#E8E3D9]"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA -->
+    <a
+      href="/kontakt"
+      class="hidden rounded border border-[#D97706] px-4 py-1.5 font-mono text-sm text-[#D97706] transition-all hover:bg-[#D97706] hover:text-[#0C0C0C] md:block"
+    >
+      Porozmawiajmy
+    </a>
+
+    <!-- Mobile menu button -->
+    <button
+      id="menu-toggle"
+      class="flex flex-col gap-1.5 p-1 md:hidden"
+      aria-label="Menu"
+    >
+      <span class="block h-0.5 w-6 bg-[#E8E3D9]"></span>
+      <span class="block h-0.5 w-6 bg-[#E8E3D9]"></span>
+      <span class="block h-0.5 w-4 bg-[#E8E3D9]"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-[#1E1E1E] px-6 py-4 md:hidden">
+    <ul class="flex flex-col gap-4">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a href={href} class="font-mono text-sm text-[#8A8480] hover:text-[#E8E3D9]">
+            {label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href="/kontakt"
+          class="inline-block rounded border border-[#D97706] px-4 py-1.5 font-mono text-sm text-[#D97706]"
+        >
+          Porozmawiajmy
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>
