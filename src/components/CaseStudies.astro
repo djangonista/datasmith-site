@@ -27,12 +27,12 @@ const cases = [
   {
     id: 'mt940',
     label: '03 / Mostek danych',
-    title: 'Konwerter MT940 → SIMPLE.ERP',
-    client: 'Firma produkcyjna (Fansuld)',
+    title: 'Konwerter MT940 → ERP',
+    client: 'Firma produkcyjna (anonimizacja)',
     problem:
-      'Bank eksportuje wyciągi w formacie MT940. System ERP (SIMPLE) oczekuje innego formatu. Import ręczny = godziny miesięcznie.',
+      'Bank eksportuje wyciągi w formacie MT940. System ERP firmy oczekuje innego formatu. Import ręczny = godziny miesięcznie.',
     solution:
-      'Konwerter MT940 → format importu SIMPLE.ERP. Testowany na rzeczywistych danych produkcyjnych.',
+      'Konwerter MT940 → format importu systemu ERP klienta. Testowany na rzeczywistych danych produkcyjnych.',
     result: 'Automatyczny import — zero ręcznej pracy, zero błędów przepisywania',
     tags: ['Python', 'MT940', 'ERP', 'BGK'],
   },
