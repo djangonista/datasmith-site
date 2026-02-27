@@ -6,9 +6,10 @@ interface Props {
   description: string;
   date: Date;
   tags?: string[];
+  image?: string;
 }
 
-const { title, description, date, tags = [] } = Astro.props;
+const { title, description, date, tags = [], image } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('pl-PL', {
   year: 'numeric',
@@ -37,6 +38,13 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
         </div>
         <h1 class="text-3xl font-bold leading-tight text-[#E8E3D9] md:text-4xl">{title}</h1>
         <p class="mt-4 text-lg text-[#8A8480]">{description}</p>
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            class="mt-8 w-full rounded border border-[#1E1E1E] object-cover"
+          />
+        )}
         <hr class="mt-8 border-[#1E1E1E]" />
       </header>
 
