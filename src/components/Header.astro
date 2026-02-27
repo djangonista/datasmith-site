@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const navLinks = [
   { href: '/#uslugi', label: 'Usługi' },
   { href: '/#case-studies', label: 'Realizacje' },
@@ -12,11 +14,8 @@ const currentPath = Astro.url.pathname;
 <header class="sticky top-0 z-50 border-b border-[#1E1E1E] bg-[#0C0C0C]/90 backdrop-blur-sm">
   <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
     <!-- Logo -->
-    <a href="/" class="group flex items-center gap-2">
-      <span class="font-mono text-lg font-bold text-[#E8E3D9] transition-colors group-hover:text-[#D97706]">
-        DataSmith
-      </span>
-      <span class="font-mono text-xs text-[#D97706]">.pl</span>
+    <a href="/" class="transition-opacity hover:opacity-75">
+      <Logo size="md" />
     </a>
 
     <!-- Nav links -->
