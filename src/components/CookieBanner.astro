@@ -1,0 +1,311 @@
+---
+// CookieBanner.astro
+// RODO-compliant cookie consent banner
+// Kolory: bg #0C0C0C / card #111111 / border #1E1E1E / tekst #E8E3D9 / muted #8A8480 / accent #D97706
+---
+
+<!-- Baner przyklejony do dołu, zaczyna poza ekranem -->
+<div
+  id="cookie-banner"
+  role="dialog"
+  aria-label="Ustawienia cookies"
+  aria-live="polite"
+  style="position:fixed;bottom:0;left:0;right:0;z-index:9999;transform:translateY(100%);transition:transform 0.45s cubic-bezier(0.16,1,0.3,1);"
+>
+  <!-- Panel główny -->
+  <div id="cookie-main" style="background:#111111;border-top:1px solid #1E1E1E;padding:1.25rem 1.5rem;">
+    <div style="max-width:64rem;margin:0 auto;">
+      <div class="cookie-row">
+        <!-- Tekst -->
+        <div style="flex:1;min-width:0;">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.8125rem;font-weight:700;color:#E8E3D9;margin:0 0 0.25rem;">
+            Ta strona używa plików cookie
+          </p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6875rem;color:#8A8480;margin:0;line-height:1.5;">
+            Używamy cookies, aby poprawić działanie strony i analizować ruch.
+            Możesz wybrać które kategorie akceptujesz.
+            <a
+              href="/polityka-prywatnosci"
+              style="color:#D97706;text-decoration:underline;"
+              onmouseover="this.style.color='#F59E0B'"
+              onmouseout="this.style.color='#D97706'"
+            >Polityka prywatności</a>
+          </p>
+        </div>
+
+        <!-- Przyciski — równej wielkości (zero dark patterns) -->
+        <div class="cookie-btns">
+          <button id="btn-cookie-settings" class="cookie-btn cookie-btn--ghost">
+            Ustawienia
+          </button>
+          <button id="btn-cookie-necessary" class="cookie-btn cookie-btn--outline">
+            Tylko niezbędne
+          </button>
+          <button id="btn-cookie-accept" class="cookie-btn cookie-btn--primary">
+            Akceptuj wszystkie
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel ustawień granularnych (ukryty domyślnie) -->
+  <div id="cookie-settings-panel" style="display:none;background:#0C0C0C;border-top:1px solid #1E1E1E;padding:1.25rem 1.5rem;">
+    <div style="max-width:64rem;margin:0 auto;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.8125rem;font-weight:700;color:#E8E3D9;margin:0 0 1rem;">
+        Wybierz kategorie cookies
+      </p>
+
+      <!-- Opcje granularne -->
+      <div style="display:grid;gap:0.625rem;margin-bottom:1.25rem;">
+
+        <!-- Niezbędne — zawsze włączone -->
+        <label class="cookie-option" style="cursor:default;">
+          <div>
+            <span class="cookie-option-title">Niezbędne</span>
+            <span class="cookie-option-desc">Wymagane do działania strony (sesja, bezpieczeństwo). Nie można wyłączyć.</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;flex-shrink:0;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:0.625rem;color:#8A8480;">Zawsze aktywne</span>
+            <input type="checkbox" checked disabled style="accent-color:#D97706;width:1rem;height:1rem;cursor:not-allowed;opacity:0.6;" />
+          </div>
+        </label>
+
+        <!-- Analityczne -->
+        <label class="cookie-option" for="chk-analytics" style="cursor:pointer;">
+          <div>
+            <span class="cookie-option-title">Analityczne</span>
+            <span class="cookie-option-desc">Pomagają zrozumieć jak odwiedzający korzystają ze strony (np. Google Analytics, Plausible).</span>
+          </div>
+          <input id="chk-analytics" type="checkbox" style="accent-color:#D97706;width:1rem;height:1rem;cursor:pointer;flex-shrink:0;" />
+        </label>
+
+        <!-- Marketingowe -->
+        <label class="cookie-option" for="chk-marketing" style="cursor:pointer;">
+          <div>
+            <span class="cookie-option-title">Marketingowe</span>
+            <span class="cookie-option-desc">Personalizacja reklam i śledzenie konwersji (np. Facebook Pixel, Google Ads).</span>
+          </div>
+          <input id="chk-marketing" type="checkbox" style="accent-color:#D97706;width:1rem;height:1rem;cursor:pointer;flex-shrink:0;" />
+        </label>
+
+        <!-- Funkcjonalne -->
+        <label class="cookie-option" for="chk-functional" style="cursor:pointer;">
+          <div>
+            <span class="cookie-option-title">Funkcjonalne</span>
+            <span class="cookie-option-desc">Dodatkowe funkcje strony, np. czat wsparcia, preferencje wyświetlania.</span>
+          </div>
+          <input id="chk-functional" type="checkbox" style="accent-color:#D97706;width:1rem;height:1rem;cursor:pointer;flex-shrink:0;" />
+        </label>
+      </div>
+
+      <!-- Przyciski panelu ustawień -->
+      <div style="display:flex;gap:0.625rem;flex-wrap:wrap;">
+        <button id="btn-save-settings" class="cookie-btn cookie-btn--primary">
+          Zapisz wybór
+        </button>
+        <button id="btn-settings-back" class="cookie-btn cookie-btn--ghost">
+          Wróć
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .cookie-row {
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+
+  .cookie-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  @media (min-width: 480px) {
+    .cookie-btns {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .cookie-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    /* Równa szerokość na mobile */
+    min-width: 9rem;
+    text-align: center;
+  }
+
+  .cookie-btn--primary {
+    background: #D97706;
+    color: #0C0C0C;
+  }
+  .cookie-btn--primary:hover {
+    background: #F59E0B;
+  }
+
+  .cookie-btn--outline {
+    background: transparent;
+    color: #E8E3D9;
+    border: 1px solid #2A2A2A;
+  }
+  .cookie-btn--outline:hover {
+    border-color: #D97706;
+    color: #D97706;
+  }
+
+  .cookie-btn--ghost {
+    background: transparent;
+    color: #8A8480;
+    border: 1px solid #1E1E1E;
+  }
+  .cookie-btn--ghost:hover {
+    border-color: #D97706;
+    color: #D97706;
+  }
+
+  .cookie-option {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #1E1E1E;
+    background: #111111;
+  }
+  .cookie-option:hover:not([style*="cursor:default"]) {
+    border-color: #2A2A2A;
+  }
+
+  .cookie-option-title {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #E8E3D9;
+    margin-bottom: 0.25rem;
+  }
+
+  .cookie-option-desc {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    color: #8A8480;
+    line-height: 1.5;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'datasmith_cookie_consent_v1';
+
+  const banner = document.getElementById('cookie-banner')!;
+  const mainPanel = document.getElementById('cookie-main')!;
+  const settingsPanel = document.getElementById('cookie-settings-panel')!;
+
+  const btnAccept = document.getElementById('btn-cookie-accept')!;
+  const btnNecessary = document.getElementById('btn-cookie-necessary')!;
+  const btnOpenSettings = document.getElementById('btn-cookie-settings')!;
+  const btnBack = document.getElementById('btn-settings-back')!;
+  const btnSave = document.getElementById('btn-save-settings')!;
+
+  const chkAnalytics = document.getElementById('chk-analytics') as HTMLInputElement;
+  const chkMarketing = document.getElementById('chk-marketing') as HTMLInputElement;
+  const chkFunctional = document.getElementById('chk-functional') as HTMLInputElement;
+
+  function showBanner(openSettings = false) {
+    if (openSettings) {
+      mainPanel.style.display = 'none';
+      settingsPanel.style.display = 'block';
+    } else {
+      mainPanel.style.display = 'block';
+      settingsPanel.style.display = 'none';
+    }
+    banner.style.transform = 'translateY(0)';
+  }
+
+  function hideBanner() {
+    banner.style.transform = 'translateY(100%)';
+  }
+
+  function saveConsent(prefs: { analytics: boolean; marketing: boolean; functional: boolean }) {
+    const data = {
+      necessary: true,
+      analytics: prefs.analytics,
+      marketing: prefs.marketing,
+      functional: prefs.functional,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    hideBanner();
+  }
+
+  // Sprawdź czy zgoda już zapisana
+  const existing = localStorage.getItem(STORAGE_KEY);
+  if (!existing) {
+    setTimeout(() => showBanner(), 700);
+  } else {
+    // Załaduj poprzednie ustawienia do checkboxów
+    try {
+      const saved = JSON.parse(existing);
+      if (chkAnalytics) chkAnalytics.checked = !!saved.analytics;
+      if (chkMarketing) chkMarketing.checked = !!saved.marketing;
+      if (chkFunctional) chkFunctional.checked = !!saved.functional;
+    } catch {
+      // ignore
+    }
+  }
+
+  // Akceptuj wszystkie
+  btnAccept.addEventListener('click', () => {
+    saveConsent({ analytics: true, marketing: true, functional: true });
+  });
+
+  // Tylko niezbędne
+  btnNecessary.addEventListener('click', () => {
+    saveConsent({ analytics: false, marketing: false, functional: false });
+  });
+
+  // Otwórz ustawienia granularne
+  btnOpenSettings.addEventListener('click', () => {
+    mainPanel.style.display = 'none';
+    settingsPanel.style.display = 'block';
+  });
+
+  // Wróć do panelu głównego
+  btnBack.addEventListener('click', () => {
+    settingsPanel.style.display = 'none';
+    mainPanel.style.display = 'block';
+  });
+
+  // Zapisz wybór granularny
+  btnSave.addEventListener('click', () => {
+    saveConsent({
+      analytics: chkAnalytics?.checked ?? false,
+      marketing: chkMarketing?.checked ?? false,
+      functional: chkFunctional?.checked ?? false,
+    });
+  });
+
+  // Link "Ustawienia cookies" w stopce — otwiera banner w trybie ustawień
+  document.getElementById('footer-cookie-settings')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showBanner(true);
+  });
+</script>

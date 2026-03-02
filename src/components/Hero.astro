@@ -2,63 +2,81 @@
 ---
 
 <section class="relative overflow-hidden px-6 py-24 md:py-36">
-  <!-- SVG data graph background -->
+  <!-- SVG data graph background — wyraźniejszy motyw + animacje -->
   <svg
-    class="pointer-events-none absolute inset-0 h-full w-full opacity-[0.13]"
+    class="pointer-events-none absolute inset-0 h-full w-full"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
-    <!-- Lines -->
-    <line x1="62%" y1="15%" x2="75%" y2="35%" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="75%" y1="35%" x2="88%" y2="22%" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="75%" y1="35%" x2="82%" y2="58%" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="88%" y1="22%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="82%" y1="58%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="82%" y1="58%" x2="70%" y2="72%" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="62%" y1="15%" x2="55%" y2="38%" stroke="#D97706" stroke-width="1" stroke-dasharray="4 4"/>
-    <line x1="70%" y1="72%" x2="85%" y2="82%" stroke="#D97706" stroke-width="1" stroke-dasharray="4 4"/>
-    <line x1="95%" y1="45%" x2="98%" y2="68%" stroke="#D97706" stroke-width="1"/>
-    <line x1="88%" y1="22%" x2="92%" y2="8%"  stroke="#D97706" stroke-width="1" stroke-dasharray="3 5"/>
-    <!-- Nodes -->
-    <circle cx="62%" cy="15%" r="6" fill="#D97706"/>
-    <circle cx="75%" cy="35%" r="9" fill="#D97706"/>
-    <circle cx="88%" cy="22%" r="5" fill="#D97706"/>
-    <circle cx="82%" cy="58%" r="8" fill="#D97706"/>
-    <circle cx="95%" cy="45%" r="6" fill="#D97706"/>
-    <circle cx="70%" cy="72%" r="5" fill="#D97706"/>
-    <circle cx="85%" cy="82%" r="4" fill="#D97706"/>
-    <circle cx="98%" cy="68%" r="4" fill="#D97706"/>
-    <circle cx="92%" cy="8%"  r="3.5" fill="#D97706"/>
-    <circle cx="55%" cy="38%" r="3.5" fill="#D97706"/>
+    <defs>
+      <!-- Poświata wokół węzłów hub -->
+      <filter id="node-glow" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="4" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Linie stałe — połączenia główne -->
+    <line x1="62%" y1="15%" x2="75%" y2="35%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
+    <line x1="75%" y1="35%" x2="88%" y2="22%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
+    <line x1="75%" y1="35%" x2="82%" y2="58%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
+    <line x1="88%" y1="22%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
+    <line x1="82%" y1="58%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
+    <line x1="82%" y1="58%" x2="70%" y2="72%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
+    <line x1="95%" y1="45%" x2="98%" y2="68%" stroke="#D97706" stroke-width="1.2" opacity="0.22"/>
+
+    <!-- Linie przerywane — przepływ danych (animowane) -->
+    <line class="svg-dashed dashed-1" x1="62%" y1="15%" x2="55%" y2="38%" stroke="#D97706" stroke-width="1.2" stroke-dasharray="6 5"/>
+    <line class="svg-dashed dashed-2" x1="70%" y1="72%" x2="85%" y2="82%" stroke="#D97706" stroke-width="1.2" stroke-dasharray="6 5"/>
+    <line class="svg-dashed dashed-3" x1="88%" y1="22%" x2="92%" y2="8%"  stroke="#D97706" stroke-width="1"   stroke-dasharray="4 6"/>
+    <line class="svg-dashed dashed-4" x1="75%" y1="35%" x2="68%" y2="52%" stroke="#D97706" stroke-width="1"   stroke-dasharray="3 7"/>
+
+    <!-- Węzły standardowe — pulsują asynchronicznie -->
+    <circle class="svg-node node-s1" cx="62%" cy="15%" r="5"   fill="#D97706"/>
+    <circle class="svg-node node-s2" cx="88%" cy="22%" r="5"   fill="#D97706"/>
+    <circle class="svg-node node-s3" cx="95%" cy="45%" r="5.5" fill="#D97706"/>
+    <circle class="svg-node node-s4" cx="70%" cy="72%" r="4.5" fill="#D97706"/>
+    <circle class="svg-node node-s5" cx="85%" cy="82%" r="3.5" fill="#D97706"/>
+    <circle class="svg-node node-s6" cx="98%" cy="68%" r="3.5" fill="#D97706"/>
+    <circle class="svg-node node-s7" cx="92%" cy="8%"  r="3"   fill="#D97706"/>
+    <circle class="svg-node node-s8" cx="55%" cy="38%" r="3"   fill="#D97706"/>
+    <circle class="svg-node node-s9" cx="68%" cy="52%" r="2.5" fill="#D97706"/>
+
+    <!-- Węzły HUB — większe, z poświatą, wolniejsze pulsowanie -->
+    <circle class="svg-hub hub-1" cx="75%" cy="35%" r="8" fill="#D97706" filter="url(#node-glow)"/>
+    <circle class="svg-hub hub-2" cx="82%" cy="58%" r="7" fill="#D97706" filter="url(#node-glow)"/>
   </svg>
 
-  <!-- Subtle grid -->
+  <!-- Subtelna siatka -->
   <div
-    class="pointer-events-none absolute inset-0 opacity-[0.04]"
+    class="pointer-events-none absolute inset-0 opacity-[0.03]"
     style="background-image: linear-gradient(#D97706 1px, transparent 1px), linear-gradient(90deg, #D97706 1px, transparent 1px); background-size: 40px 40px;"
   ></div>
 
   <div class="relative mx-auto max-w-5xl">
     <!-- Label -->
-    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#D97706]/20 bg-[#D97706]/5 px-3 py-1">
+    <div class="hero-item mb-6 inline-flex items-center gap-2 rounded-full border border-[#D97706]/20 bg-[#D97706]/5 px-3 py-1" style="--hero-delay: 0ms">
       <span class="h-1.5 w-1.5 rounded-full bg-[#D97706]"></span>
       <span class="font-mono text-xs text-[#D97706]">Problem Solver + AI</span>
     </div>
 
     <!-- Headline -->
-    <h1 class="max-w-3xl text-4xl font-bold leading-tight text-[#E8E3D9] md:text-5xl lg:text-6xl">
+    <h1 class="hero-item max-w-3xl text-4xl font-bold leading-tight text-[#E8E3D9] md:text-5xl lg:text-6xl" style="--hero-delay: 80ms">
       Każdy problem z danymi<br />
       <span class="text-[#D97706]">ma rozwiązanie.</span>
     </h1>
 
     <!-- Subheadline -->
-    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#8A8480] md:text-xl">
+    <p class="hero-item mt-6 max-w-2xl text-lg leading-relaxed text-[#8A8480] md:text-xl" style="--hero-delay: 160ms">
       Łączę SQL, Python i AI — buduję narzędzia dopasowane do Twojego systemu.
       Automatyzuję powtarzalne procesy danych dla&nbsp;MŚP i&nbsp;firm produkcyjnych.
     </p>
 
     <!-- CTAs -->
-    <div class="mt-10 flex flex-wrap items-center gap-4">
+    <div class="hero-item mt-10 flex flex-wrap items-center gap-4" style="--hero-delay: 240ms">
       <a
         href="/#uslugi"
         class="rounded bg-[#D97706] px-6 py-3 font-mono text-sm font-semibold text-[#0C0C0C] transition-all hover:bg-[#F59E0B] hover:shadow-[0_0_20px_rgba(217,119,6,0.3)]"
@@ -74,7 +92,7 @@
     </div>
 
     <!-- Stats -->
-    <div class="mt-16 flex flex-wrap gap-8 border-t border-[#1E1E1E] pt-10">
+    <div class="hero-item mt-16 flex flex-wrap gap-8 border-t border-[#1E1E1E] pt-10" style="--hero-delay: 320ms">
       <div>
         <p class="font-mono text-2xl font-bold text-[#E8E3D9]">3h &rarr; 8s</p>
         <p class="mt-1 font-mono text-xs text-[#8A8480]">Automatyzacja wyciągów bankowych</p>
@@ -90,3 +108,62 @@
     </div>
   </div>
 </section>
+
+<style>
+  /* ── Fade-in tekstu przy ładowaniu strony (stagger) ── */
+  .hero-item {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: heroFadeUp 0.6s ease forwards;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+
+  @keyframes heroFadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Pulsowanie węzłów (każdy z innym rytmem) ── */
+  @keyframes nodePulse {
+    0%, 100% { opacity: 0.28; }
+    50%       { opacity: 0.85; }
+  }
+
+  .svg-node { animation: nodePulse ease-in-out infinite; }
+  .node-s1  { animation-duration: 3.2s; animation-delay: 0.0s; }
+  .node-s2  { animation-duration: 2.8s; animation-delay: 0.7s; }
+  .node-s3  { animation-duration: 3.6s; animation-delay: 1.2s; }
+  .node-s4  { animation-duration: 2.5s; animation-delay: 0.4s; }
+  .node-s5  { animation-duration: 3.9s; animation-delay: 1.8s; }
+  .node-s6  { animation-duration: 2.7s; animation-delay: 0.9s; }
+  .node-s7  { animation-duration: 3.1s; animation-delay: 2.3s; }
+  .node-s8  { animation-duration: 4.2s; animation-delay: 1.5s; }
+  .node-s9  { animation-duration: 2.9s; animation-delay: 0.3s; }
+
+  /* Węzły HUB — wolniejsze, głębsze pulsowanie */
+  @keyframes hubPulse {
+    0%, 100% { opacity: 0.40; }
+    50%       { opacity: 0.80; }
+  }
+  .svg-hub { animation: hubPulse ease-in-out infinite; }
+  .hub-1   { animation-duration: 4.0s; animation-delay: 0.5s; }
+  .hub-2   { animation-duration: 3.5s; animation-delay: 1.0s; }
+
+  /* ── Przepływ danych przez linie przerywane ── */
+  @keyframes dataFlow {
+    from { stroke-dashoffset: 40;  opacity: 0.18; }
+    50%  {                          opacity: 0.60; }
+    to   { stroke-dashoffset: -40; opacity: 0.18; }
+  }
+
+  .svg-dashed { animation: dataFlow linear infinite; }
+  .dashed-1   { animation-duration: 3.0s; animation-delay: 0.0s; }
+  .dashed-2   { animation-duration: 4.5s; animation-delay: 1.2s; }
+  .dashed-3   { animation-duration: 3.8s; animation-delay: 0.6s; }
+  .dashed-4   { animation-duration: 2.8s; animation-delay: 2.0s; }
+
+  /* Respektuj prefer-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .svg-node, .svg-hub, .svg-dashed { animation: none; opacity: 0.35; }
+    .hero-item { animation: none; opacity: 1; transform: none; }
+  }
+</style>

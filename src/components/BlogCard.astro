@@ -19,7 +19,8 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
 
 <a
   href={`/blog/${slug}`}
-  class="group flex flex-col rounded border border-[#1E1E1E] bg-[#111111] transition-all hover:border-[#D97706]/30 hover:bg-[#131313]"
+  data-animate
+  class="group flex flex-col rounded border border-[#1E1E1E] bg-[#111111] transition-all duration-200 hover:-translate-y-1 hover:border-[#D97706]/30 hover:bg-[#131313] hover:shadow-[0_4px_24px_rgba(217,119,6,0.07)]"
 >
   {image && (
     <div class="overflow-hidden rounded-t">
