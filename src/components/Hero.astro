@@ -122,31 +122,67 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── Pulsowanie węzłów (każdy z innym rytmem) ── */
-  @keyframes nodePulse {
-    0%, 100% { opacity: 0.28; }
-    50%       { opacity: 0.85; }
+  /* ── Pulsowanie węzłów + delikatny drift (każdy unikalny kierunek) ── */
+  @keyframes nodeFloat1 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(3px, -4px); }
+  }
+  @keyframes nodeFloat2 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(-3px, 2px); }
+  }
+  @keyframes nodeFloat3 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(4px, 3px); }
+  }
+  @keyframes nodeFloat4 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(-2px, -4px); }
+  }
+  @keyframes nodeFloat5 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(2px, 5px); }
+  }
+  @keyframes nodeFloat6 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(-4px, -2px); }
+  }
+  @keyframes nodeFloat7 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(3px, 2px); }
+  }
+  @keyframes nodeFloat8 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(-3px, -3px); }
+  }
+  @keyframes nodeFloat9 {
+    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
+    50%       { opacity: 0.85; transform: translate(2px, -3px); }
   }
 
-  .svg-node { animation: nodePulse ease-in-out infinite; }
-  .node-s1  { animation-duration: 3.2s; animation-delay: 0.0s; }
-  .node-s2  { animation-duration: 2.8s; animation-delay: 0.7s; }
-  .node-s3  { animation-duration: 3.6s; animation-delay: 1.2s; }
-  .node-s4  { animation-duration: 2.5s; animation-delay: 0.4s; }
-  .node-s5  { animation-duration: 3.9s; animation-delay: 1.8s; }
-  .node-s6  { animation-duration: 2.7s; animation-delay: 0.9s; }
-  .node-s7  { animation-duration: 3.1s; animation-delay: 2.3s; }
-  .node-s8  { animation-duration: 4.2s; animation-delay: 1.5s; }
-  .node-s9  { animation-duration: 2.9s; animation-delay: 0.3s; }
+  .svg-node { animation: ease-in-out infinite; }
+  .node-s1  { animation-name: nodeFloat1; animation-duration: 3.2s; animation-delay: 0.0s; }
+  .node-s2  { animation-name: nodeFloat2; animation-duration: 2.8s; animation-delay: 0.7s; }
+  .node-s3  { animation-name: nodeFloat3; animation-duration: 3.6s; animation-delay: 1.2s; }
+  .node-s4  { animation-name: nodeFloat4; animation-duration: 2.5s; animation-delay: 0.4s; }
+  .node-s5  { animation-name: nodeFloat5; animation-duration: 3.9s; animation-delay: 1.8s; }
+  .node-s6  { animation-name: nodeFloat6; animation-duration: 2.7s; animation-delay: 0.9s; }
+  .node-s7  { animation-name: nodeFloat7; animation-duration: 3.1s; animation-delay: 2.3s; }
+  .node-s8  { animation-name: nodeFloat8; animation-duration: 4.2s; animation-delay: 1.5s; }
+  .node-s9  { animation-name: nodeFloat9; animation-duration: 2.9s; animation-delay: 0.3s; }
 
-  /* Węzły HUB — wolniejsze, głębsze pulsowanie */
-  @keyframes hubPulse {
-    0%, 100% { opacity: 0.40; }
-    50%       { opacity: 0.80; }
+  /* Węzły HUB — wolniejszy, większy drift */
+  @keyframes hubFloat1 {
+    0%, 100% { opacity: 0.40; transform: translate(0, 0); }
+    50%       { opacity: 0.80; transform: translate(-5px, 4px); }
   }
-  .svg-hub { animation: hubPulse ease-in-out infinite; }
-  .hub-1   { animation-duration: 4.0s; animation-delay: 0.5s; }
-  .hub-2   { animation-duration: 3.5s; animation-delay: 1.0s; }
+  @keyframes hubFloat2 {
+    0%, 100% { opacity: 0.40; transform: translate(0, 0); }
+    50%       { opacity: 0.80; transform: translate(5px, -4px); }
+  }
+  .svg-hub { animation: ease-in-out infinite; }
+  .hub-1   { animation-name: hubFloat1; animation-duration: 4.0s; animation-delay: 0.5s; }
+  .hub-2   { animation-name: hubFloat2; animation-duration: 3.5s; animation-delay: 1.0s; }
 
   /* ── Przepływ danych przez linie przerywane ── */
   @keyframes dataFlow {
