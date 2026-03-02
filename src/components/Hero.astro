@@ -20,13 +20,13 @@
     </defs>
 
     <!-- Linie stałe — połączenia główne -->
-    <line x1="62%" y1="15%" x2="75%" y2="35%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
-    <line x1="75%" y1="35%" x2="88%" y2="22%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
-    <line x1="75%" y1="35%" x2="82%" y2="58%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
-    <line x1="88%" y1="22%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
-    <line x1="82%" y1="58%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
-    <line x1="82%" y1="58%" x2="70%" y2="72%" stroke="#D97706" stroke-width="1.5" opacity="0.30"/>
-    <line x1="95%" y1="45%" x2="98%" y2="68%" stroke="#D97706" stroke-width="1.2" opacity="0.22"/>
+    <line class="svg-line line-ga" x1="62%" y1="15%" x2="75%" y2="35%" stroke="#D97706" stroke-width="1.5"/>
+    <line class="svg-line line-gb" x1="75%" y1="35%" x2="88%" y2="22%" stroke="#D97706" stroke-width="1.5"/>
+    <line class="svg-line line-ga" x1="75%" y1="35%" x2="82%" y2="58%" stroke="#D97706" stroke-width="1.5"/>
+    <line class="svg-line line-gb" x1="88%" y1="22%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5"/>
+    <line class="svg-line line-gc" x1="82%" y1="58%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5"/>
+    <line class="svg-line line-gc" x1="82%" y1="58%" x2="70%" y2="72%" stroke="#D97706" stroke-width="1.5"/>
+    <line class="svg-line line-gd" x1="95%" y1="45%" x2="98%" y2="68%" stroke="#D97706" stroke-width="1.2"/>
 
     <!-- Linie przerywane — przepływ danych (animowane) -->
     <line class="svg-dashed dashed-1" x1="62%" y1="15%" x2="55%" y2="38%" stroke="#D97706" stroke-width="1.2" stroke-dasharray="6 5"/>
@@ -184,6 +184,18 @@
   .hub-1   { animation-name: hubFloat1; animation-duration: 4.0s; animation-delay: 0.5s; }
   .hub-2   { animation-name: hubFloat2; animation-duration: 3.5s; animation-delay: 1.0s; }
 
+  /* ── Oddychanie linii stałych (4 asynchroniczne grupy) ── */
+  @keyframes lineBreath {
+    0%, 100% { opacity: 0.16; }
+    50%       { opacity: 0.38; }
+  }
+
+  .svg-line { animation: lineBreath ease-in-out infinite; }
+  .line-ga  { animation-duration: 5.5s; animation-delay: 0.0s; }
+  .line-gb  { animation-duration: 6.8s; animation-delay: 1.3s; }
+  .line-gc  { animation-duration: 4.8s; animation-delay: 2.2s; }
+  .line-gd  { animation-duration: 7.2s; animation-delay: 0.7s; }
+
   /* ── Przepływ danych przez linie przerywane ── */
   @keyframes dataFlow {
     from { stroke-dashoffset: 40;  opacity: 0.18; }
@@ -199,7 +211,7 @@
 
   /* Respektuj prefer-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
-    .svg-node, .svg-hub, .svg-dashed { animation: none; opacity: 0.35; }
+    .svg-node, .svg-hub, .svg-dashed, .svg-line { animation: none; opacity: 0.28; }
     .hero-item { animation: none; opacity: 1; transform: none; }
   }
 </style>
