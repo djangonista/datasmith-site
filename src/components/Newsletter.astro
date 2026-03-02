@@ -46,7 +46,17 @@
               Zapisz się
             </button>
           </div>
-          <p class="font-mono text-xs text-[#8A8480]">Zero spamu. Wypis jednym kliknięciem.</p>
+          <label class="flex items-start gap-2 text-left">
+            <input
+              type="checkbox"
+              id="ac-consent"
+              required
+              class="mt-0.5 shrink-0 accent-[#D97706]"
+            />
+            <span class="font-mono text-xs text-[#8A8480]">
+              Chcę być na liście — rozumiem, że mogę zrezygnować w każdej chwili.
+            </span>
+          </label>
         </form>
 
         <div id="ac-success" class="mt-8 hidden">
@@ -79,8 +89,13 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const emailInput = form.querySelector<HTMLInputElement>('[name="email"]')!;
+    const consent = document.getElementById('ac-consent') as HTMLInputElement;
     if (!emailInput.value || !emailInput.value.includes('@')) {
       emailInput.focus();
+      return;
+    }
+    if (!consent.checked) {
+      consent.focus();
       return;
     }
 
