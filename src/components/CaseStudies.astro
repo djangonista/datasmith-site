@@ -6,10 +6,10 @@ const cases = [
     title: 'Edytor 113k próbek laboratoryjnych',
     client: 'Firma produkcyjna (anonimizacja)',
     problem:
-      'Stary program do obsługi bazy próbek przestał działać po migracji serwera SQL. Dane musiały być edytowane ręcznie przez programistę — każda zmiana = ticket + oczekiwanie.',
+      'Stary program przestał działać po zmianie serwera. Każda edycja danych wymagała programisty i tygodnia czekania.',
     solution:
-      'Dedykowana apka Python + tkinter z filtrowaniem, edycją i zapisem. Jeden plik .exe (12 MB), zero instalacji u klienta.',
-    result: '113k próbek dostępnych natychmiast, samodzielna obsługa przez pracownika',
+      'Dedykowana aplikacja z interfejsem graficznym. Jeden plik, zero instalacji. Pracownik robi to sam.',
+    result: '113k próbek dostępnych natychmiast. Samodzielna obsługa przez pracownika bez angażowania IT.',
     tags: ['Python', 'tkinter', 'SQL Server', 'PyInstaller'],
   },
   {
@@ -18,22 +18,22 @@ const cases = [
     title: 'Wyciągi bankowe: 3h → 8 sekund',
     client: 'Biuro rachunkowe (walidacja)',
     problem:
-      'Ręczne przepisywanie wyciągów bankowych PLN + EUR do arkusza. Każdy miesiąc to 2–3 godziny pracy — żmudne, podatne na błędy, nikomu nie potrzebne.',
+      'Co miesiąc 3 godziny na ręczne przepisywanie wyciągów bankowych w PLN i EUR. Podatne na błędy i nikomu niepotrzebne.',
     solution:
-      'Automat Python: wczytuje PDF wyciągu, parsuje transakcje, pobiera kursy NBP, generuje gotowy arkusz Excel.',
-    result: '8 sekund zamiast 3 godzin. Identyczne wyniki jak ręcznie — zweryfikowane',
+      'Automat wczytuje plik z banku, przelicza kursy walut i generuje gotowy arkusz do zaksięgowania.',
+    result: '8 sekund zamiast 3 godzin. Identyczne wyniki jak ręcznie, zweryfikowane na rzeczywistych danych.',
     tags: ['Python', 'PDF parsing', 'NBP API', 'Excel'],
   },
   {
     id: 'mt940',
     label: '03 / Mostek danych',
-    title: 'Konwerter MT940 → ERP',
+    title: 'Automatyczny import wyciągów do ERP',
     client: 'Firma produkcyjna (anonimizacja)',
     problem:
-      'Bank eksportuje wyciągi w formacie MT940. System ERP firmy oczekuje innego formatu. Import ręczny = godziny miesięcznie.',
+      'Bank i system ERP firmy mówiły różnymi językami. Import wyciągów wymagał ręcznej pracy co miesiąc.',
     solution:
-      'Konwerter MT940 → format importu systemu ERP klienta. Testowany na rzeczywistych danych produkcyjnych.',
-    result: 'Automatyczny import — zero ręcznej pracy, zero błędów przepisywania',
+      'Konwerter formatu bankowego do formatu importu systemu ERP. Raz skonfigurowany, działa na stałe.',
+    result: 'Automatyczny import. Zero ręcznej pracy, zero błędów przepisywania.',
     tags: ['Python', 'MT940', 'ERP', 'BGK'],
   },
 ];
