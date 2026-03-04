@@ -1,0 +1,79 @@
+---
+title: "168 ton CO₂. Liczba, której firma nie miała."
+description: "ERP przechowuje setki faktur za paliwo. Wartości w PLN. Bez litrów, bez kg, bez CO₂. Jak wyliczyłem ślad węglowy dla firmy produkcyjnej i co z tego wynikło."
+date: 2026-03-11
+tags: ["ESG", "automatyzacja", "Python", "SQL", "firma produkcyjna"]
+image: "/images/blog/slad-weglowy.png"
+---
+
+Kierownik ds. ESG dostał zadanie: policzyć ile firma wyemitowała CO₂ w 2025 roku.
+
+ERP ma setki faktur za paliwo. Daty, kwoty w PLN, numery kont.
+
+Nie ma litrów. Nie ma kg. Nie ma CO₂.
+
+---
+
+## Decyzja bez liczby
+
+CSRD dotyczy dużych firm już od 2025. Średnich od 2026. Małych — to kwestia kiedy, nie czy.
+
+Żeby raportować emisje, trzeba je najpierw policzyć.
+
+A żeby zdecydować czy kupić certyfikaty CO₂, zmienić flotę albo odpowiedzieć klientowi który pyta o ślad węglowy w ofercie — trzeba wiedzieć od czego się odbijacie.
+
+Firma tego nie wiedziała.
+
+---
+
+## Co zrobiłem
+
+ERP ma faktury — ale w PLN, nie w litrach. Żeby dostać CO₂, trzeba to przetłumaczyć:
+PLN na litry, litry na kg CO₂ (wskaźniki GHG Protocol).
+Dla samochodów wyszacowałem przez średnią cenę paliwa 2025.
+Dla wózków dane były dokładne — mieli wolumen w kolumnie ilość.
+
+Wynik: Excel z 5 arkuszami, podział na kategorie, metodologia w środku.
+
+---
+
+## Zaskoczenie
+
+Pierwsza wersja: **52 t CO₂**.
+
+Właściwa: **168 t CO₂**.
+
+Różnica? Wózki widłowe na LPG.
+
+Pominięcie ich dało wynik ponad 3× za mały.
+Dane były w ERP od początku — nikt ich nigdy nie zestawiał z resztą.
+
+| Kategoria | Emisja |
+|-----------|--------|
+| Benzyna — samochody | 40,4 t |
+| ON — samochody | 11,8 t |
+| ON — wózki | 30,3 t |
+| LPG — wózki | **85,5 t** |
+| **Łącznie** | **168 t** |
+
+---
+
+## Co to oznacza
+
+Firma teraz wie: ile emituje, co emituje najwięcej i z jaką dokładnością (±5–8% dla samochodów, dokładne dla wózków).
+
+To podstawa do każdej dalszej decyzji: raport CSRD, offset, rozmowa z klientem.
+
+Bez tej liczby — decydujesz na wyczucie.
+
+---
+
+## A Ty?
+
+Twoja firma ma flotę samochodów albo wózków widłowych? ERP z fakturami za paliwo?
+
+Zamiast odpowiadać "nie wiemy ile emitujemy" — możesz wiedzieć dokładnie, skąd i ile.
+
+Dane pewnie są. Tylko nie w tej formie.
+
+[Napisz do mnie](/kontakt) — pierwsze 30 minut rozmowy jest bezpłatne.
