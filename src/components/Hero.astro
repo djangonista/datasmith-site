@@ -1,72 +1,21 @@
 ---
 ---
 
-<section class="relative overflow-hidden px-6 py-24 md:py-36">
-  <!-- SVG data graph background — wyraźniejszy motyw + animacje -->
-  <svg
-    class="pointer-events-none absolute inset-0 h-full w-full"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <defs>
-      <!-- Poświata wokół węzłów hub -->
-      <filter id="node-glow" x="-80%" y="-80%" width="260%" height="260%">
-        <feGaussianBlur stdDeviation="4" result="blur"/>
-        <feMerge>
-          <feMergeNode in="blur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
+<section id="heroSection" class="relative overflow-hidden px-6 py-24 md:py-36" style="min-height: 70vh;">
+  <!-- Radar canvas background -->
+  <canvas id="radarCanvas" class="pointer-events-none absolute inset-0 h-full w-full"></canvas>
 
-    <!-- Linie stałe — połączenia główne -->
-    <line class="svg-line line-ga" x1="62%" y1="15%" x2="75%" y2="35%" stroke="#D97706" stroke-width="1.5"/>
-    <line class="svg-line line-gb" x1="75%" y1="35%" x2="88%" y2="22%" stroke="#D97706" stroke-width="1.5"/>
-    <line class="svg-line line-ga" x1="75%" y1="35%" x2="82%" y2="58%" stroke="#D97706" stroke-width="1.5"/>
-    <line class="svg-line line-gb" x1="88%" y1="22%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5"/>
-    <line class="svg-line line-gc" x1="82%" y1="58%" x2="95%" y2="45%" stroke="#D97706" stroke-width="1.5"/>
-    <line class="svg-line line-gc" x1="82%" y1="58%" x2="70%" y2="72%" stroke="#D97706" stroke-width="1.5"/>
-    <line class="svg-line line-gd" x1="95%" y1="45%" x2="98%" y2="68%" stroke="#D97706" stroke-width="1.2"/>
-
-    <!-- Linie przerywane — przepływ danych (animowane) -->
-    <line class="svg-dashed dashed-1" x1="62%" y1="15%" x2="55%" y2="38%" stroke="#D97706" stroke-width="1.2" stroke-dasharray="6 5"/>
-    <line class="svg-dashed dashed-2" x1="70%" y1="72%" x2="85%" y2="82%" stroke="#D97706" stroke-width="1.2" stroke-dasharray="6 5"/>
-    <line class="svg-dashed dashed-3" x1="88%" y1="22%" x2="92%" y2="8%"  stroke="#D97706" stroke-width="1"   stroke-dasharray="4 6"/>
-    <line class="svg-dashed dashed-4" x1="75%" y1="35%" x2="68%" y2="52%" stroke="#D97706" stroke-width="1"   stroke-dasharray="3 7"/>
-
-    <!-- Węzły standardowe — pulsują asynchronicznie -->
-    <circle class="svg-node node-s1" cx="62%" cy="15%" r="5"   fill="#D97706"/>
-    <circle class="svg-node node-s2" cx="88%" cy="22%" r="5"   fill="#D97706"/>
-    <circle class="svg-node node-s3" cx="95%" cy="45%" r="5.5" fill="#D97706"/>
-    <circle class="svg-node node-s4" cx="70%" cy="72%" r="4.5" fill="#D97706"/>
-    <circle class="svg-node node-s5" cx="85%" cy="82%" r="3.5" fill="#D97706"/>
-    <circle class="svg-node node-s6" cx="98%" cy="68%" r="3.5" fill="#D97706"/>
-    <circle class="svg-node node-s7" cx="92%" cy="8%"  r="3"   fill="#D97706"/>
-    <circle class="svg-node node-s8" cx="55%" cy="38%" r="3"   fill="#D97706"/>
-    <circle class="svg-node node-s9" cx="68%" cy="52%" r="2.5" fill="#D97706"/>
-
-    <!-- Węzły HUB — większe, z poświatą, wolniejsze pulsowanie -->
-    <circle class="svg-hub hub-1" cx="75%" cy="35%" r="8" fill="#D97706" filter="url(#node-glow)"/>
-    <circle class="svg-hub hub-2" cx="82%" cy="58%" r="7" fill="#D97706" filter="url(#node-glow)"/>
-  </svg>
-
-  <!-- Subtelna siatka -->
-  <div
-    class="pointer-events-none absolute inset-0 opacity-[0.03]"
-    style="background-image: linear-gradient(#D97706 1px, transparent 1px), linear-gradient(90deg, #D97706 1px, transparent 1px); background-size: 40px 40px;"
-  ></div>
-
-  <div class="relative mx-auto max-w-5xl">
+  <div class="relative z-10 mx-auto max-w-5xl">
     <!-- Label -->
     <div class="hero-item mb-6 inline-flex items-center gap-2 rounded-full border border-[#D97706]/20 bg-[#D97706]/5 px-3 py-1" style="--hero-delay: 0ms">
-      <span class="h-1.5 w-1.5 rounded-full bg-[#D97706]"></span>
-      <span class="font-mono text-xs text-[#D97706]">Problem Solver + AI</span>
+      <span class="blip-dot h-1.5 w-1.5 rounded-full bg-[#D97706]"></span>
+      <span class="font-mono text-xs text-[#D97706]">Decision Intelligence</span>
     </div>
 
     <!-- Headline -->
     <h1 class="hero-item max-w-3xl text-4xl font-bold leading-tight text-[#E8E3D9] md:text-5xl lg:text-6xl" style="--hero-delay: 80ms">
-      Masz dane.<br />
-      <span class="text-[#D97706]">Czy przekładają się na decyzje?</span>
+      Masz <em class="not-italic text-[#D97706]">dane</em>. Czy przekładają się<br />
+      na skuteczne <em class="not-italic text-[#D97706]">decyzje</em>?
     </h1>
 
     <!-- Subheadline -->
@@ -122,96 +71,269 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── Pulsowanie węzłów + delikatny drift (każdy unikalny kierunek) ── */
-  @keyframes nodeFloat1 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(3px, -4px); }
+  /* Badge dot blink */
+  @keyframes blipBlink {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px #D97706; }
+    50%       { opacity: 0.3; box-shadow: none; }
   }
-  @keyframes nodeFloat2 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(-3px, 2px); }
-  }
-  @keyframes nodeFloat3 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(4px, 3px); }
-  }
-  @keyframes nodeFloat4 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(-2px, -4px); }
-  }
-  @keyframes nodeFloat5 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(2px, 5px); }
-  }
-  @keyframes nodeFloat6 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(-4px, -2px); }
-  }
-  @keyframes nodeFloat7 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(3px, 2px); }
-  }
-  @keyframes nodeFloat8 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(-3px, -3px); }
-  }
-  @keyframes nodeFloat9 {
-    0%, 100% { opacity: 0.28; transform: translate(0, 0); }
-    50%       { opacity: 0.85; transform: translate(2px, -3px); }
-  }
-
-  .svg-node { animation: ease-in-out infinite; }
-  .node-s1  { animation-name: nodeFloat1; animation-duration: 3.2s; animation-delay: 0.0s; }
-  .node-s2  { animation-name: nodeFloat2; animation-duration: 2.8s; animation-delay: 0.7s; }
-  .node-s3  { animation-name: nodeFloat3; animation-duration: 3.6s; animation-delay: 1.2s; }
-  .node-s4  { animation-name: nodeFloat4; animation-duration: 2.5s; animation-delay: 0.4s; }
-  .node-s5  { animation-name: nodeFloat5; animation-duration: 3.9s; animation-delay: 1.8s; }
-  .node-s6  { animation-name: nodeFloat6; animation-duration: 2.7s; animation-delay: 0.9s; }
-  .node-s7  { animation-name: nodeFloat7; animation-duration: 3.1s; animation-delay: 2.3s; }
-  .node-s8  { animation-name: nodeFloat8; animation-duration: 4.2s; animation-delay: 1.5s; }
-  .node-s9  { animation-name: nodeFloat9; animation-duration: 2.9s; animation-delay: 0.3s; }
-
-  /* Węzły HUB — wolniejszy, większy drift */
-  @keyframes hubFloat1 {
-    0%, 100% { opacity: 0.40; transform: translate(0, 0); }
-    50%       { opacity: 0.80; transform: translate(-5px, 4px); }
-  }
-  @keyframes hubFloat2 {
-    0%, 100% { opacity: 0.40; transform: translate(0, 0); }
-    50%       { opacity: 0.80; transform: translate(5px, -4px); }
-  }
-  .svg-hub { animation: ease-in-out infinite; }
-  .hub-1   { animation-name: hubFloat1; animation-duration: 4.0s; animation-delay: 0.5s; }
-  .hub-2   { animation-name: hubFloat2; animation-duration: 3.5s; animation-delay: 1.0s; }
-
-  /* ── Oddychanie linii stałych (4 asynchroniczne grupy) ── */
-  @keyframes lineBreath {
-    0%, 100% { opacity: 0.16; }
-    50%       { opacity: 0.38; }
-  }
-
-  .svg-line { animation: lineBreath ease-in-out infinite; }
-  .line-ga  { animation-duration: 5.5s; animation-delay: 0.0s; }
-  .line-gb  { animation-duration: 6.8s; animation-delay: 1.3s; }
-  .line-gc  { animation-duration: 4.8s; animation-delay: 2.2s; }
-  .line-gd  { animation-duration: 7.2s; animation-delay: 0.7s; }
-
-  /* ── Przepływ danych przez linie przerywane ── */
-  @keyframes dataFlow {
-    from { stroke-dashoffset: 40;  opacity: 0.18; }
-    50%  {                          opacity: 0.60; }
-    to   { stroke-dashoffset: -40; opacity: 0.18; }
-  }
-
-  .svg-dashed { animation: dataFlow linear infinite; }
-  .dashed-1   { animation-duration: 3.0s; animation-delay: 0.0s; }
-  .dashed-2   { animation-duration: 4.5s; animation-delay: 1.2s; }
-  .dashed-3   { animation-duration: 3.8s; animation-delay: 0.6s; }
-  .dashed-4   { animation-duration: 2.8s; animation-delay: 2.0s; }
+  .blip-dot { animation: blipBlink 2.4s ease-in-out infinite; }
 
   /* Respektuj prefer-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
-    .svg-node, .svg-hub, .svg-dashed, .svg-line { animation: none; opacity: 0.28; }
     .hero-item { animation: none; opacity: 1; transform: none; }
+    .blip-dot  { animation: none; }
+    #radarCanvas { display: none; }
   }
 </style>
+
+<script is:inline>
+(function () {
+  const SIGNAL_DEFS = [
+    ['ERP',             0.25, 0.38],
+    ['SQL Server',      0.72, 0.58],
+    ['KPI',             1.20, 0.44],
+    ['Decyzja',         1.68, 0.70],
+    ['Automatyzacja',   2.20, 0.52],
+    ['Raport PDF',      2.75, 0.34],
+    ['OEE',             3.30, 0.65],
+    ['Decision Intel.', 3.85, 0.28],
+    ['Python',          4.40, 0.56],
+    ['MCP / AI',        4.95, 0.76],
+    ['ETL',             5.50, 0.42],
+    ['Mostek danych',   6.00, 0.62],
+  ];
+
+  const signals = SIGNAL_DEFS.map(([label, angle, baseDist]) => ({
+    label, angle, baseDist,
+    level: 0,
+    maxLevel: 4 + Math.floor(Math.random() * 3),
+    dist: baseDist,
+    lit: 0,
+    litMax: 130,
+    fading: false,
+    fadeAlpha: 1,
+  }));
+
+  const pulses = [];
+  const canvas = document.getElementById('radarCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const heroEl = document.getElementById('heroSection');
+
+  let W, H, CX, CY, R;
+
+  function resize() {
+    W = canvas.width  = heroEl.clientWidth;
+    H = canvas.height = heroEl.clientHeight;
+    // Radar centered in the right portion (text is left-aligned)
+    CX = W * 0.72;
+    CY = H * 0.50;
+    R  = Math.hypot(Math.max(CX, W - CX), Math.max(CY, H - CY));
+  }
+
+  let sweepAngle = -Math.PI / 2;
+  const SWEEP_SPEED = 0.008;
+  const TRAIL = Math.PI * 0.55;
+  let rotations = 0;
+
+  function norm(a) { return ((a % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2); }
+  function angDiff(sweep, sig) { return norm(norm(sweep) - norm(sig)); }
+  function rgba(r, g, b, a) { return `rgba(${r},${g},${b},${a.toFixed(3)})`; }
+
+  const AMBER  = [245, 158, 11];
+  const AMBERL = [251, 191, 36];
+
+  function blipXY(s) {
+    const d = Math.min(s.dist, 0.92);
+    const refR = Math.min(W, H) * 0.42;
+    return {
+      x: CX + Math.cos(s.angle) * d * refR,
+      y: CY + Math.sin(s.angle) * d * refR,
+    };
+  }
+
+  function onNewRotation() {
+    signals.forEach(s => { if (s.level > 0) s.fading = true; });
+    setTimeout(() => {
+      signals.forEach(s => {
+        if (s.fading) {
+          s.lit = 0; s.fading = false; s.fadeAlpha = 1;
+          s.level = (s.level + 1) % (s.maxLevel + 1);
+          s.dist = s.baseDist + (s.level / s.maxLevel) * 0.18;
+        }
+      });
+    }, 600);
+  }
+
+  function drawGrid() {
+    const refR = Math.min(W, H) * 0.42;
+    for (let i = 1; i <= 5; i++) {
+      ctx.beginPath();
+      ctx.arc(CX, CY, (i / 5) * refR, 0, Math.PI * 2);
+      ctx.strokeStyle = rgba(...AMBER, 0.07);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    for (let i = 0; i < 8; i++) {
+      const a = (i / 8) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(CX, CY);
+      ctx.lineTo(CX + Math.cos(a) * R, CY + Math.sin(a) * R);
+      ctx.strokeStyle = rgba(...AMBER, 0.04);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    for (let i = 0; i < 72; i++) {
+      const a = (i / 72) * Math.PI * 2;
+      const isMain = i % 9 === 0;
+      const r0 = refR * (isMain ? 0.93 : 0.96);
+      ctx.beginPath();
+      ctx.moveTo(CX + Math.cos(a) * r0, CY + Math.sin(a) * r0);
+      ctx.lineTo(CX + Math.cos(a) * refR, CY + Math.sin(a) * refR);
+      ctx.strokeStyle = rgba(...AMBER, isMain ? 0.28 : 0.1);
+      ctx.lineWidth = isMain ? 1.2 : 0.6;
+      ctx.stroke();
+    }
+  }
+
+  function drawSweep() {
+    for (let i = 0; i < 80; i++) {
+      const t  = i / 80;
+      const t1 = (i + 1) / 80;
+      const a0 = sweepAngle - TRAIL * (1 - t);
+      const a1 = sweepAngle - TRAIL * (1 - t1);
+      ctx.beginPath();
+      ctx.moveTo(CX, CY);
+      ctx.arc(CX, CY, R, a0, a1);
+      ctx.closePath();
+      ctx.fillStyle = rgba(...AMBER, t * t * 0.18);
+      ctx.fill();
+    }
+    ctx.beginPath();
+    ctx.moveTo(CX, CY);
+    ctx.lineTo(CX + Math.cos(sweepAngle) * R, CY + Math.sin(sweepAngle) * R);
+    const lg = ctx.createLinearGradient(
+      CX, CY,
+      CX + Math.cos(sweepAngle) * R, CY + Math.sin(sweepAngle) * R
+    );
+    lg.addColorStop(0,   rgba(...AMBERL, 0.9));
+    lg.addColorStop(0.6, rgba(...AMBER,  0.5));
+    lg.addColorStop(1,   rgba(...AMBER,  0));
+    ctx.strokeStyle = lg;
+    ctx.lineWidth = 1.8;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = rgba(...AMBER, 0.8);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    ctx.beginPath();
+    ctx.arc(CX, CY, 4, 0, Math.PI * 2);
+    ctx.fillStyle = rgba(...AMBERL, 1);
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = rgba(...AMBER, 1);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
+  function drawBlips() {
+    signals.forEach(s => {
+      const diff = angDiff(sweepAngle, s.angle);
+      if (diff < 0.07 && !s.fading) {
+        s.lit = s.litMax;
+        const { x, y } = blipXY(s);
+        pulses.push({ x, y, r: 0, maxR: 28 + s.level * 6, t: 0 });
+      }
+      if (s.fading) s.fadeAlpha = Math.max(0, s.fadeAlpha - 0.018);
+      if (s.lit <= 0 && !s.fading) return;
+
+      const baseAlpha = s.fading ? s.fadeAlpha : Math.min(1, (s.lit / s.litMax) * 1.5);
+      s.lit = Math.max(0, s.lit - 1);
+      const { x, y } = blipXY(s);
+
+      if (s.level > 0) {
+        const arcSpan = (s.level / s.maxLevel) * Math.PI * 1.5;
+        ctx.beginPath();
+        ctx.arc(x, y, 14 + s.level * 2.5, -Math.PI / 2, -Math.PI / 2 + arcSpan);
+        ctx.strokeStyle = rgba(...AMBER, baseAlpha * 0.55);
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = rgba(...AMBER, 0.4);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+
+      ctx.beginPath();
+      ctx.arc(x, y, 8 + (1 - s.lit / s.litMax) * 18, 0, Math.PI * 2);
+      ctx.strokeStyle = rgba(...AMBER, baseAlpha * 0.28);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      const gr = ctx.createRadialGradient(x, y, 0, x, y, 20);
+      gr.addColorStop(0, rgba(...AMBER, baseAlpha * 0.4));
+      gr.addColorStop(1, rgba(...AMBER, 0));
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, Math.PI * 2);
+      ctx.fillStyle = gr;
+      ctx.fill();
+
+      const dotR = 3 + s.level * 0.8;
+      ctx.beginPath();
+      ctx.arc(x, y, dotR, 0, Math.PI * 2);
+      ctx.fillStyle = rgba(...AMBERL, baseAlpha * 0.9);
+      ctx.shadowBlur = 14;
+      ctx.shadowColor = rgba(...AMBER, baseAlpha);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      if (baseAlpha > 0.07) {
+        const fs = Math.max(9, Math.min(12, W * 0.01));
+        ctx.font = `400 ${fs}px 'JetBrains Mono', monospace`;
+        const lx = x > CX ? x + dotR + 8 : x - dotR - 8;
+        ctx.textAlign = x > CX ? 'left' : 'right';
+        ctx.fillStyle = rgba(...AMBER, baseAlpha * 0.85);
+        ctx.fillText(s.label, lx, y - 4);
+        if (s.level > 0) {
+          ctx.font = `300 ${Math.max(7, Math.min(9, W * 0.009))}px 'JetBrains Mono', monospace`;
+          ctx.fillStyle = rgba(...AMBERL, baseAlpha * 0.6);
+          ctx.fillText(`+${s.level}`, lx, y + 10);
+        }
+      }
+    });
+  }
+
+  function drawPulses() {
+    for (let i = pulses.length - 1; i >= 0; i--) {
+      const p = pulses[i];
+      p.t += 0.045;
+      p.r = p.maxR * p.t;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.strokeStyle = rgba(...AMBER, (1 - p.t) * 0.5);
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      if (p.t >= 1) pulses.splice(i, 1);
+    }
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    drawGrid();
+    drawSweep();
+    drawBlips();
+    drawPulses();
+
+    const prev = sweepAngle;
+    sweepAngle += SWEEP_SPEED;
+    if (sweepAngle > Math.PI) sweepAngle -= Math.PI * 2;
+    if (prev < 0 && sweepAngle >= 0) {
+      rotations++;
+      onNewRotation();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  frame();
+})();
+</script>
