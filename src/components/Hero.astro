@@ -41,18 +41,18 @@
     </div>
 
     <!-- Stats -->
-    <div class="hero-item mt-16 flex flex-wrap gap-8 border-t border-[#1E1E1E] pt-10" style="--hero-delay: 320ms">
+    <div class="hero-item mt-16 flex flex-wrap gap-8 pt-10" style="--hero-delay: 320ms">
       <div>
-        <p class="font-mono text-2xl font-bold text-[#E8E3D9]">3h &rarr; 8s</p>
-        <p class="mt-1 font-mono text-xs text-[#8A8480]">Raport miesięczny na automacie</p>
+        <p class="stat-num text-[#D97706]">3h &rarr; 8s</p>
+        <p class="stat-desc">Raport miesięczny na automacie</p>
       </div>
       <div>
-        <p class="font-mono text-2xl font-bold text-[#E8E3D9]">13 lat</p>
-        <p class="mt-1 font-mono text-xs text-[#8A8480]">W produkcji, z ERP i bazami danych</p>
+        <p class="stat-num text-[#E8E3D9]">13 lat</p>
+        <p class="stat-desc">W produkcji, z ERP i bazami danych</p>
       </div>
       <div>
-        <p class="font-mono text-2xl font-bold text-[#E8E3D9]">Tygodnie, nie miesiące</p>
-        <p class="mt-1 font-mono text-xs text-[#8A8480]">Czas wdrożenia pilotowego projektu</p>
+        <p class="stat-num text-[#E8E3D9]">Tygodnie</p>
+        <p class="stat-desc">Czas wdrożenia pilotowego projektu</p>
       </div>
     </div>
   </div>
@@ -69,6 +69,21 @@
 
   @keyframes heroFadeUp {
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Stats formatting (matching radar demo) ── */
+  .stat-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .stat-desc {
+    margin-top: 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: #8A8480;
+    letter-spacing: 0.05em;
   }
 
   /* Badge dot blink */
