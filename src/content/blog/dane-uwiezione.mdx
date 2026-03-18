@@ -1,0 +1,85 @@
+---
+title: "100 000 wyników kontroli jakości. Nikt nie mógł ich przejrzeć."
+description: "Firma produkcyjna miała lata danych jakościowych w bazie SQL. Program do ich przeglądania przestał działać. Jak prosty edytor odblokował decyzje o jakości."
+date: 2026-03-25
+tags: ["automatyzacja", "Python", "firma produkcyjna", "jakość", "baza danych"]
+image: "/images/blog/dane-uwiezione.png"
+---
+
+Firma produkcyjna. Baza danych z wynikami kontroli jakości. Ponad 100 000 rekordów.
+Parametry procesu, wyniki badań, historie serii produkcyjnych. Gromadzona latami.
+
+Nikt nie mógł ich przejrzeć.
+
+---
+
+## Program przestał działać
+
+Stare narzędzie napisane kilka lat temu w innej technologii.
+Działało dobrze. Do momentu kiedy zmienił się serwer bazy danych.
+Doszły nowe kolumny. Zmienił się format kilku pól.
+
+Program się nie uruchomił. Nie było kogo poprosić o naprawę.
+
+Od tego momentu ponad 100 000 rekordów jakościowych istniało, ale było niedostępnych dla ludzi którzy ich potrzebowali.
+
+---
+
+## Co to oznaczało w praktyce
+
+Kontroler jakości chciał sprawdzić: jakie parametry miała seria z zeszłego miesiąca, ta z reklamacją?
+Musiał napisać do informatyka. Informatyk odpytywał bazę ręcznie. Wynik wracał po godzinach albo dniach.
+
+Albo kontroler nie pytał wcale. Bo było szybciej zdecydować z pamięci.
+
+Przy reklamacji od klienta zespół szukał odpowiedzi w mailach i notatkach.
+Nie w bazie z danymi.
+
+Decyzje o korektach procesu podejmowane na podstawie doświadczenia jednego człowieka. Nie na podstawie 100 000 pomiarów.
+
+---
+
+## 3 sygnały że Twoje dane produkcyjne są uwięzione
+
+**1. "Wyciągnij mi to z systemu"**
+Jeśli ktoś w firmie musi poprosić inną osobę o dostęp do danych które sam powinien widzieć.
+To nie jest system. To jest wąskie gardło.
+
+**2. "Działa, ale nie ruszaj"**
+Stare narzędzie które nikt nie umie naprawić. Wszyscy z niego korzystają.
+Dopóki nie padnie. A padnie.
+
+**3. "Sprawdź w mailach"**
+Gdy odpowiedź na pytanie o jakość szukasz w korespondencji zamiast w bazie danych.
+Dane istnieją. Nie masz do nich drogi.
+
+---
+
+## Co zrobiłem
+
+Nowe narzędzie. Python, prosty interfejs graficzny.
+
+Filtr po dacie, produkcie, serii produkcyjnej. Edycja wyników badań. Zapis do bazy.
+
+Jeden plik .exe, 12 MB. Zero instalacji. Podwójne kliknięcie i działa.
+
+Czas budowy: kilka dni. Koszt utrzymania: minimalny, bo proste narzędzia łatwo naprawić.
+
+---
+
+## Co się zmieniło
+
+Kontroler jakości sam sprawdza historyczne dane. Bez czekania na IT.
+Przy reklamacji odpowiedź jest w 10 sekund, nie w 2 dniach.
+Korekta procesu oparta na danych, nie na pamięci.
+
+Dane które wyjaśniają braki produkcyjne były w systemie od lat. Brakowało narzędzia które by je udostępniło.
+
+---
+
+## A Ty?
+
+Czy Twój zespół produkcyjny ma dostęp do swoich danych?
+Czy musi prosić kogoś o "wyciąg z systemu"?
+
+Jeśli brzmi znajomo, [napisz do mnie](/kontakt). Pierwsze 30 minut rozmowy jest bezpłatne.
