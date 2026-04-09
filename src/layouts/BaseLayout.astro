@@ -44,6 +44,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
+    <!-- Schema.org JSON-LD (injected by pages via named slot) -->
+    <slot name="head" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

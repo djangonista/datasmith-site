@@ -12,9 +12,67 @@ const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const latestPosts = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://datasmith.pl/#website",
+      "name": "DataSmith",
+      "url": "https://datasmith.pl",
+      "description": "Automatyzuję powtarzalne procesy danych dla MŚP i firm produkcyjnych. SQL, Python, AI — narzędzia dopasowane do Twojego systemu.",
+    },
+    {
+      "@type": "Person",
+      "@id": "https://datasmith.pl/#person",
+      "name": "Paweł Kowalczyk",
+      "url": "https://datasmith.pl",
+      "jobTitle": "Analityk danych | Decision Intelligence",
+      "description": "Analityk danych z 16-letnim doświadczeniem w produkcji. Buduję automatyzacje danych dla firm produkcyjnych — Python, SQL, AI.",
+      "email": "pawel@datasmith.pl",
+      "knowsAbout": ["Decision Intelligence", "SQL Server", "Python", "ERP", "Automatyzacja danych", "AI"],
+      "sameAs": [
+        "https://www.linkedin.com/in/pawel-kowalczyk-ds",
+        "https://x.com/plastyq",
+      ],
+    },
+    {
+      "@type": "Service",
+      "name": "Raport na Automacie",
+      "description": "Raporty zarządcze bez ręcznego zbierania danych. Połączenie z ERP lub bazą danych, agregacje, wykresy, profesjonalny PDF automatycznie.",
+      "provider": { "@id": "https://datasmith.pl/#person" },
+      "areaServed": { "@type": "Country", "name": "PL" },
+    },
+    {
+      "@type": "Service",
+      "name": "Mostek Danych",
+      "description": "Łączenie systemów, które nie rozmawiają ze sobą. Konwersja formatów między bankiem, ERP i innymi systemami — raz zbudowany, działa na stałe.",
+      "provider": { "@id": "https://datasmith.pl/#person" },
+      "areaServed": { "@type": "Country", "name": "PL" },
+    },
+    {
+      "@type": "Service",
+      "name": "Narzędzie Bazodanowe",
+      "description": "Dedykowana aplikacja z interfejsem graficznym do zarządzania danymi. Jeden plik, zero instalacji, bez czekania na IT.",
+      "provider": { "@id": "https://datasmith.pl/#person" },
+      "areaServed": { "@type": "Country", "name": "PL" },
+    },
+    {
+      "@type": "Service",
+      "name": "MCP Server (API→AI)",
+      "description": "Połączenie między AI a Twoim systemem. Pytasz po polsku, dostajesz odpowiedź z Twoich własnych danych.",
+      "provider": { "@id": "https://datasmith.pl/#person" },
+      "areaServed": { "@type": "Country", "name": "PL" },
+    },
+  ],
+};
 ---
 
 <BaseLayout>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
+  </Fragment>
   <Hero />
   <About />
   <Services />
