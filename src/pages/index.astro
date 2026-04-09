@@ -6,6 +6,8 @@ import Services from '../components/Services.astro';
 import CaseStudies from '../components/CaseStudies.astro';
 import BlogCard from '../components/BlogCard.astro';
 import Newsletter from '../components/Newsletter.astro';
+import FAQ from '../components/FAQ.astro';
+import { faqs } from '../data/faqs';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -65,6 +67,17 @@ const schemaGraph = {
       "provider": { "@id": "https://datasmith.pl/#person" },
       "areaServed": { "@type": "Country", "name": "PL" },
     },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer,
+        },
+      })),
+    },
   ],
 };
 ---
@@ -107,5 +120,6 @@ const schemaGraph = {
     </section>
   )}
 
+  <FAQ />
   <Newsletter />
 </BaseLayout>
