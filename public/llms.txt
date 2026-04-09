@@ -1,0 +1,27 @@
+# DataSmith.pl
+
+> Paweł Kowalczyk — analityk danych z 16-letnim doświadczeniem w produkcji. Decision Intelligence i automatyzacja procesów danych dla małych i średnich firm produkcyjnych w Polsce.
+
+DataSmith specjalizuje się w przekształcaniu chaosu danych w czytelne, zautomatyzowane raporty dla firm produkcyjnych (MŚP). Podejście oparte na Decision Intelligence — łączy dane z procesem decyzyjnym, żeby firmy podejmowały lepsze decyzje szybciej.
+
+## Usługi
+
+- [Raport na Automacie](https://datasmith.pl/#uslugi): Automatyczne raporty zarządcze — dane z ERP lub bazy danych, agregacje, wykresy, profesjonalny PDF gotowy każdego ranka
+- [Mostek Danych](https://datasmith.pl/#uslugi): Łączenie systemów, które nie rozmawiają ze sobą — konwersja formatów między bankiem, ERP i innymi systemami
+- [Narzędzie Bazodanowe](https://datasmith.pl/#uslugi): Dedykowane aplikacje z interfejsem graficznym do zarządzania danymi — jeden plik, zero instalacji, bez czekania na IT
+- [MCP Server (API→AI)](https://datasmith.pl/#uslugi): Serwery Model Context Protocol — AI z dostępem do Twoich danych firmowych, pytasz po polsku
+
+## Technologie
+
+Python, SQL Server, ERP (SIMPLE.ERP), AI (Claude, GPT), Decision Intelligence, ETL, LaTeX, MCP
+
+## Blog
+
+- [Wszystkie wpisy](https://datasmith.pl/blog): Artykuły o automatyzacji danych, Decision Intelligence i rozwiązywaniu problemów w MŚP produkcyjnych — dokumentacja drogi "Build in Public"
+
+## Kontakt
+
+- [Formularz kontaktowy](https://datasmith.pl/kontakt): Bezpłatna 30-minutowa konsultacja discovery
+- Email: pawel@datasmith.pl
+- [LinkedIn](https://www.linkedin.com/in/pawel-kowalczyk-ds)
+- [X / Twitter](https://x.com/plastyq)
