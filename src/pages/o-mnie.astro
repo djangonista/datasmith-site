@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://datasmith.pl" },
+    { "@type": "ListItem", "position": 2, "name": "O mnie" },
+  ],
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://datasmith.pl/#person",
+  "name": "Paweł Kowalczyk",
+  "url": "https://datasmith.pl/o-mnie",
+  "image": "https://datasmith.pl/images/pawel.jpg",
+  "jobTitle": "Analityk danych | Automatyzacja danych",
+  "description": "Analityk danych z 16-letnim doświadczeniem w produkcji. Buduję automatyzacje danych dla firm produkcyjnych. Python, SQL, AI.",
+  "email": "pawel@datasmith.pl",
+  "knowsAbout": ["SQL Server", "Python", "ERP", "Automatyzacja danych", "AI", "TOC"],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "DataSmith",
+    "@id": "https://datasmith.pl/#organization",
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/pawel-kowalczyk-ds",
+    "https://x.com/plastyq",
+    "https://github.com/djangonista",
+  ],
+};
+---
+
+<BaseLayout
+  title="O mnie — DataSmith"
+  description="Paweł Kowalczyk. Analityk danych z 16 lat w produkcji. Buduję automatyzacje dla firm produkcyjnych MŚP."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </Fragment>
+
+  <div class="px-6 py-16">
+    <div class="mx-auto max-w-3xl">
+      <!-- Header -->
+      <div class="mb-12">
+        <span class="font-mono text-xs text-[#D97706]">// o mnie</span>
+        <h1 class="mt-2 text-4xl font-bold text-[#E8E3D9]">Badacz, nie ekspert</h1>
+      </div>
+
+      <!-- Intro with photo -->
+      <div class="mb-12 flex flex-col gap-8 sm:flex-row sm:items-start">
+        <img
+          src="/images/pawel.jpg"
+          alt="Paweł Kowalczyk"
+          width="160"
+          height="160"
+          class="h-40 w-40 shrink-0 rounded-full border-2 border-[#D97706]/40 object-cover"
+        />
+        <div class="space-y-4 text-[#8A8480] leading-relaxed">
+          <p class="text-lg">
+            Jestem Paweł. Analityk danych z <span class="text-[#E8E3D9]">16 lat doświadczenia w produkcji</span>.
+          </p>
+          <p>
+            Od 2010 roku pracuję w firmie produkcyjnej. Ludzie przychodzą z problemami, wychodzą z rozwiązaniami.
+            ERP nie generuje raportu? Program przestał działać? Bank i system mówią różnymi językami?
+            To moje codzienne tematy.
+          </p>
+        </div>
+      </div>
+
+      <!-- What I do -->
+      <section class="mb-12">
+        <h2 class="mb-6 text-2xl font-bold text-[#E8E3D9]">Co robię</h2>
+        <div class="space-y-4 text-[#8A8480] leading-relaxed">
+          <p>
+            Buduję automatyzacje danych dla firm produkcyjnych MŚP. Python, SQL, AI.
+            Narzędzia dopasowane do systemu, który już masz. Bez rewolucji w IT.
+          </p>
+          <p>
+            Łączę dane z ERP z procesem decyzyjnym. Żeby właściciel firmy wiedział
+            co się dzieje. Bez czekania na IT, bez ręcznego zbierania danych, bez Excela
+            odziedziczonego po poprzednim pracowniku.
+          </p>
+          <p>
+            Każdy projekt dokumentuję publicznie na
+            <a href="/blog" class="text-[#D97706] hover:underline">blogu</a> i LinkedIn.
+            Bez upiększeń. Żebyś widział jak to naprawdę działa.
+          </p>
+        </div>
+      </section>
+
+      <!-- Superpowers -->
+      <section class="mb-12">
+        <h2 class="mb-6 text-2xl font-bold text-[#E8E3D9]">Jak pracuję</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded border border-[#1E1E1E] bg-[#111111] p-5">
+            <p class="mb-2 font-mono text-xs text-[#D97706]">01</p>
+            <p class="mb-1 font-semibold text-[#E8E3D9]">Problem solver</p>
+            <p class="text-sm text-[#8A8480]">Przychodzisz z problemem, wychodzisz z rozwiązaniem. Od A do Z.</p>
+          </div>
+          <div class="rounded border border-[#1E1E1E] bg-[#111111] p-5">
+            <p class="mb-2 font-mono text-xs text-[#D97706]">02</p>
+            <p class="mb-1 font-semibold text-[#E8E3D9]">Dane → decyzje</p>
+            <p class="text-sm text-[#8A8480]">Wydobywam ukryte dane i przekształcam w informacje, które zmieniają decyzje.</p>
+          </div>
+          <div class="rounded border border-[#1E1E1E] bg-[#111111] p-5">
+            <p class="mb-2 font-mono text-xs text-[#D97706]">03</p>
+            <p class="mb-1 font-semibold text-[#E8E3D9]">Myślenie systemowe</p>
+            <p class="text-sm text-[#8A8480]">Widzę system jako całość. "Jeśli zrobimy X, to wysypie się Y."</p>
+          </div>
+          <div class="rounded border border-[#1E1E1E] bg-[#111111] p-5">
+            <p class="mb-2 font-mono text-xs text-[#D97706]">04</p>
+            <p class="mb-1 font-semibold text-[#E8E3D9]">Build in public</p>
+            <p class="text-sm text-[#8A8480]">Dokumentuję co testuję, co działa, co nie. Nie udaję eksperta.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stack -->
+      <section class="mb-12">
+        <h2 class="mb-6 text-2xl font-bold text-[#E8E3D9]">Stack technologiczny</h2>
+        <div class="flex flex-wrap gap-2">
+          {['Python', 'SQL Server', 'ERP (SIMPLE.ERP)', 'AI (Claude, GPT)', 'MCP', 'LaTeX', 'ETL', 'Excel/VBA', 'Astro', 'Git'].map((tag) => (
+            <span class="rounded border border-[#1E1E1E] bg-[#111111] px-3 py-1.5 font-mono text-xs text-[#8A8480]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="mb-12">
+        <h2 class="mb-6 text-2xl font-bold text-[#E8E3D9]">Doświadczenie</h2>
+        <div class="space-y-6 border-l-2 border-[#1E1E1E] pl-6">
+          <div>
+            <p class="font-mono text-xs text-[#D97706]">2010 → teraz</p>
+            <p class="mt-1 font-semibold text-[#E8E3D9]">Analityk danych / Problem Solver</p>
+            <p class="mt-1 text-sm text-[#8A8480]">Firma produkcyjna. 16 lat z ERP, SQL Server, procesami planistycznymi. 100% zdalnie.</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-[#D97706]">2025 → teraz</p>
+            <p class="mt-1 font-semibold text-[#E8E3D9]">DataSmith</p>
+            <p class="mt-1 text-sm text-[#8A8480]">Automatyzacja danych dla MŚP produkcyjnych. Python, SQL, AI. Budowa narzędzi i raportów.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Approach -->
+      <section class="mb-12 rounded border border-[#D97706]/20 bg-[#111111] p-8">
+        <h2 class="mb-4 text-xl font-bold text-[#E8E3D9]">Dlaczego "badacz, nie ekspert"?</h2>
+        <div class="space-y-3 text-[#8A8480] leading-relaxed">
+          <p>
+            Nie przychodzę z gotowymi odpowiedziami. Przychodzę z pytaniami i narzędziami,
+            które pomagają znaleźć odpowiedzi w Twoich danych.
+          </p>
+          <p>
+            16 lat w produkcji nauczyło mnie jednego: każda firma jest inna.
+            To co zadziałało u jednego klienta, może nie zadziałać u drugiego.
+            Dlatego zaczynam od słuchania, nie od sprzedawania.
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="text-center">
+        <a
+          href="/kontakt"
+          class="inline-block rounded bg-[#D97706] px-8 py-3 font-mono text-sm font-semibold text-[#0C0C0C] transition-all hover:bg-[#F59E0B]"
+        >
+          Porozmawiajmy o Twoim problemie
+        </a>
+        <p class="mt-3 font-mono text-xs text-[#8A8480]">
+          Pierwsze 30 minut bezpłatnie.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
