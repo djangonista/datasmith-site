@@ -1,0 +1,117 @@
+# DataSmith.pl — Full Content
+
+> DataSmith to serwis Pawla Kowalczyka specjalizujacy sie w automatyzacji danych i Decision Intelligence dla firm produkcyjnych MSP w Polsce.
+
+## O autorze
+
+Pawel Kowalczyk — analityk danych z 16-letnim doswiadczeniem w produkcji (ERP, SQL Server, procesy planistyczne). Buduje automatyzacje dla firm produkcyjnych i uczy sie Decision Intelligence — czyli jak sprawic, zeby dane naprawde przekladaly sie na decyzje, a nie tylko na kolejny raport do szuflady.
+
+Podejscie: badacz, nie ekspert. Dokumentuje droge publicznie — co testuje w praktyce, co dziala, co nie dziala i dlaczego.
+
+- Email: pawel@datasmith.pl
+- LinkedIn: https://www.linkedin.com/in/pawel-kowalczyk-ds
+- X / Twitter: https://x.com/plastyq
+- GitHub: https://github.com/djangonista
+
+---
+
+## Uslugi
+
+### 1. Raport na Automacie (od 2 000 PLN + 400/mies)
+Automatyczne raporty zarzadcze — dane z ERP lub bazy danych, agregacje, wykresy, porownania rok do roku. Profesjonalny PDF z logo firmy gotowy automatycznie kazdego ranka. Technologie: Python, SQL, LaTeX, PDF.
+
+### 2. Mostek Danych (1 000–2 000 PLN)
+Laczenie systemow, ktore nie rozmawiaja ze soba. Konwersja formatow miedzy bankiem, ERP i innymi systemami — raz zbudowany, dziala na stale. Bez recznego przepisywania, bez bledow. Technologie: Python, ETL, API.
+
+### 3. Narzedzie Bazodanowe (2 000–4 000 PLN)
+Dedykowane aplikacje z interfejsem graficznym do zarzadzania danymi. Jeden plik, zero instalacji, bez czekania na IT. Stary program przestal dzialac? Kazda zmiana danych wymaga programisty? To rozwiazanie. Technologie: Python, tkinter, SQL Server.
+
+### 4. MCP Server / API→AI (2 000–3 000 PLN)
+Serwery Model Context Protocol — AI z dostepem do danych firmowych. Pytasz po polsku, dostajesz odpowiedz z wlasnych danych. Polaczenie miedzy AI a systemem firmy. Technologie: MCP, Python, AI, Claude.
+
+### 5. Arkusze Duchy (2 000–5 000 PLN) [wkrotce]
+Kontrola nad arkuszami Excel odziedziczonymi po poprzednim pracowniku. Dokumentacja, naprawa, eliminacja ryzyka awarii. Technologie: Excel, VBA, Python.
+
+### 6. Audyt Jakosci Danych (1 500–3 000 PLN) [wkrotce]
+Duplikaty, luki, niespolnosci miedzy systemami. Raport z konkretnymi rekomendacjami. Technologie: Python, Pandas, SQL.
+
+---
+
+## Realizacje (Case Studies)
+
+### Case 1: Dane uwiezione w bazie — 100 000 pomiarow
+- Klient: Firma produkcyjna
+- Problem: Stary program przestal dzialac po zmianie serwera. Kontrolerzy jakosci musieli prosic IT o kazde sprawdzenie. Albo nie sprawdzali wcale.
+- Rozwiazanie: Dedykowana aplikacja z interfejsem graficznym. Filtr po dacie, produkcie, serii. Jeden plik .exe, zero instalacji.
+- Wynik: 100 000 wynikow kontroli jakosci dostepnych natychmiast. Przy reklamacji odpowiedz w 10 sekund, nie w 2 dniach.
+
+### Case 2: Wyciagi bankowe — 3h na 8 sekund
+- Klient: Biuro rachunkowe
+- Problem: Co miesiac 3 godziny na reczne przepisywanie wyciagow bankowych w PLN i EUR. Podatne na bledy.
+- Rozwiazanie: Automat wczytuje plik z banku, przelicza kursy walut i generuje gotowy arkusz do zaksiegowania.
+- Wynik: 8 sekund zamiast 3 godzin. Identyczne wyniki jak recznie, zweryfikowane na rzeczywistych danych.
+
+### Case 3: Automatyczny import wyciagow do ERP
+- Klient: Firma produkcyjna
+- Problem: Bank i system ERP firmy mowily roznymi jezykami. Import wyciagow wymagal recznej pracy co miesiac.
+- Rozwiazanie: Konwerter formatu bankowego do formatu importu systemu ERP. Raz skonfigurowany, dziala na stale.
+- Wynik: Automatyczny import. Zero recznej pracy, zero bledow przepisywania.
+
+---
+
+## FAQ
+
+### Czym jest Decision Intelligence?
+Decision Intelligence laczy analize danych z nauka o decyzjach. Zamiast kolejnego raportu do szuflady buduje narzedzia, ktore pomagaja firmom produkcyjnym podejmowac lepsze decyzje. Szybciej i na podstawie danych, nie intuicji.
+
+### Dla kogo sa uslugi?
+Dla wlascicieli i kierownikow malych i srednich firm produkcyjnych. Takich, ktorzy maja dane w ERP, Excelu lub bazach danych, ale te dane nie przekladaja sie na szybkie decyzje. Szczegolnie dla firm bez rozbudowanego dzialu IT.
+
+### Ile kosztuje automatyzacja raportow?
+Typowy projekt "Raport na Automacie" zaczyna sie od 2 000 PLN jednorazowo + 400 PLN/miesiac za utrzymanie. Mostek Danych to 1 000 do 2 000 PLN. Koncowa cena zalezy od liczby zrodel danych i zlozonosci. Pierwsza rozmowa (30 min) jest bezplatna.
+
+### Jak wyglada wspolpraca?
+Zaczynamy od bezplatnej rozmowy (30 min). Opisujesz problem. W ciagu 48h dostajesz brief z wycena. Buduje rozwiazanie iteracyjnie, z Twoim feedbackiem. Na koniec dostajesz gotowe narzedzie i dokumentacje.
+
+### Czy potrzebuje dzialu IT zeby wdrozyc rozwiazanie?
+Nie. Narzedzia dzialaja samodzielnie. Jeden plik .exe, skrypt Python lub automatyczny raport PDF. Zero instalacji serwerow, zero zmian w istniejacym ERP. Projektowane tak, zeby dzialaly obok obecnego stacku.
+
+### Jak dlugo trwa wdrozenie?
+Pilotazowy projekt to 2 do 4 tygodni. Prosty mostek danych lub konwerter formatow, nawet kilka dni. Zalezy od zlozonosci zrodel danych i wymagan.
+
+---
+
+## Blog
+
+### 100 000 wynikow kontroli jakosci. Nikt nie mogl ich przejrzec. (2026-03-25)
+Firma produkcyjna miala lata danych jakosciowych w bazie SQL. Program do ich przegladania przestal dzialac. Stare narzedzie napisane kilka lat temu w innej technologii. Po zmianie serwera bazy danych i nowych kolumnach program sie nie uruchomil. Nie bylo kogo poprosic o naprawe. Od tego momentu ponad 100 000 rekordow jakosciowych istnialo, ale bylo niedostepnych. Kontroler jakosci chcial sprawdzic parametry serii z zeszlego miesiaca — musial napisac do informatyka. Odpowiedz wracala po godzinach albo dniach. Rozwiazanie: nowe narzedzie w Python z prostym interfejsem graficznym. Filtr po dacie, produkcie, serii. Jeden plik .exe, 12 MB. Zero instalacji.
+URL: https://datasmith.pl/blog/dane-uwiezione
+
+### 168 ton CO2. Liczba, ktorej firma nie miala. (2026-03-11)
+Kierownik ds. ESG dostal zadanie: policzyc ile firma wyemitowala CO2 w 2025 roku. ERP mial setki faktur za paliwo ale tylko w PLN, bez litrow i kg. Przetlumaczenie PLN na litry, litrow na kg CO2 wg wskaznikow GHG Protocol. Pierwsza wersja: 52 t CO2. Wlasciwa: 168 t CO2. Roznica? Wozki widlowe na LPG — pominiecie ich dalo wynik ponad 3x za maly. Dane byly w ERP od poczatku, nikt ich nigdy nie zestawial.
+URL: https://datasmith.pl/blog/slad-weglowy
+
+### Arkusz-duch: kto naprawde zarzadza Twoja firma? (2026-03-04)
+88% arkuszy Excel w firmach zawiera bledy (badania Raymonda Panko, University of Hawaii). Wiekszosc dowie sie o tym za pozno. Zjawisko person-lock: jeden czlowiek jest jedynym zrodlem wiedzy o narzedziu krytycznym dla calej firmy. Dopoki jest — wszystko gra. Kiedy odchodzi — zostaje arkusz-duch. Obslugiwany z lekiem, modyfikowany ostroznie, albo wcale.
+URL: https://datasmith.pl/blog/arkusze-duchy
+
+### Wyciagi bankowe: 3 godziny miesiecznie w 8 sekund (2026-02-20)
+Wlascicielka biura rachunkowego co miesiac spedzala 2-3 godziny na przepisywaniu wyciagow bankowych do Excela. PLN i EUR z roznych bankow, inne kolumny, inne daty, kurs NBP do przeliczenia. Rozwiazanie: skrypt Python ktory wczytuje PDF, wyciaga tabele transakcji, normalizuje kolumny, laczy z API NBP dla kursow walut, eksportuje do Excela. Wynik: 8 sekund zamiast 3 godzin.
+URL: https://datasmith.pl/blog/wyciagi-bankowe
+
+---
+
+## Kontakt
+
+Formularz kontaktowy: https://datasmith.pl/kontakt
+Email: pawel@datasmith.pl
+LinkedIn: https://www.linkedin.com/in/pawel-kowalczyk-ds
+X / Twitter: https://x.com/plastyq
+
+Pierwsza rozmowa (30 min discovery) jest bezplatna. Odpowiedz w ciagu 24h w dni robocze.
+
+---
+
+## Technologie
+
+Python, SQL Server, ERP (SIMPLE.ERP), AI (Claude, GPT), Decision Intelligence, ETL, LaTeX, MCP, Astro, Tailwind CSS

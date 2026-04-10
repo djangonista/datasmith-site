@@ -9,12 +9,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  ogType?: string;
 }
 
 const {
   title = 'DataSmith — Rozwiązuję problemy z danymi',
   description = 'Automatyzuję powtarzalne procesy danych dla MŚP i firm produkcyjnych. SQL, Python, AI — narzędzia dopasowane do Twojego systemu.',
   image = '/og-image.png',
+  ogType = 'website',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -33,7 +35,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
