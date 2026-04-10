@@ -123,6 +123,46 @@ const services = [
       ))}
     </div>
 
+    <!-- Comparison table -->
+    <div class="mt-12 overflow-x-auto rounded border border-[#1E1E1E]">
+      <table class="w-full text-left text-sm">
+        <thead>
+          <tr class="border-b border-[#1E1E1E] bg-[#111111]">
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Usługa</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Co dostajesz</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Czas</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Cena od</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#1E1E1E]">
+          <tr class="hover:bg-[#111111]">
+            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">Raport na Automacie</td>
+            <td class="px-4 py-3 text-[#8A8480]">Automatyczny PDF z ERP/bazy danych co rano</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">2-4 tyg.</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">2 000 PLN + 400/mies</td>
+          </tr>
+          <tr class="hover:bg-[#111111]">
+            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">Mostek Danych</td>
+            <td class="px-4 py-3 text-[#8A8480]">Konwersja formatów bank/ERP. Raz zbudowany, działa na stałe</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">kilka dni</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">1 000 PLN</td>
+          </tr>
+          <tr class="hover:bg-[#111111]">
+            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">Narzędzie Bazodanowe</td>
+            <td class="px-4 py-3 text-[#8A8480]">Aplikacja z GUI do danych. Jeden plik .exe, zero instalacji</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">2-4 tyg.</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">2 000 PLN</td>
+          </tr>
+          <tr class="hover:bg-[#111111]">
+            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">MCP Server (API→AI)</td>
+            <td class="px-4 py-3 text-[#8A8480]">AI odpowiada na pytania z Twoich danych firmowych</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">2-3 tyg.</td>
+            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">2 000 PLN</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <!-- CTA -->
     <div class="mt-10 text-center">
       <a
