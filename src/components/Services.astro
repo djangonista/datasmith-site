@@ -123,41 +123,36 @@ const services = [
       ))}
     </div>
 
-    <!-- Comparison table -->
+    <!-- Before / After -->
     <div class="mt-12 overflow-x-auto rounded border border-[#1E1E1E]">
       <table class="w-full text-left text-sm">
         <thead>
           <tr class="border-b border-[#1E1E1E] bg-[#111111]">
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Usługa</th>
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Co dostajesz</th>
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Czas</th>
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Cena od</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#8A8480]">Problem</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#8A8480]">Przed</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Po</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-[#1E1E1E]">
           <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">Raport na Automacie</td>
-            <td class="px-4 py-3 text-[#8A8480]">Automatyczny PDF z ERP/bazy danych co rano</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">2-4 tyg.</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">2 000 PLN + 400/mies</td>
+            <td class="px-4 py-3 text-[#E8E3D9]">Wyciągi bankowe</td>
+            <td class="px-4 py-3 text-[#8A8480]">3 godziny ręcznie co miesiąc</td>
+            <td class="px-4 py-3 font-semibold text-[#D97706]">8 sekund</td>
           </tr>
           <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">Mostek Danych</td>
-            <td class="px-4 py-3 text-[#8A8480]">Konwersja formatów bank/ERP. Raz zbudowany, działa na stałe</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">kilka dni</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">1 000 PLN</td>
+            <td class="px-4 py-3 text-[#E8E3D9]">100k wyników jakości</td>
+            <td class="px-4 py-3 text-[#8A8480]">Dane zablokowane, odpowiedź po dniach</td>
+            <td class="px-4 py-3 font-semibold text-[#D97706]">10 sekund, bez IT</td>
           </tr>
           <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">Narzędzie Bazodanowe</td>
-            <td class="px-4 py-3 text-[#8A8480]">Aplikacja z GUI do danych. Jeden plik .exe, zero instalacji</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">2-4 tyg.</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">2 000 PLN</td>
+            <td class="px-4 py-3 text-[#E8E3D9]">Import do ERP</td>
+            <td class="px-4 py-3 text-[#8A8480]">Ręczne przepisywanie co miesiąc</td>
+            <td class="px-4 py-3 font-semibold text-[#D97706]">Automatycznie, zero błędów</td>
           </tr>
           <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 font-semibold text-[#E8E3D9]">MCP Server (API→AI)</td>
-            <td class="px-4 py-3 text-[#8A8480]">AI odpowiada na pytania z Twoich danych firmowych</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#8A8480]">2-3 tyg.</td>
-            <td class="px-4 py-3 font-mono text-xs text-[#E8E3D9]">2 000 PLN</td>
+            <td class="px-4 py-3 text-[#E8E3D9]">Emisja CO₂</td>
+            <td class="px-4 py-3 text-[#8A8480]">"Nie wiemy ile emitujemy"</td>
+            <td class="px-4 py-3 font-semibold text-[#D97706]">168 ton. Dokładnie, skąd i ile</td>
           </tr>
         </tbody>
       </table>
