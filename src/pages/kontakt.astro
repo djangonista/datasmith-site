@@ -1,11 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://datasmith.pl" },
+    { "@type": "ListItem", "position": 2, "name": "Kontakt" },
+  ],
+};
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Kontakt",
+  "description": "Masz problem z danymi? Napisz, omówimy Twój przypadek.",
+  "url": "https://datasmith.pl/kontakt",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://datasmith.pl/#person",
+  },
+};
 ---
 
 <BaseLayout
   title="Kontakt — DataSmith"
   description="Masz problem z danymi? Napisz, omówimy Twój przypadek."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(contactPageSchema)} />
+  </Fragment>
   <div class="px-6 py-16">
     <div class="mx-auto max-w-5xl">
       <div class="mb-12">

@@ -7,9 +7,10 @@ interface Props {
   date: Date;
   tags?: string[];
   image?: string;
+  otherPosts?: { slug: string; data: { title: string; description: string; date: Date } }[];
 }
 
-const { title, description, date, tags = [], image } = Astro.props;
+const { title, description, date, tags = [], image, otherPosts = [] } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('pl-PL', {
   year: 'numeric',
@@ -19,7 +20,7 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
 
 const articleSchema = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   "headline": title,
   "description": description,
   "datePublished": date.toISOString().split('T')[0],
@@ -38,11 +39,22 @@ const articleSchema = {
   ...(image ? { "image": new URL(image, "https://datasmith.pl").href } : {}),
   ...(tags.length > 0 ? { "keywords": tags.join(", ") } : {}),
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://datasmith.pl" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://datasmith.pl/blog" },
+    { "@type": "ListItem", "position": 3, "name": title },
+  ],
+};
 ---
 
 <BaseLayout title={`${title} — DataSmith`} description={description} ogType="article">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
   <article class="px-6 py-16">
     <div class="mx-auto max-w-2xl">
@@ -99,6 +111,20 @@ const articleSchema = {
           </a>
         </div>
       </footer>
+
+      {otherPosts.length > 0 && (
+        <section class="mt-12 border-t border-[#1E1E1E] pt-8">
+          <h2 class="mb-6 font-mono text-xs text-[#D97706]">// przeczytaj też</h2>
+          <div class="flex flex-col gap-4">
+            {otherPosts.map((p) => (
+              <a href={`/blog/${p.slug}`} class="group rounded border border-[#1E1E1E] bg-[#111111] p-4 transition-all hover:border-[#D97706]/30 hover:bg-[#131313]">
+                <p class="font-mono text-sm font-semibold text-[#E8E3D9] group-hover:text-[#D97706]">{p.data.title}</p>
+                <p class="mt-1 text-sm text-[#8A8480] line-clamp-2">{p.data.description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   </article>
 </BaseLayout>
