@@ -1,11 +1,6 @@
 export const faqs = [
   {
-    question: 'Czym jest Decision Intelligence?',
-    answer:
-      'Decision Intelligence łączy analizę danych z nauką o decyzjach. Zamiast kolejnego raportu do szuflady buduję narzędzia, które pomagają firmom produkcyjnym podejmować lepsze decyzje. Szybciej i na podstawie danych, nie intuicji.',
-  },
-  {
-    question: 'Dla kogo są Twoje usługi?',
+    question: 'Dla kogo są moje usługi?',
     answer:
       'Dla właścicieli i kierowników małych i średnich firm produkcyjnych. Takich, którzy mają dane w ERP, Excelu lub bazach danych, ale te dane nie przekładają się na szybkie decyzje. Szczególnie dla firm bez rozbudowanego działu IT.',
   },

@@ -1,10 +1,10 @@
 # DataSmith.pl — Full Content
 
-> DataSmith to serwis Pawla Kowalczyka specjalizujacy sie w automatyzacji danych i Decision Intelligence dla firm produkcyjnych MSP w Polsce.
+> DataSmith to serwis Pawla Kowalczyka specjalizujacy sie w automatyzacji danych dla firm produkcyjnych MSP w Polsce.
 
 ## O autorze
 
-Pawel Kowalczyk — analityk danych z 16-letnim doswiadczeniem w produkcji (ERP, SQL Server, procesy planistyczne). Buduje automatyzacje dla firm produkcyjnych i uczy sie Decision Intelligence — czyli jak sprawic, zeby dane naprawde przekladaly sie na decyzje, a nie tylko na kolejny raport do szuflady.
+Pawel Kowalczyk — analityk danych z 16-letnim doswiadczeniem w produkcji (ERP, SQL Server, procesy planistyczne). Buduje automatyzacje dla firm produkcyjnych — zeby dane naprawde przekladaly sie na decyzje, a nie tylko na kolejny raport do szuflady.
 
 Podejscie: badacz, nie ekspert. Dokumentuje droge publicznie — co testuje w praktyce, co dziala, co nie dziala i dlaczego.
 
@@ -61,10 +61,7 @@ Duplikaty, luki, niespolnosci miedzy systemami. Raport z konkretnymi rekomendacj
 
 ## FAQ
 
-### Czym jest Decision Intelligence?
-Decision Intelligence laczy analize danych z nauka o decyzjach. Zamiast kolejnego raportu do szuflady buduje narzedzia, ktore pomagaja firmom produkcyjnym podejmowac lepsze decyzje. Szybciej i na podstawie danych, nie intuicji.
-
-### Dla kogo sa uslugi?
+### Dla kogo sa moje uslugi?
 Dla wlascicieli i kierownikow malych i srednich firm produkcyjnych. Takich, ktorzy maja dane w ERP, Excelu lub bazach danych, ale te dane nie przekladaja sie na szybkie decyzje. Szczegolnie dla firm bez rozbudowanego dzialu IT.
 
 ### Ile kosztuje automatyzacja raportow?
@@ -114,4 +111,4 @@ Pierwsza rozmowa (30 min discovery) jest bezplatna. Odpowiedz w ciagu 24h w dni 
 
 ## Technologie
 
-Python, SQL Server, ERP (SIMPLE.ERP), AI (Claude, GPT), Decision Intelligence, ETL, LaTeX, MCP, Astro, Tailwind CSS
+Python, SQL Server, ERP (SIMPLE.ERP), AI (Claude, GPT), ETL, LaTeX, MCP, Astro, Tailwind CSS
