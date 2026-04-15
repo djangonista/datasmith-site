@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/blog/sufit-kognitywny",
+      "destination": "/blog/najwieksza-praca-twojej-firmy",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

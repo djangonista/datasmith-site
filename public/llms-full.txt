@@ -80,6 +80,10 @@ Pilotazowy projekt to 2 do 4 tygodni. Prosty mostek danych lub konwerter formato
 
 ## Blog
 
+### Najwieksza praca Twojej firmy nie ma nazwy (2026-04-14)
+Szef w MSP wykonuje codziennie prace, ktorej nie nazywa: podejmowanie decyzji. Od jej jakosci zalezy wszystko. Wpis o sufitcie zlozonosci (biologiczny limit mozgu 4-7 zmiennych naraz, a decyzje MSP maja 15-20), nazwaniu pracy decyzyjnej (analogia do tego, jak Drucker nazwal zarzadzanie w latach 50-tych) i dwoch rozroznieniach na start: co w ogole jest decyzja (test Kozyrkov: koszt wycofania) oraz ktore decyzje sa kluczowe (TOC Goldratta: waskie gardlo). Autorytety: Miller, Gartner 2021, Pratt, Kozyrkov, Drucker, Goldratt. Zastrzezenia uczciwie wbudowane (Pratt jako rzeczniczka szkoly DI, Gartner korporacyjny, Sarah jako postac opisana przez coacha). Konkretny pierwszy krok: kartka, 3 decyzje powtarzalne, test Kozyrkov, jedna regula.
+URL: https://datasmith.pl/blog/najwieksza-praca-twojej-firmy
+
 ### 100 000 wynikow kontroli jakosci. Nikt nie mogl ich przejrzec. (2026-03-25)
 Firma produkcyjna miala lata danych jakosciowych w bazie SQL. Program do ich przegladania przestal dzialac. Stare narzedzie napisane kilka lat temu w innej technologii. Po zmianie serwera bazy danych i nowych kolumnach program sie nie uruchomil. Nie bylo kogo poprosic o naprawe. Od tego momentu ponad 100 000 rekordow jakosciowych istnialo, ale bylo niedostepnych. Kontroler jakosci chcial sprawdzic parametry serii z zeszlego miesiaca — musial napisac do informatyka. Odpowiedz wracala po godzinach albo dniach. Rozwiazanie: nowe narzedzie w Python z prostym interfejsem graficznym. Filtr po dacie, produkcie, serii. Jeden plik .exe, 12 MB. Zero instalacji.
 URL: https://datasmith.pl/blog/dane-uwiezione
