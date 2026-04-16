@@ -1,0 +1,319 @@
+---
+/**
+ * TerminalQuiz — "Wiesz na czym Twoja firma zarabia, a na czym traci?"
+ * Styl: terminal CLI w kolorystyce datasmith.pl
+ * Źródło: PSYHOMEPAGE L05 (Homik) + L02 (punkt startowy)
+ */
+---
+
+<div class="quiz-terminal" id="quizTerminal">
+  <div class="qt-bar">
+    <div class="qt-dot qt-red"></div>
+    <div class="qt-dot qt-yellow"></div>
+    <div class="qt-dot qt-green"></div>
+    <div class="qt-title">datasmith diagnoza</div>
+  </div>
+  <div class="qt-body" id="quizBody"></div>
+</div>
+
+<style>
+  .quiz-terminal {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    border: 1px solid #1E1E1E;
+    background: #0C0C0C;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  .qt-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.6rem 1rem;
+    background: #111111;
+    border-bottom: 1px solid #1E1E1E;
+  }
+  .qt-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .qt-red { background: #ff5f56; }
+  .qt-yellow { background: #ffbd2e; }
+  .qt-green { background: #27c93f; }
+  .qt-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.65rem;
+    color: #8A8480;
+    margin-right: 36px;
+    letter-spacing: 0.05em;
+  }
+  .qt-body {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: #E8E3D9;
+    min-height: 320px;
+    overflow-y: auto;
+    max-height: 500px;
+    scrollbar-color: #D97706 #0C0C0C;
+  }
+  .qt-body::-webkit-scrollbar { width: 6px; }
+  .qt-body::-webkit-scrollbar-track { background: #0C0C0C; }
+  .qt-body::-webkit-scrollbar-thumb { background: #D97706; border-radius: 3px; }
+  .qt-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 13px;
+    background: #D97706;
+    animation: qt-blink 0.7s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 1px;
+  }
+  @keyframes qt-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  .qt-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.25rem 0 1rem 1.5rem;
+  }
+  .qt-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.6rem 2.5rem;
+    border: 2px solid #8A8480;
+    border-radius: 4px;
+    background: #111111;
+    color: #E8E3D9;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.15s ease;
+    min-width: 120px;
+    text-align: center;
+  }
+  .qt-btn:hover {
+    border-color: #D97706;
+    color: #D97706;
+    background: #1A1A1A;
+  }
+  .qt-btn-tak {
+    border-color: #27c93f;
+    color: #27c93f;
+  }
+  .qt-btn-tak:hover {
+    background: #27c93f;
+    color: #0C0C0C;
+    border-color: #27c93f;
+  }
+  .qt-btn-nie {
+    border-color: #ff5f56;
+    color: #ff5f56;
+  }
+  .qt-btn-nie:hover {
+    background: #ff5f56;
+    color: #0C0C0C;
+    border-color: #ff5f56;
+  }
+  .qt-cta {
+    display: inline-block;
+    margin-top: 1.25rem;
+    padding: 0.75rem 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 2px solid #D97706;
+    background: #D97706;
+    color: #0C0C0C;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    animation: qt-pulse 2s ease-in-out infinite;
+  }
+  .qt-cta:hover {
+    background: #F59E0B;
+    border-color: #F59E0B;
+  }
+  @keyframes qt-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4); }
+    50% { box-shadow: 0 0 12px 4px rgba(217, 119, 6, 0.2); }
+  }
+
+  @media (max-width: 640px) {
+    .qt-body { padding: 1rem; font-size: 0.72rem; }
+    .qt-buttons { margin-left: 0.5rem; }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  const body = document.getElementById('quizBody');
+  if (!body) return;
+
+  const questions = [
+    'Czy wiesz KTÓRY produkt przynosi Ci pieniądze, a który je zjada?',
+    'Czy widzisz wyniki swojej firmy szybciej niż w 1 dzień?',
+    'Czy możesz sam sprawdzić ile kosztuje zlecenie, BEZ pytania kogoś?',
+    'Czy liczby z systemu, Excela i raportów mówią to samo?',
+    'Czy decyzję o produkcie podejmujesz na podstawie LICZB, nie przeczucia?',
+  ];
+
+  const results = {
+    low: {
+      label: 'BRAK WIDOCZNOŚCI',
+      color: 'color:#ff5f56',
+      text: 'Podejmujesz decyzje bez pełnego obrazu. Jeden produkt, który wygląda na stratę, może przynosić zysk. Widziałem to nie raz.',
+      cta: 'Umów 30-min rozmowę',
+      ctaUrl: '/kontakt',
+    },
+    mid: {
+      label: 'CZĘŚCIOWA WIDOCZNOŚĆ',
+      color: 'color:#D97706',
+      text: 'Masz fundament, ale są luki. Tam gdzie brakuje liczb, decydujesz na wyczucie. Warto sprawdzić gdzie dokładnie.',
+      cta: 'Umów 30-min rozmowę',
+      ctaUrl: '/kontakt',
+    },
+    high: {
+      label: 'DOBRA WIDOCZNOŚĆ',
+      color: 'color:#27c93f',
+      text: 'Gratulacje, jesteś w mniejszości. Większość prezesów MŚP produkcyjnych nie ma takiej kontroli. Jeśli chcesz ją pogłębić, porozmawiajmy.',
+      cta: 'Zobacz blog',
+      ctaUrl: '/blog',
+    },
+  };
+
+  let answers = [];
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function addLine(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html || '&nbsp;';
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  async function typeText(text, speed) {
+    const line = document.createElement('div');
+    body.appendChild(line);
+    for (let i = 0; i <= text.length; i++) {
+      const safe = text.substring(0, i).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      line.innerHTML = safe + '<span class="qt-cursor"></span>';
+      body.scrollTop = body.scrollHeight;
+      await sleep(speed || 30);
+    }
+    line.innerHTML = line.innerHTML.replace('<span class="qt-cursor"></span>', '');
+  }
+
+  async function progressBar() {
+    const line = document.createElement('div');
+    body.appendChild(line);
+    const total = 20;
+    for (let i = 0; i <= total; i++) {
+      const filled = '\u2588'.repeat(i);
+      const empty = '\u2591'.repeat(total - i);
+      const pct = Math.round((i / total) * 100);
+      line.innerHTML = '<span style="color:#8A8480">[</span><span style="color:#D97706">' + filled + '</span><span style="color:#1E1E1E">' + empty + '</span><span style="color:#8A8480">] ' + pct + '%</span>';
+      body.scrollTop = body.scrollHeight;
+      await sleep(20 + Math.random() * 30);
+    }
+  }
+
+  async function askQuestion(index) {
+    const q = questions[index];
+    addLine('&nbsp;');
+    addLine('<span style="color:#D97706;font-weight:600">[' + (index + 1) + '/5]</span> ' + q);
+
+    return new Promise(resolve => {
+      const btnWrap = document.createElement('div');
+      btnWrap.style.cssText = 'display:flex;gap:1rem;margin:0.75rem 0 0.5rem 1.5rem;';
+
+      const btnStyle = 'font-family:JetBrains Mono,monospace;font-size:0.72rem;font-weight:600;padding:0.35rem 1.2rem;border-radius:3px;cursor:pointer;text-transform:uppercase;letter-spacing:0.08em;text-align:center;transition:all 0.15s ease;';
+
+      const btnTak = document.createElement('button');
+      btnTak.style.cssText = btnStyle + 'border:2px solid #27c93f;background:#111111;color:#27c93f;';
+      btnTak.textContent = '\u2713  TAK';
+      btnTak.onmouseenter = function() { this.style.background='#27c93f'; this.style.color='#0C0C0C'; };
+      btnTak.onmouseleave = function() { this.style.background='#111111'; this.style.color='#27c93f'; };
+
+      const btnNie = document.createElement('button');
+      btnNie.style.cssText = btnStyle + 'border:2px solid #ff5f56;background:#111111;color:#ff5f56;';
+      btnNie.textContent = '\u2717  NIE';
+      btnNie.onmouseenter = function() { this.style.background='#ff5f56'; this.style.color='#0C0C0C'; };
+      btnNie.onmouseleave = function() { this.style.background='#111111'; this.style.color='#ff5f56'; };
+
+      function answer(val) {
+        btnWrap.remove();
+        const tag = val
+          ? '<span style="color:#27c93f;font-weight:700"> \u2713 TAK</span>'
+          : '<span style="color:#ff5f56;font-weight:700"> \u2717 NIE</span>';
+        addLine('');
+        addLine('  &gt;' + tag);
+        addLine('');
+        resolve(val);
+      }
+
+      btnTak.addEventListener('click', () => answer(true));
+      btnNie.addEventListener('click', () => answer(false));
+      btnWrap.appendChild(btnTak);
+      btnWrap.appendChild(btnNie);
+      body.appendChild(btnWrap);
+      body.scrollTop = body.scrollHeight;
+    });
+  }
+
+  async function showResult() {
+    const yesCount = answers.filter(Boolean).length;
+    const result = yesCount <= 2 ? results.low : yesCount <= 4 ? results.mid : results.high;
+
+    addLine('&nbsp;');
+    await typeText('$ datasmith analiza --wynik', 25);
+    await sleep(300);
+    addLine('&nbsp;');
+    await progressBar();
+    await sleep(400);
+
+    addLine('&nbsp;');
+    addLine('<span style="' + result.color + ';font-weight:700;font-size:0.85rem">' + result.label + '</span> <span style="color:#8A8480">(' + yesCount + '/5 TAK)</span>');
+    addLine('<span style="color:#2A2A2A">' + '\u2500'.repeat(44) + '</span>');
+    addLine('&nbsp;');
+    addLine('<span style="color:#8A8480;line-height:1.6">' + result.text + '</span>');
+    addLine('&nbsp;');
+
+    const ctaWrap = document.createElement('div');
+    const cta = document.createElement('a');
+    cta.href = result.ctaUrl;
+    cta.style.cssText = 'display:inline-block;margin-top:1.25rem;padding:0.75rem 2rem;font-family:JetBrains Mono,monospace;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;border:2px solid #D97706;background:#D97706;color:#0C0C0C;cursor:pointer;text-decoration:none;border-radius:4px;transition:all 0.2s ease;';
+    cta.textContent = '\u2192 ' + result.cta;
+    cta.onmouseenter = function() { this.style.background='#F59E0B'; this.style.borderColor='#F59E0B'; };
+    cta.onmouseleave = function() { this.style.background='#D97706'; this.style.borderColor='#D97706'; };
+    ctaWrap.appendChild(cta);
+    body.appendChild(ctaWrap);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  async function run() {
+    answers = [];
+    body.innerHTML = '';
+
+    await typeText('$ datasmith diagnoza --firma', 25);
+    await sleep(300);
+    addLine('&nbsp;');
+    addLine('<span style="color:#8A8480">Sprawdzam widoczność finansów w Twojej firmie.</span>');
+    addLine('<span style="color:#8A8480">5 pytań. Odpowiedz szczerze.</span>');
+
+    for (let i = 0; i < questions.length; i++) {
+      const answer = await askQuestion(i);
+      answers.push(answer);
+    }
+
+    await showResult();
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { run(); obs.disconnect(); }
+  }, { threshold: 0.3 });
+  obs.observe(body.closest('.quiz-terminal'));
+})();
+</script>

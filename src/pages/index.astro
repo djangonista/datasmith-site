@@ -1,19 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
 import Services from '../components/Services.astro';
-import CaseStudies from '../components/CaseStudies.astro';
+import TerminalQuiz from '../components/TerminalQuiz.astro';
 import BlogCard from '../components/BlogCard.astro';
 import Newsletter from '../components/Newsletter.astro';
-import FAQ from '../components/FAQ.astro';
-import { faqs } from '../data/faqs';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const latestPosts = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+const faqs = [
+  { question: "Ile to kosztuje?", answer: "Projekty zaczynają się od kilku tysięcy złotych. Pierwszy raport: 5-10k PLN. Utrzymanie: 200-500 zł/mies. Discovery (30 min) jest darmowe. Porównanie: consulting big4 to 50-200k, rekrutacja IT to 8-15k/mies." },
+  { question: "Jak długo to trwa?", answer: "Pierwszy raport w 2 tygodnie od diagnozy. Pełna integracja (kilka raportów + automatyzacja): 1-3 miesiące." },
+  { question: "Czy muszę zmieniać system?", answer: "Nie. Pracuję na tym co masz: SIMPLE.ERP, SQL Server, Excel. Zero nowego oprogramowania. Zero migracji." },
+  { question: "Co to jest Decision Intelligence?", answer: "Podejście łączące dane z procesem decyzji. Nie sztuczna inteligencja w sensie robotów. Sposób żeby dane w Twoim systemie mówiły prawdę o kosztach i zyskach. Dyscyplina z MIT i Google." },
+  { question: "Czy moje dane są bezpieczne?", answer: "Pracuję na Twoich serwerach lub anonimizowanych kopiach. Nie wysyłam danych na zewnętrzne serwery. NDA do podpisania." },
+  { question: "Nie mam działu IT. To problem?", answer: "Nie. To jest dokładnie moja grupa docelowa. Pracuję bezpośrednio z prezesem lub szefem produkcji. IT nie musi być zaangażowane." },
+  { question: "Masz referencje?", answer: "Uczciwie: buduję firmę od niedawna. Ale 16 lat robiłem to samo wewnętrznie w firmie produkcyjnej 200+ pracowników. Case z liczbami jest na stronie. Po zakończeniu bieżących projektów dodam referencje imienne." },
+];
 
 const schemaGraph = {
   "@context": "https://schema.org",
@@ -23,17 +30,17 @@ const schemaGraph = {
       "@id": "https://datasmith.pl/#website",
       "name": "DataSmith",
       "url": "https://datasmith.pl",
-      "description": "Automatyzuję powtarzalne procesy danych dla MŚP i firm produkcyjnych. SQL, Python, AI. Narzędzia dopasowane do Twojego systemu.",
+      "description": "DataSmith pomaga prezesom MŚP produkcyjnych widzieć na czym tracą i na czym zarabiają. Decision Intelligence na Twoich danych, bez wymiany systemu.",
     },
     {
       "@type": "Person",
       "@id": "https://datasmith.pl/#person",
       "name": "Paweł Kowalczyk",
       "url": "https://datasmith.pl",
-      "jobTitle": "Analityk danych | Automatyzacja danych",
-      "description": "Analityk danych z 16-letnim doświadczeniem w produkcji. Buduję automatyzacje danych dla firm produkcyjnych. Python, SQL, AI.",
+      "jobTitle": "Analityk danych | Decision Intelligence",
+      "description": "Analityk danych z 16-letnim doświadczeniem w produkcji. Decision Intelligence + Theory of Constraints dla MŚP produkcyjnych.",
       "email": "pawel@datasmith.pl",
-      "knowsAbout": ["SQL Server", "Python", "ERP", "Automatyzacja danych", "AI"],
+      "knowsAbout": ["Decision Intelligence", "SQL Server", "Theory of Constraints", "Throughput Accounting", "SIMPLE ERP", "Automatyzacja danych"],
       "sameAs": [
         "https://www.linkedin.com/in/pawel-kowalczyk-ds",
         "https://x.com/plastyq",
@@ -45,7 +52,7 @@ const schemaGraph = {
       "@id": "https://datasmith.pl/#organization",
       "name": "DataSmith",
       "url": "https://datasmith.pl",
-      "description": "DataSmith to serwis Pawla Kowalczyka specjalizujacy sie w automatyzacji danych dla firm produkcyjnych MSP w Polsce.",
+      "description": "DataSmith to usługa analityki danych dla firm produkcyjnych MŚP. Decision Intelligence na Twoich danych, bez wymiany systemu.",
       "founder": { "@id": "https://datasmith.pl/#person" },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -65,7 +72,7 @@ const schemaGraph = {
     {
       "@type": "Service",
       "name": "Mostek Danych",
-      "description": "Łączenie systemów, które nie rozmawiają ze sobą. Konwersja formatów między bankiem, ERP i innymi systemami. Raz zbudowany, działa na stałe.",
+      "description": "Łączenie systemów, które nie rozmawiają ze sobą. Konwersja formatów między bankiem, ERP i innymi systemami.",
       "provider": { "@id": "https://datasmith.pl/#person" },
       "areaServed": { "@type": "Country", "name": "PL" },
     },
@@ -88,10 +95,7 @@ const schemaGraph = {
       "mainEntity": faqs.map((faq) => ({
         "@type": "Question",
         "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer,
-        },
+        "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
       })),
     },
   ],
@@ -102,14 +106,160 @@ const schemaGraph = {
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
   </Fragment>
-  <Hero />
-  <Services />
-  <CaseStudies />
-  <About />
 
-  <!-- Blog section -->
+  <!-- HERO (radar zachowany w komponencie) -->
+  <Hero />
+
+  <!-- PROBLEM -->
+  <section id="problem" class="border-t border-[#1E1E1E] px-6 py-20">
+    <div class="mx-auto max-w-2xl" data-animate>
+      <span class="font-mono text-xs text-[#D97706]">// problem</span>
+      <h2 class="mt-2 mb-8 text-3xl font-bold text-[#E8E3D9]">
+        Twoje liczby mówią jedno.<br>Rzeczywistość jest inna.
+      </h2>
+      <div class="space-y-4 text-sm leading-relaxed text-[#8A8480]">
+        <p>Firma produkcyjna. Prezes patrzy na raport. Produkt X: <span class="font-semibold text-red-400">minus 130 zł</span> na każdej sztuce. Decyzja wydaje się oczywista: wycofaj.</p>
+        <p>Ale klienci go zamawiają. Coś nie gra.</p>
+        <p>Problem? System rozłożył koszty hali, maszyn i ludzi "po równo" na każdy produkt. Produkt X wygląda na stratę, bo wyprodukowano go mało, więc "zjadł" dużo kosztów stałych na sztukę.</p>
+        <p>Tylko że te koszty i tak zostają. Hala stoi. Maszyny stoją. Ludzie pracują. Wycofanie produktu nie zaoszczędzi ani złotówki na kosztach stałych. Za to pogorszy wynik reszty.</p>
+        <p>Inna perspektywa: po odjęciu materiału i podwykonawców każda sztuka zostawia <span class="font-semibold text-[#27c93f]">170 zł</span>. Pieniądze które zostają w firmie.</p>
+        <p class="mt-2 text-base font-semibold text-[#E8E3D9]">Nie minus 130. <span class="text-[#27c93f]">Plus 170.</span> Ta sama dana. Inna perspektywa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution" class="border-t border-[#1E1E1E] px-6 py-20">
+    <div class="mx-auto max-w-2xl" data-animate>
+      <span class="font-mono text-xs text-[#D97706]">// rozwiązanie</span>
+      <h2 class="mt-2 mb-10 text-3xl font-bold text-[#E8E3D9]">
+        3 kroki. Na Twoich danych.<br>Bez wymiany systemu.
+      </h2>
+      <div class="space-y-8">
+        <div class="flex gap-4">
+          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#D97706]">1.</div>
+          <div>
+            <h3 class="font-semibold text-[#E8E3D9]">Diagnoza <span class="font-normal text-[#8A8480]">(30 minut, darmowa)</span></h3>
+            <p class="mt-1 text-sm leading-relaxed text-[#8A8480]">Rozmawiamy. Co masz w danych, co chcesz widzieć, gdzie boli. Pracujesz na SIMPLE? SQL Server? Excel? Znam te systemy, bo sam na nich pracowałem 16 lat.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#D97706]">2.</div>
+          <div>
+            <h3 class="font-semibold text-[#E8E3D9]">Pierwszy raport <span class="font-normal text-[#8A8480]">(2 tygodnie)</span></h3>
+            <p class="mt-1 text-sm leading-relaxed text-[#8A8480]">Dostajesz działający raport lub dashboard. Widzisz wynik zanim zdecydujesz o czymkolwiek więcej. Żadnych zobowiązań.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#D97706]">3.</div>
+          <div>
+            <h3 class="font-semibold text-[#E8E3D9]">Rozbudowa <span class="font-normal text-[#8A8480]">(w Twoim tempie)</span></h3>
+            <p class="mt-1 text-sm leading-relaxed text-[#8A8480]">Kolejne raporty, automatyzacja, integracja systemów. Ty decydujesz co i kiedy. Dostajesz kod i wiedzę, nie zależność.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof" class="border-t border-[#1E1E1E] px-6 py-20">
+    <div class="mx-auto max-w-2xl" data-animate>
+      <span class="font-mono text-xs text-[#D97706]">// kto za tym stoi</span>
+      <h2 class="mt-2 mb-10 text-3xl font-bold text-[#E8E3D9]">
+        16 lat w firmie produkcyjnej.<br>Teraz pracuję dla Ciebie.
+      </h2>
+      <div class="space-y-8 text-sm leading-relaxed">
+        <div>
+          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D97706]">Kim jestem</h3>
+          <p class="text-[#8A8480]">Paweł Kowalczyk. 16 lat analityk w firmie produkcyjnej, 200+ pracowników. Codziennie: SIMPLE.ERP, SQL Server, Excel. Znam Twoje systemy bo sam na nich pracuję. Nie jestem konsultantem z prezentacją. Jestem analitykiem z zapytaniami SQL.</p>
+        </div>
+        <div>
+          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D97706]">Co widziałem</h3>
+          <p class="mb-2 text-[#8A8480]">Firma produkcyjna chciała wycofać produkt: <span class="text-red-400">minus 130 zł</span> na sztuce. Po zmianie perspektywy: <span class="text-[#D97706]">plus 170 zł</span> czystego przerobu. Zamiast wycofać, podwoili podaż. Większe zyski.</p>
+          <p class="font-medium text-[#E8E3D9]">Ta sama dana. Inna perspektywa.</p>
+        </div>
+        <div>
+          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D97706]">Na czym to stoi</h3>
+          <p class="text-[#8A8480]">Decision Intelligence: dyscyplina z MIT i Google, łącząca dane z procesem decyzji. Rachunek przerobowy (Theory of Constraints, Goldratt). Nie wymyśliłem tego. Stosuję to do danych MŚP produkcyjnych w Polsce.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOMIK -->
+  <section id="homik" class="border-t border-[#1E1E1E] px-6 py-20">
+    <div class="mx-auto max-w-3xl" data-animate>
+      <span class="font-mono text-xs text-[#D97706]">// następny krok</span>
+      <h2 class="mt-2 mb-4 text-center text-3xl font-bold text-[#E8E3D9]">Od czego zacząć?</h2>
+      <p class="mb-12 text-center text-sm text-[#8A8480]">Wybierz to co pasuje do Ciebie. Zero presji.</p>
+
+      <!-- Quiz terminal -->
+      <div id="quiz" class="mb-6">
+        <h3 class="mb-2 text-center text-xl font-bold text-[#E8E3D9]">
+          Wiesz na czym Twoja firma
+          <span class="bg-[#D97706] px-1 text-[#0C0C0C]">zarabia</span>, a na czym
+          <span class="bg-[#D97706] px-1 text-[#0C0C0C]">traci</span>?
+        </h3>
+        <p class="mb-6 text-center text-sm text-[#8A8480]">5 pytań. Wynik od razu. Zero maili.</p>
+        <TerminalQuiz />
+      </div>
+
+      <!-- Discovery -->
+      <div class="my-12 rounded border border-[#1E1E1E] py-8 text-center">
+        <p class="mb-4 text-sm text-[#8A8480]">Wolisz porozmawiać? 30 minut. Pokażę Ci co widzę w Twoich danych.</p>
+        <a href="/kontakt" class="inline-block rounded border border-[#D97706] px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wide text-[#D97706] transition-colors hover:bg-[#D97706] hover:text-[#0C0C0C]">
+          Umów discovery
+        </a>
+        <p class="mt-2 text-xs text-[#8A8480]">Darmowe. Bez zobowiązań.</p>
+      </div>
+
+      <!-- Usługi -->
+      <Services />
+
+      <!-- Plan B -->
+      <div class="mt-8 text-center">
+        <p class="text-sm text-[#8A8480]">Nie jesteś gotowy? Zero presji.</p>
+        <a href="/blog" class="font-mono text-sm text-[#D97706] transition-colors hover:text-[#F59E0B]">
+          Przeczytaj bloga &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="border-t border-[#1E1E1E] px-6 py-20">
+    <div class="mx-auto max-w-2xl" data-animate>
+      <span class="font-mono text-xs text-[#D97706]">// pytania</span>
+      <h2 class="mt-2 mb-10 text-center text-3xl font-bold text-[#E8E3D9]">
+        Pytania, które zadajesz<br>zanim zdecydujesz
+      </h2>
+      <div class="space-y-3">
+        {faqs.map((faq) => (
+          <details class="group border border-[#1E1E1E]">
+            <summary class="cursor-pointer px-5 py-4 text-sm font-semibold text-[#E8E3D9] transition-colors hover:bg-[#1A1A1A]">
+              {faq.question}
+            </summary>
+            <div class="px-5 pb-4 text-sm leading-relaxed text-[#8A8480]">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+      <div class="mt-10 space-y-3 text-center">
+        <p class="text-sm text-[#8A8480]">Masz inne pytanie?</p>
+        <p class="text-sm"><a href="mailto:pawel@datasmith.pl" class="text-[#D97706] hover:text-[#F59E0B]">pawel@datasmith.pl</a></p>
+        <div class="pt-2">
+          <a href="/kontakt" class="inline-block rounded bg-[#D97706] px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wide text-[#0C0C0C] transition-colors hover:bg-[#F59E0B]">
+            Umów 30-min discovery
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG (zachowany) -->
   {latestPosts.length > 0 && (
-    <section id="blog" class="px-6 py-24">
+    <section id="blog" class="border-t border-[#1E1E1E] px-6 py-24">
       <div class="mx-auto max-w-5xl">
         <div class="mb-10 flex items-end justify-between">
           <div>
@@ -117,7 +267,7 @@ const schemaGraph = {
             <h2 class="mt-2 text-3xl font-bold text-[#E8E3D9]">Ostatnie wpisy</h2>
           </div>
           <a href="/blog" class="font-mono text-sm text-[#8A8480] hover:text-[#D97706]">
-            Wszystkie →
+            Wszystkie &rarr;
           </a>
         </div>
         <div class="grid gap-4 md:grid-cols-3">
@@ -136,6 +286,5 @@ const schemaGraph = {
     </section>
   )}
 
-  <FAQ />
   <Newsletter />
 </BaseLayout>
