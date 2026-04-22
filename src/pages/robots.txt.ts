@@ -1,6 +1,9 @@
 import type { APIRoute } from 'astro';
 
 const robotsTxt = `
+# Content Signals (contentsignals.org) — build-in-public, maksymalna widoczność AI
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
 User-agent: *
 Allow: /
 
