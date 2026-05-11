@@ -36,7 +36,7 @@ const contactPageSchema = {
       <div class="mb-12">
         <span class="font-mono text-xs text-[#D97706]">// kontakt</span>
         <h1 class="mt-2 text-4xl font-bold text-[#E8E3D9]">Porozmawiajmy</h1>
-        <p class="mt-3 max-w-xl text-[#8A8480]">
+        <p class="mt-3 max-w-xl text-[#C0BAB5]">
           Opisz problem. Odpowiem w ciągu 24h. Pierwsze 30 minut rozmowy discovery jest bezpłatne.
         </p>
       </div>
@@ -53,14 +53,14 @@ const contactPageSchema = {
               />
               <h2 class="font-mono text-sm font-semibold text-[#E8E3D9]">Paweł Kowalczyk</h2>
             </div>
-            <p class="mb-4 text-sm text-[#8A8480]">
+            <p class="mb-4 text-sm text-[#C0BAB5]">
               Analityk danych i problem solver. Specjalizuję się w automatyzacji procesów
               danych dla MŚP. Python, SQL, AI.
             </p>
             <div class="flex flex-col gap-3">
               <a
                 href="mailto:pawel@datasmith.pl"
-                class="flex items-center gap-3 font-mono text-sm text-[#8A8480] hover:text-[#D97706]"
+                class="flex items-center gap-3 font-mono text-sm text-[#C0BAB5] hover:text-[#D97706]"
               >
                 <span class="text-[#D97706]">@</span>
                 pawel@datasmith.pl
@@ -69,7 +69,7 @@ const contactPageSchema = {
                 href="https://www.linkedin.com/in/pawel-kowalczyk-ds"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 font-mono text-sm text-[#8A8480] hover:text-[#D97706]"
+                class="flex items-center gap-3 font-mono text-sm text-[#C0BAB5] hover:text-[#D97706]"
               >
                 <span class="text-[#D97706]">in</span>
                 LinkedIn
@@ -78,7 +78,7 @@ const contactPageSchema = {
                 href="https://x.com/plastyq"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 font-mono text-sm text-[#8A8480] hover:text-[#D97706]"
+                class="flex items-center gap-3 font-mono text-sm text-[#C0BAB5] hover:text-[#D97706]"
               >
                 <span class="text-[#D97706]">X</span>
                 @plastyq
@@ -95,7 +95,7 @@ const contactPageSchema = {
                 'Buduję rozwiązanie iteracyjnie, z feedbackiem',
                 'Dostajesz gotowe narzędzie + dokumentację',
               ].map((step, i) => (
-                <li class="flex gap-3 text-sm text-[#8A8480]">
+                <li class="flex gap-3 text-sm text-[#C0BAB5]">
                   <span class="shrink-0 font-mono text-[#D97706]">{String(i + 1).padStart(2, '0')}.</span>
                   {step}
                 </li>
@@ -115,32 +115,32 @@ const contactPageSchema = {
           >
             <input type="hidden" name="_subject" value="Nowe zapytanie — datasmith.pl" />
             <div>
-              <label class="mb-1.5 block font-mono text-xs text-[#8A8480]">Imię i firma</label>
+              <label class="mb-1.5 block font-mono text-xs text-[#C0BAB5]">Imię i firma</label>
               <input
                 type="text"
                 name="name"
                 required
-                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#8A8480] focus:border-[#D97706] focus:outline-none"
+                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#C0BAB5] focus:border-[#D97706] focus:outline-none"
                 placeholder="Jan Kowalski, Firma Sp. z o.o."
               />
             </div>
             <div>
-              <label class="mb-1.5 block font-mono text-xs text-[#8A8480]">Email</label>
+              <label class="mb-1.5 block font-mono text-xs text-[#C0BAB5]">Email</label>
               <input
                 type="email"
                 name="email"
                 required
-                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#8A8480] focus:border-[#D97706] focus:outline-none"
+                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#C0BAB5] focus:border-[#D97706] focus:outline-none"
                 placeholder="jan@firma.pl"
               />
             </div>
             <div>
-              <label class="mb-1.5 block font-mono text-xs text-[#8A8480]">Opisz problem</label>
+              <label class="mb-1.5 block font-mono text-xs text-[#C0BAB5]">Opisz problem</label>
               <textarea
                 name="message"
                 required
                 rows="5"
-                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#8A8480] focus:border-[#D97706] focus:outline-none resize-none"
+                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#C0BAB5] focus:border-[#D97706] focus:outline-none resize-none"
                 placeholder="Co robisz ręcznie, co zajmuje za dużo czasu? Jaki system używasz?..."
               ></textarea>
             </div>
@@ -151,13 +151,13 @@ const contactPageSchema = {
             >
               Wyślij wiadomość
             </button>
-            <p class="font-mono text-xs text-[#8A8480]">
+            <p class="font-mono text-xs text-[#C0BAB5]">
               Odpowiadam w ciągu 24h w dni robocze.
             </p>
           </form>
           <div id="form-success" class="hidden flex-col gap-3 py-4">
             <p class="font-mono text-sm text-[#D97706]">✓ Wiadomość wysłana.</p>
-            <p class="font-mono text-xs text-[#8A8480]">Odezwę się w ciągu 24h.</p>
+            <p class="font-mono text-xs text-[#C0BAB5]">Odezwę się w ciągu 24h.</p>
           </div>
         </div>
       </div>

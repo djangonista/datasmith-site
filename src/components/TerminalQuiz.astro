@@ -42,7 +42,7 @@
     flex: 1;
     text-align: center;
     font-size: 0.65rem;
-    color: #8A8480;
+    color: #C0BAB5;
     margin-right: 36px;
     letter-spacing: 0.05em;
   }
@@ -80,7 +80,7 @@
     font-size: 0.8rem;
     font-weight: 700;
     padding: 0.6rem 2.5rem;
-    border: 2px solid #8A8480;
+    border: 2px solid #C0BAB5;
     border-radius: 4px;
     background: #111111;
     color: #E8E3D9;
@@ -214,7 +214,7 @@
       const filled = '\u2588'.repeat(i);
       const empty = '\u2591'.repeat(total - i);
       const pct = Math.round((i / total) * 100);
-      line.innerHTML = '<span style="color:#8A8480">[</span><span style="color:#D97706">' + filled + '</span><span style="color:#1E1E1E">' + empty + '</span><span style="color:#8A8480">] ' + pct + '%</span>';
+      line.innerHTML = '<span style="color:#C0BAB5">[</span><span style="color:#D97706">' + filled + '</span><span style="color:#1E1E1E">' + empty + '</span><span style="color:#C0BAB5">] ' + pct + '%</span>';
       body.scrollTop = body.scrollHeight;
       await sleep(20 + Math.random() * 30);
     }
@@ -275,10 +275,10 @@
     await sleep(400);
 
     addLine('&nbsp;');
-    addLine('<span style="' + result.color + ';font-weight:700;font-size:0.85rem">' + result.label + '</span> <span style="color:#8A8480">(' + yesCount + '/5 TAK)</span>');
+    addLine('<span style="' + result.color + ';font-weight:700;font-size:0.85rem">' + result.label + '</span> <span style="color:#C0BAB5">(' + yesCount + '/5 TAK)</span>');
     addLine('<span style="color:#2A2A2A">' + '\u2500'.repeat(44) + '</span>');
     addLine('&nbsp;');
-    addLine('<span style="color:#8A8480;line-height:1.6">' + result.text + '</span>');
+    addLine('<span style="color:#C0BAB5;line-height:1.6">' + result.text + '</span>');
     addLine('&nbsp;');
 
     const ctaWrap = document.createElement('div');
@@ -300,8 +300,8 @@
     await typeText('$ datasmith diagnoza --firma', 25);
     await sleep(300);
     addLine('&nbsp;');
-    addLine('<span style="color:#8A8480">Sprawdzam widoczność finansów w Twojej firmie.</span>');
-    addLine('<span style="color:#8A8480">5 pytań. Odpowiedz szczerze.</span>');
+    addLine('<span style="color:#C0BAB5">Sprawdzam widoczność finansów w Twojej firmie.</span>');
+    addLine('<span style="color:#C0BAB5">5 pytań. Odpowiedz szczerze.</span>');
 
     for (let i = 0; i < questions.length; i++) {
       const answer = await askQuestion(i);

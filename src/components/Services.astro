@@ -72,7 +72,7 @@ const services = [
       <h2 class="mt-2 text-3xl font-bold text-[#E8E3D9] md:text-4xl">
         Co mogę dla Ciebie zbudować
       </h2>
-      <p class="mt-3 text-[#8A8480]">
+      <p class="mt-3 text-[#C0BAB5]">
         Pomagam firmom produkcyjnym zamienić dane w decyzje. Przez automatyzację i AI.
         Ceny wejściowe. Końcowa zależy od skali.
       </p>
@@ -86,21 +86,21 @@ const services = [
           <div class="flex items-start justify-between gap-2">
             <div>
               <h3 class="font-mono text-base font-semibold text-[#E8E3D9]">{s.title}</h3>
-              <p class="mt-0.5 font-mono text-xs text-[#8A8480]">{s.tagline}</p>
+              <p class="mt-0.5 font-mono text-xs text-[#C0BAB5]">{s.tagline}</p>
             </div>
             {s.ready ? (
               <span class="shrink-0 rounded-full bg-[#D97706]/10 px-2 py-0.5 font-mono text-xs text-[#D97706]">
                 gotowe
               </span>
             ) : (
-              <span class="shrink-0 rounded-full bg-[#1E1E1E] px-2 py-0.5 font-mono text-xs text-[#8A8480]">
+              <span class="shrink-0 rounded-full bg-[#1E1E1E] px-2 py-0.5 font-mono text-xs text-[#C0BAB5]">
                 wkrótce
               </span>
             )}
           </div>
 
           <!-- Description -->
-          <p class="mt-3 flex-1 text-sm leading-relaxed text-[#8A8480]">{s.description}</p>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-[#C0BAB5]">{s.description}</p>
 
           {s.caseStudy && (
             <div class="mt-3 rounded bg-[#0C0C0C] px-3 py-2">
@@ -113,7 +113,7 @@ const services = [
             <span class="font-mono text-sm font-semibold text-[#E8E3D9]">{s.price}</span>
             <div class="flex flex-wrap gap-1">
               {s.tags.map((tag) => (
-                <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#8A8480]">
+                <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#C0BAB5]">
                   {tag}
                 </span>
               ))}
@@ -128,30 +128,30 @@ const services = [
       <table class="w-full text-left text-sm">
         <thead>
           <tr class="border-b border-[#1E1E1E] bg-[#111111]">
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#8A8480]">Problem</th>
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#8A8480]">Przed</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#C0BAB5]">Problem</th>
+            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#C0BAB5]">Przed</th>
             <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Po</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-[#1E1E1E]">
           <tr class="hover:bg-[#111111]">
             <td class="px-4 py-3 text-[#E8E3D9]">Wyciągi bankowe</td>
-            <td class="px-4 py-3 text-[#8A8480]">3 godziny ręcznie co miesiąc</td>
+            <td class="px-4 py-3 text-[#C0BAB5]">3 godziny ręcznie co miesiąc</td>
             <td class="px-4 py-3 font-semibold text-[#D97706]">8 sekund</td>
           </tr>
           <tr class="hover:bg-[#111111]">
             <td class="px-4 py-3 text-[#E8E3D9]">100k wyników jakości</td>
-            <td class="px-4 py-3 text-[#8A8480]">Dane zablokowane, odpowiedź po dniach</td>
+            <td class="px-4 py-3 text-[#C0BAB5]">Dane zablokowane, odpowiedź po dniach</td>
             <td class="px-4 py-3 font-semibold text-[#D97706]">10 sekund, bez IT</td>
           </tr>
           <tr class="hover:bg-[#111111]">
             <td class="px-4 py-3 text-[#E8E3D9]">Import do ERP</td>
-            <td class="px-4 py-3 text-[#8A8480]">Ręczne przepisywanie co miesiąc</td>
+            <td class="px-4 py-3 text-[#C0BAB5]">Ręczne przepisywanie co miesiąc</td>
             <td class="px-4 py-3 font-semibold text-[#D97706]">Automatycznie, zero błędów</td>
           </tr>
           <tr class="hover:bg-[#111111]">
             <td class="px-4 py-3 text-[#E8E3D9]">Emisja CO₂</td>
-            <td class="px-4 py-3 text-[#8A8480]">"Nie wiemy ile emitujemy"</td>
+            <td class="px-4 py-3 text-[#C0BAB5]">"Nie wiemy ile emitujemy"</td>
             <td class="px-4 py-3 font-semibold text-[#D97706]">168 ton. Dokładnie, skąd i ile</td>
           </tr>
         </tbody>

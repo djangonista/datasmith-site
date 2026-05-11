@@ -34,11 +34,11 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
 
   <div class="flex flex-1 flex-col p-5">
     <div class="flex items-center justify-between gap-2">
-      <time class="font-mono text-xs text-[#8A8480]">{formattedDate}</time>
+      <time class="font-mono text-xs text-[#C0BAB5]">{formattedDate}</time>
       {tags.length > 0 && (
         <div class="flex gap-1">
           {tags.slice(0, 2).map((tag) => (
-            <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#8A8480]">
+            <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#C0BAB5]">
               {tag}
             </span>
           ))}
@@ -50,7 +50,7 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
       {title}
     </h3>
 
-    <p class="mt-2 flex-1 text-sm leading-relaxed text-[#8A8480]">{description}</p>
+    <p class="mt-2 flex-1 text-sm leading-relaxed text-[#C0BAB5]">{description}</p>
 
     <span class="mt-4 font-mono text-xs text-[#D97706]">
       Czytaj dalej &rarr;
