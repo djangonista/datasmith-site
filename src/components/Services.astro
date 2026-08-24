@@ -1,119 +1,114 @@
 ---
+import ServiceIcon from './ServiceIcon.astro';
+
 const services = [
   {
-    id: 'raport-na-automacie',
-    title: 'Raport na Automacie',
-    tagline: 'Raporty zarządcze bez ręcznego zbierania danych',
-    price: '2 000 PLN + 400/mies',
+    id: 'klasyfikator-wyciagow',
+    title: 'Klasyfikator wyciągów',
+    tagline: 'Wyciąg wchodzi, gotowe sumy wychodzą',
+    price: '800 zł / firmę + 60 zł/mies',
     description:
-      'Łączę się z Twoim ERP lub bazą danych. Agregacje, wykresy, porównania rok do roku. Profesjonalny PDF z logo firmy gotowy automatycznie każdego ranka.',
-    tags: ['Python', 'SQL', 'LaTeX', 'PDF'],
+      'Wyciąg z banku przychodzi jako surowa lista transakcji. Ustawiam to raz: każda pozycja trafia do Twojej kategorii, kwoty w euro idą po średnim kursie NBP z dnia poprzedzającego transakcję. Na wyjściu tyle liczb, ile kategorii.',
+    tags: ['CSV', 'EUR na PLN', 'Kurs NBP'],
+    ready: true,
+    caseStudy: 'Realizacja: 3 godziny miesięcznie na jednej firmie schodzą do 8 minut',
+  },
+  {
+    id: 'wyliczanie-wynagrodzen',
+    title: 'Wyliczanie wynagrodzeń',
+    tagline: 'Gdy regulamin liczy inaczej niż program',
+    price: '2 200 zł',
+    description:
+      'Nietypowy regulamin wynagradzania, którego standardowy program nie obsługuje. Liczenie wychodzi wtedy do arkusza i wraca ręcznie. Przenoszę tę logikę do jednego miejsca, razem z dokumentacją, skąd wyszła każda kwota.',
+    tags: ['Listy płac', 'Regulamin', 'Dokumentacja'],
     ready: true,
   },
   {
     id: 'mostek-danych',
-    title: 'Mostek Danych',
-    tagline: 'Łączę systemy, które nie rozmawiają ze sobą',
-    price: '1 000–2 000 PLN',
+    title: 'Mostek między systemami',
+    tagline: 'Gdy bank i program mówią różnymi językami',
+    price: 'wycena po rozmowie',
     description:
-      'Twój bank eksportuje dane w innym formacie niż Twój ERP? Buduję mostek raz. Potem działa na stałe. Bez ręcznego przepisywania, bez błędów.',
-    tags: ['Python', 'ETL', 'API'],
+      'Bank wystawia plik w swoim formacie, a program go nie rozpoznaje. W drugą stronę bywa tak samo. Buduję tłumaczenie w obie strony, dopasowane do tego, czego oczekuje każda ze stron. Raz ustawione, działa co miesiąc.',
+    tags: ['Import', 'Eksport', 'Format'],
     ready: true,
-  },
-  {
-    id: 'narzedzie-bazodanowe',
-    title: 'Narzędzie Bazodanowe',
-    tagline: 'Twoje dane pod kontrolą, bez działu IT',
-    price: '2 000–4 000 PLN',
-    description:
-      'Stary program przestał działać? Każda zmiana danych wymaga programisty? Buduję dedykowaną aplikację z interfejsem graficznym. Jeden plik, zero instalacji, zero czekania na IT.',
-    tags: ['Python', 'tkinter', 'SQL Server'],
-    ready: true,
-    caseStudy: 'Realizacja: 100 000 wyników kontroli jakości, jeden plik .exe, 12 MB',
-  },
-  {
-    id: 'mcp-server',
-    title: 'MCP Server (API→AI)',
-    tagline: 'AI z dostępem do Twoich danych',
-    price: '2 000–3 000 PLN',
-    description:
-      'Chcesz pytać o wyniki firmy jak w zwykłej rozmowie? Buduję połączenie między AI a Twoim systemem. Pytasz po polsku, dostajesz odpowiedź z Twoich własnych danych.',
-    tags: ['MCP', 'Python', 'AI', 'Claude'],
-    ready: true,
+    caseStudy: 'Realizacja: import i eksport bez ręcznej roboty co miesiąc',
   },
   {
     id: 'arkusze-duchy',
-    title: 'Arkusze Duchy',
-    tagline: 'Kontrola nad arkuszami, które jakoś działają',
-    price: '2 000–5 000 PLN',
+    title: 'Arkusze, których nikt nie rozumie',
+    tagline: 'Arkusz odziedziczony po kimś, kto odszedł',
+    price: 'wycena po rozmowie',
     description:
-      'Masz arkusze Excel odziedziczone po poprzednim pracowniku? Nikt nie wie jak działają? Przejmuję kontrolę: dokumentuję, naprawiam, eliminuję ryzyko awarii.',
-    tags: ['Excel', 'VBA', 'Python', 'Dokumentacja'],
-    ready: false,
-  },
-  {
-    id: 'audyt-jakosci-danych',
-    title: 'Audyt Jakości Danych',
-    tagline: 'Sprawdzam Twoje dane, zanim one sprawdzą Ciebie',
-    price: '1 500–3 000 PLN',
-    description:
-      'Duplikaty, luki, niespójności między systemami. Dostarczam raport z konkretnymi rekomendacjami. Lepiej wiedzieć teraz niż podczas kluczowej decyzji.',
-    tags: ['Python', 'Pandas', 'SQL', 'Analiza'],
-    ready: false,
+      'Działa, więc się go nie rusza. Do dnia, w którym przestanie działać, zwykle w najgorszym możliwym momencie. Opisuję logikę, naprawiam, dokładam kontrolę wyniku. Zostaje to samo narzędzie, tylko przestaje być zagadką.',
+    tags: ['Excel', 'Dokumentacja', 'Kontrola'],
+    ready: true,
   },
 ];
+
+// Zdjęte 2026-08-21 do czasu pierwszego wdrożenia u biura rachunkowego:
+// „Podsumowania dla klientów" — comiesięczne zestawienia, ile klient ma zapłacić i gdzie.
+// Ból potwierdzony w rozmowie z 20.08 (nazwany jako największy pochłaniacz czasu),
+// ale bez ani jednego wdrożenia. Wraca na stronę po pierwszej realizacji.
 ---
 
 <section id="uslugi" class="px-6 py-24">
   <div class="mx-auto max-w-5xl">
     <!-- Section header -->
     <div class="mb-12">
-      <span class="font-mono text-xs text-[#D97706]">// usługi</span>
-      <h2 class="mt-2 text-3xl font-bold text-[#E8E3D9] md:text-4xl">
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Usługi</span>
+      <h2 class="mt-2 text-3xl font-bold text-[#1C1917] md:text-4xl">
         Co mogę dla Ciebie zbudować
       </h2>
-      <p class="mt-3 text-[#C0BAB5]">
-        Pomagam firmom produkcyjnym zamienić dane w decyzje. Przez automatyzację i AI.
-        Ceny wejściowe. Końcowa zależy od skali.
+      <p class="mt-3 text-[#57534E]">
+        Zdejmuję z biur rachunkowych ręczną robotę, która wraca co miesiąc.
+        Tam, gdzie cena jest podana, jest ostateczna. Reszta po rozmowie o tym, ile czasu Ci to zjada.
       </p>
     </div>
 
     <!-- Grid -->
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 sm:grid-cols-2">
       {services.map((s) => (
-        <div data-animate class="group flex flex-col rounded border border-[#1E1E1E] bg-[#111111] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-[#D97706]/30 hover:bg-[#131313] hover:shadow-[0_4px_24px_rgba(217,119,6,0.07)]">
+        <div data-animate class="group flex flex-col rounded-lg border border-[#E7E5E4] bg-[#F5F5F4] p-7 transition-all duration-200 hover:-translate-y-1 hover:border-[#B45309]/30 hover:bg-[#FFFFFF] hover:shadow-[0_6px_24px_rgba(28,25,23,0.08)]">
+          <!-- Ikona -->
+          <div class="mb-6 flex justify-center">
+            <div class="rounded-lg bg-[#B45309]/8 p-4 transition-colors group-hover:bg-[#B45309]/12">
+              <ServiceIcon id={s.id} size={44} class="text-[#B45309]" />
+            </div>
+          </div>
+
           <!-- Top -->
           <div class="flex items-start justify-between gap-2">
             <div>
-              <h3 class="font-mono text-base font-semibold text-[#E8E3D9]">{s.title}</h3>
-              <p class="mt-0.5 font-mono text-xs text-[#C0BAB5]">{s.tagline}</p>
+              <h3 class="text-lg font-semibold text-[#1C1917]">{s.title}</h3>
+              <p class="mt-1 text-sm text-[#57534E]">{s.tagline}</p>
             </div>
             {s.ready ? (
-              <span class="shrink-0 rounded-full bg-[#D97706]/10 px-2 py-0.5 font-mono text-xs text-[#D97706]">
+              <span class="shrink-0 rounded-full bg-[#B45309]/10 px-2.5 py-0.5 text-xs font-medium text-[#B45309]">
                 gotowe
               </span>
             ) : (
-              <span class="shrink-0 rounded-full bg-[#1E1E1E] px-2 py-0.5 font-mono text-xs text-[#C0BAB5]">
+              <span class="shrink-0 rounded-full bg-[#E7E5E4] px-2.5 py-0.5 text-xs font-medium text-[#57534E]">
                 wkrótce
               </span>
             )}
           </div>
 
           <!-- Description -->
-          <p class="mt-3 flex-1 text-sm leading-relaxed text-[#C0BAB5]">{s.description}</p>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-[#57534E]">{s.description}</p>
 
           {s.caseStudy && (
-            <div class="mt-3 rounded bg-[#0C0C0C] px-3 py-2">
-              <p class="font-mono text-xs text-[#D97706]">→ {s.caseStudy}</p>
+            <div class="mt-3 rounded bg-[#FAFAF9] px-3 py-2">
+              <p class="text-xs font-medium text-[#B45309]">→ {s.caseStudy}</p>
             </div>
           )}
 
           <!-- Footer -->
-          <div class="mt-4 flex items-center justify-between border-t border-[#1E1E1E] pt-3">
-            <span class="font-mono text-sm font-semibold text-[#E8E3D9]">{s.price}</span>
+          <div class="mt-4 flex items-center justify-between border-t border-[#E7E5E4] pt-3">
+            <span class="text-sm font-semibold text-[#1C1917]">{s.price}</span>
             <div class="flex flex-wrap gap-1">
               {s.tags.map((tag) => (
-                <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#C0BAB5]">
+                <span class="rounded bg-[#FAFAF9] px-1.5 py-0.5 font-mono text-xs text-[#57534E]">
                   {tag}
                 </span>
               ))}
@@ -124,35 +119,35 @@ const services = [
     </div>
 
     <!-- Before / After -->
-    <div class="mt-12 overflow-x-auto rounded border border-[#1E1E1E]">
+    <div class="mt-12 overflow-x-auto rounded border border-[#E7E5E4]">
       <table class="w-full text-left text-sm">
         <thead>
-          <tr class="border-b border-[#1E1E1E] bg-[#111111]">
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#C0BAB5]">Problem</th>
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#C0BAB5]">Przed</th>
-            <th class="px-4 py-3 font-mono text-xs font-semibold text-[#D97706]">Po</th>
+          <tr class="border-b border-[#E7E5E4] bg-[#F5F5F4]">
+            <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-[#57534E]">Problem</th>
+            <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-[#57534E]">Przed</th>
+            <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-[#B45309]">Po</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-[#1E1E1E]">
-          <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 text-[#E8E3D9]">Wyciągi bankowe</td>
-            <td class="px-4 py-3 text-[#C0BAB5]">3 godziny ręcznie co miesiąc</td>
-            <td class="px-4 py-3 font-semibold text-[#D97706]">8 sekund</td>
+        <tbody class="divide-y divide-[#E7E5E4]">
+          <tr class="hover:bg-[#F5F5F4]">
+            <td class="px-4 py-3 text-[#1C1917]">Wyciąg jednej firmy</td>
+            <td class="px-4 py-3 text-[#57534E]">3 godziny ręcznie co miesiąc</td>
+            <td class="px-4 py-3 font-semibold text-[#B45309]">8 minut, razem z weryfikacją</td>
           </tr>
-          <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 text-[#E8E3D9]">100k wyników jakości</td>
-            <td class="px-4 py-3 text-[#C0BAB5]">Dane zablokowane, odpowiedź po dniach</td>
-            <td class="px-4 py-3 font-semibold text-[#D97706]">10 sekund, bez IT</td>
+          <tr class="hover:bg-[#F5F5F4]">
+            <td class="px-4 py-3 text-[#1C1917]">Kwoty w euro</td>
+            <td class="px-4 py-3 text-[#57534E]">Kurs szukany osobno dla każdej pozycji</td>
+            <td class="px-4 py-3 font-semibold text-[#B45309]">Średni kurs NBP z dnia poprzedzającego</td>
           </tr>
-          <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 text-[#E8E3D9]">Import do ERP</td>
-            <td class="px-4 py-3 text-[#C0BAB5]">Ręczne przepisywanie co miesiąc</td>
-            <td class="px-4 py-3 font-semibold text-[#D97706]">Automatycznie, zero błędów</td>
+          <tr class="hover:bg-[#F5F5F4]">
+            <td class="px-4 py-3 text-[#1C1917]">Przypisanie do kategorii</td>
+            <td class="px-4 py-3 text-[#57534E]">Pozycja po pozycji, co miesiąc od nowa</td>
+            <td class="px-4 py-3 font-semibold text-[#B45309]">Reguły ustalone raz</td>
           </tr>
-          <tr class="hover:bg-[#111111]">
-            <td class="px-4 py-3 text-[#E8E3D9]">Emisja CO₂</td>
-            <td class="px-4 py-3 text-[#C0BAB5]">"Nie wiemy ile emitujemy"</td>
-            <td class="px-4 py-3 font-semibold text-[#D97706]">168 ton. Dokładnie, skąd i ile</td>
+          <tr class="hover:bg-[#F5F5F4]">
+            <td class="px-4 py-3 text-[#1C1917]">Plik z banku i program</td>
+            <td class="px-4 py-3 text-[#57534E]">Format nierozpoznawany, przepisywanie ręczne</td>
+            <td class="px-4 py-3 font-semibold text-[#B45309]">Tłumaczenie w obie strony</td>
           </tr>
         </tbody>
       </table>
@@ -162,7 +157,7 @@ const services = [
     <div class="mt-10 text-center">
       <a
         href="/kontakt"
-        class="inline-block rounded bg-[#D97706] px-8 py-3 font-mono text-sm font-semibold text-[#0C0C0C] transition-all hover:bg-[#F59E0B]"
+        class="inline-block rounded bg-[#B45309] px-8 py-3 text-sm font-semibold text-[#FAFAF9] transition-all hover:bg-[#D97706]"
       >
         Porozmawiajmy o Twoim problemie
       </a>

@@ -1,29 +1,37 @@
 # DataSmith.pl
 
-> Paweł Kowalczyk — analityk danych z 16-letnim doświadczeniem w produkcji. Automatyzacja procesów danych dla małych i średnich firm produkcyjnych w Polsce.
+> Paweł Kowalczyk — zdejmuje z biur rachunkowych ręczną robotę, która wraca co miesiąc. Szesnaście lat przy systemach i danych w firmie produkcyjnej.
 
 > Full content: https://datasmith.pl/llms-full.txt
 
-DataSmith specjalizuje się w przekształcaniu chaosu danych w czytelne, zautomatyzowane raporty dla firm produkcyjnych (MŚP). Łączy dane z procesem decyzyjnym, żeby firmy podejmowały lepsze decyzje szybciej.
+DataSmith buduje biurom rachunkowym narzędzia do roboty, która dzieje się zanim cokolwiek trafi do programu księgowego: rozliczanie wyciągów bankowych, przypisywanie transakcji do kategorii klienta, przeliczanie walut po kursach NBP, listy płac przy nietypowych regulaminach wynagradzania.
+
+Czego DataSmith nie robi: nie księguje, nie doradza podatkowo, nie zastępuje weryfikacji przez księgową.
 
 ## Usługi
 
-- [Raport na Automacie](https://datasmith.pl/#uslugi): Automatyczne raporty zarządcze — dane z ERP lub bazy danych, agregacje, wykresy, profesjonalny PDF gotowy każdego ranka
-- [Mostek Danych](https://datasmith.pl/#uslugi): Łączenie systemów, które nie rozmawiają ze sobą — konwersja formatów między bankiem, ERP i innymi systemami
-- [Narzędzie Bazodanowe](https://datasmith.pl/#uslugi): Dedykowane aplikacje z interfejsem graficznym do zarządzania danymi — jeden plik, zero instalacji, bez czekania na IT
-- [MCP Server (API→AI)](https://datasmith.pl/#uslugi): Serwery Model Context Protocol — AI z dostępem do Twoich danych firmowych, pytasz po polsku
+- [Klasyfikator wyciągów bankowych](https://datasmith.pl/#uslugi): Wyciąg z banku wchodzi, gotowe sumy na kategorie wychodzą. Reguły przypisania ustalone raz, według podziału wydatków klienta. Kwoty w euro przeliczone po średnim kursie NBP z dnia poprzedzającego transakcję. 800 zł za pierwszą firmę, 500 zł od drugiej do piątej, 350 zł od szóstej, plus opieka od 60 zł miesięcznie z sufitem 350 zł
+- [Wyliczanie wynagrodzeń](https://datasmith.pl/#uslugi): Listy płac przy nietypowym regulaminie wynagradzania, którego standardowy program nie obsługuje. Logika w jednym miejscu, razem z dokumentacją, skąd wyszła każda kwota. 2 200 zł
+- [Mostek między systemami](https://datasmith.pl/#uslugi): Bank wystawia plik w swoim formacie, a program go nie rozpoznaje. Tłumaczenie w obie strony, dopasowane do tego, czego oczekuje każda ze stron. Wycena po rozmowie
+- [Arkusze, których nikt nie rozumie](https://datasmith.pl/#uslugi): Arkusz odziedziczony po kimś, kto odszedł. Opisanie logiki, naprawa, kontrola wyniku. Wycena po rozmowie
+
+## Dowód
+
+Wdrożenie w biurze rachunkowym obsługującym około czterdziestu firm, luty 2026. Jedna firma zajmowała trzy godziny miesięcznie ręcznie: przejście wyciągu pozycja po pozycji, przypisanie każdej transakcji do jednej z czterech kategorii ustalonych przez klientkę, przeliczenie kwot w euro. Po wdrożeniu osiem minut, razem z weryfikacją. Wynik porównany z ręcznym arkuszem, zgodność 100%.
+
+Publicznej referencji imiennej jeszcze nie ma. Dla pierwszego klienta spoza kręgu znajomych obowiązuje oferta pilotażowa: niższa cena wdrożenia w zamian za pisemną referencję.
 
 ## Technologie
 
-Python, SQL Server, ERP (SIMPLE.ERP), AI (Claude, GPT), ETL, LaTeX, MCP
+Python, SQL Server, API NBP, Excel, SIMPLE.ERP
 
 ## Blog
 
-- [Wszystkie wpisy](https://datasmith.pl/blog): Artykuły o automatyzacji danych i rozwiązywaniu problemów w MŚP produkcyjnych — dokumentacja drogi "Build in Public"
+- [Wszystkie wpisy](https://datasmith.pl/blog): Artykuły o ręcznej robocie z danymi i o tym, jak ją zdejmować — dokumentacja drogi „Build in Public", razem z tym, co nie zadziałało
 
 ## Kontakt
 
-- [Formularz kontaktowy](https://datasmith.pl/kontakt): Bezpłatna 30-minutowa konsultacja discovery
+- [Formularz kontaktowy](https://datasmith.pl/kontakt): Bezpłatna 30-minutowa rozmowa o tym, która firma zjada najwięcej czasu przy wyciągach
 - Email: pawel@datasmith.pl
 - [LinkedIn](https://www.linkedin.com/in/pawel-kowalczyk-ds)
 - [X / Twitter](https://x.com/plastyq)

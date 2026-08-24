@@ -2,24 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
-import TerminalQuiz from '../components/TerminalQuiz.astro';
+import Kalkulator from '../components/Kalkulator.astro';
 import BlogCard from '../components/BlogCard.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && !data.unlisted);
 const latestPosts = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
 const faqs = [
-  { question: "Ile to kosztuje?", answer: "Projekty zaczynają się od kilku tysięcy złotych. Pierwszy raport: 5-10k PLN. Utrzymanie: 200-500 zł/mies. Discovery (30 min) jest darmowe. Porównanie: consulting big4 to 50-200k, rekrutacja IT to 8-15k/mies." },
-  { question: "Jak długo to trwa?", answer: "Pierwszy raport w 2 tygodnie od diagnozy. Pełna integracja (kilka raportów + automatyzacja): 1-3 miesiące." },
-  { question: "Czy muszę zmieniać system?", answer: "Nie. Pracuję na tym co masz: SIMPLE.ERP, SQL Server, Excel. Zero nowego oprogramowania. Zero migracji." },
-  { question: "Co to jest Decision Intelligence?", answer: "Podejście łączące dane z procesem decyzji. Nie sztuczna inteligencja w sensie robotów. Sposób żeby dane w Twoim systemie mówiły prawdę o kosztach i zyskach. Dyscyplina z MIT i Google." },
-  { question: "Czy moje dane są bezpieczne?", answer: "Pracuję na Twoich serwerach lub anonimizowanych kopiach. Nie wysyłam danych na zewnętrzne serwery. NDA do podpisania." },
-  { question: "Nie mam działu IT. To problem?", answer: "Nie. To jest dokładnie moja grupa docelowa. Pracuję bezpośrednio z prezesem lub szefem produkcji. IT nie musi być zaangażowane." },
-  { question: "Masz referencje?", answer: "Uczciwie: buduję firmę od niedawna. Ale 16 lat robiłem to samo wewnętrznie w firmie produkcyjnej 200+ pracowników. Case z liczbami jest na stronie. Po zakończeniu bieżących projektów dodam referencje imienne." },
+  { question: "Ile to kosztuje?", answer: "Klasyfikator wyciągów: 800 zł za pierwszą firmę, 500 zł od drugiej do piątej, 350 zł od szóstej. Opieka miesięczna 60 zł za pierwszą firmę i 40 zł za każdą kolejną, z sufitem 350 zł miesięcznie niezależnie od liczby firm. Przypadki złożone, czyli wiele banków albo wyciągi walutowe: 1 200 do 1 500 zł. Pierwsza rozmowa, 30 minut, jest bezpłatna." },
+  { question: "Czy to znaczy, że przestanę patrzeć na wyciąg?", answer: "Nie. Nadal patrzysz na wynik i nadal wpisujesz go sama. Znika przechodzenie pozycji i liczenie, nie kontrola. Nie księguję i nie wprowadzam niczego za Ciebie." },
+  { question: "Pracuję w innym programie niż większość. To zadziała?", answer: "Tak, bo to dzieje się przed programem. Wynikiem jest kilka liczb, tyle ile masz kategorii, i te liczby i tak wpisujesz ręcznie w konkretne miejsce. Nie ma znaczenia, czy to Optima, Fakir, Symfonia czy arkusz." },
+  { question: "Jak długo to trwa?", answer: "Pierwsza firma: 5 do 7 dni od przekazania przykładowego pliku. Każda kolejna: 2 do 3 dni, jeśli bank i format się powtarzają." },
+  { question: "Co, jeśli bank zmieni układ pliku?", answer: "Poprawki są w cenie opieki miesięcznej. To się zdarza i jest wliczone." },
+  { question: "Czy moje dane są bezpieczne?", answer: "Przetwarzanie odbywa się lokalnie, u Ciebie. Nie wysyłam plików na zewnętrzne serwery. Umowa o poufności przed przekazaniem czegokolwiek." },
+  { question: "Masz referencje?", answer: "Uczciwie: mam jedno wdrożenie i jest opisane na tej stronie, z liczbami i bez nazwy klienta. Referencji imiennej jeszcze nie mam. Dla pierwszego klienta spoza kręgu znajomych mam ofertę pilotażową: niższa cena wdrożenia w zamian za pisemną referencję i zgodę na jawny opis." },
 ];
 
 const schemaGraph = {
@@ -30,17 +30,17 @@ const schemaGraph = {
       "@id": "https://datasmith.pl/#website",
       "name": "DataSmith",
       "url": "https://datasmith.pl",
-      "description": "DataSmith pomaga prezesom MŚP produkcyjnych widzieć na czym tracą i na czym zarabiają. Decision Intelligence na Twoich danych, bez wymiany systemu.",
+      "description": "DataSmith zdejmuje z biur rachunkowych ręczną robotę, która wraca co miesiąc. Rozliczanie wyciągów bankowych, listy płac przy nietypowych regulaminach.",
     },
     {
       "@type": "Person",
       "@id": "https://datasmith.pl/#person",
       "name": "Paweł Kowalczyk",
       "url": "https://datasmith.pl",
-      "jobTitle": "Analityk danych | Decision Intelligence",
-      "description": "Analityk danych z 16-letnim doświadczeniem w produkcji. Decision Intelligence + Theory of Constraints dla MŚP produkcyjnych.",
+      "jobTitle": "Narzędzia dla biur rachunkowych",
+      "description": "Szesnaście lat rozwiązywania problemów księgowych wewnątrz firmy produkcyjnej. Teraz buduje narzędzia dla biur rachunkowych: rozliczanie wyciągów, listy płac, mostki między systemami.",
       "email": "pawel@datasmith.pl",
-      "knowsAbout": ["Decision Intelligence", "SQL Server", "Theory of Constraints", "Throughput Accounting", "SIMPLE ERP", "Automatyzacja danych"],
+      "knowsAbout": ["Rozliczanie wyciągów bankowych", "Listy płac", "Kursy NBP", "SQL Server", "Python"],
       "sameAs": [
         "https://www.linkedin.com/in/pawel-kowalczyk-ds",
         "https://x.com/plastyq",
@@ -52,7 +52,7 @@ const schemaGraph = {
       "@id": "https://datasmith.pl/#organization",
       "name": "DataSmith",
       "url": "https://datasmith.pl",
-      "description": "DataSmith to usługa analityki danych dla firm produkcyjnych MŚP. Decision Intelligence na Twoich danych, bez wymiany systemu.",
+      "description": "DataSmith buduje biurom rachunkowym narzędzia do roboty, która wraca co miesiąc. Rozliczanie wyciągów bankowych z podziałem na kategorie klienta i przeliczeniem walut po kursach NBP.",
       "founder": { "@id": "https://datasmith.pl/#person" },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -64,29 +64,29 @@ const schemaGraph = {
     },
     {
       "@type": "Service",
-      "name": "Raport na Automacie",
-      "description": "Raporty zarządcze bez ręcznego zbierania danych. Połączenie z ERP lub bazą danych, agregacje, wykresy, profesjonalny PDF automatycznie.",
+      "name": "Klasyfikator wyciągów bankowych",
+      "description": "Wyciąg z banku wchodzi, gotowe sumy na kategorie wychodzą. Reguły przypisania ustalone raz, według podziału wydatków klienta. Kwoty w euro przeliczone po średnim kursie NBP z dnia poprzedzającego transakcję.",
       "provider": { "@id": "https://datasmith.pl/#person" },
       "areaServed": { "@type": "Country", "name": "PL" },
     },
     {
       "@type": "Service",
-      "name": "Mostek Danych",
-      "description": "Łączenie systemów, które nie rozmawiają ze sobą. Konwersja formatów między bankiem, ERP i innymi systemami.",
+      "name": "Wyliczanie wynagrodzeń",
+      "description": "Listy płac przy nietypowym regulaminie wynagradzania, którego standardowy program nie obsługuje. Logika w jednym miejscu, razem z dokumentacją, skąd wyszła każda kwota.",
       "provider": { "@id": "https://datasmith.pl/#person" },
       "areaServed": { "@type": "Country", "name": "PL" },
     },
     {
       "@type": "Service",
-      "name": "Narzędzie Bazodanowe",
-      "description": "Dedykowana aplikacja z interfejsem graficznym do zarządzania danymi. Jeden plik, zero instalacji, bez czekania na IT.",
+      "name": "Mostek między systemami",
+      "description": "Bank wystawia plik w swoim formacie, a program go nie rozpoznaje. Tłumaczenie w obie strony, dopasowane do tego, czego oczekuje każda ze stron.",
       "provider": { "@id": "https://datasmith.pl/#person" },
       "areaServed": { "@type": "Country", "name": "PL" },
     },
     {
       "@type": "Service",
-      "name": "MCP Server (API→AI)",
-      "description": "Połączenie między AI a Twoim systemem. Pytasz po polsku, dostajesz odpowiedź z Twoich własnych danych.",
+      "name": "Arkusze, których nikt nie rozumie",
+      "description": "Arkusz odziedziczony po kimś, kto odszedł. Opisanie logiki, naprawa, kontrola wyniku. Zostaje to samo narzędzie, tylko przestaje być zagadką.",
       "provider": { "@id": "https://datasmith.pl/#person" },
       "areaServed": { "@type": "Country", "name": "PL" },
     },
@@ -111,50 +111,50 @@ const schemaGraph = {
   <Hero />
 
   <!-- PROBLEM -->
-  <section id="problem" class="border-t border-[#1E1E1E] px-6 py-20">
+  <section id="problem" class="border-t border-[#E7E5E4] px-6 py-20">
     <div class="mx-auto max-w-2xl" data-animate>
-      <span class="font-mono text-xs text-[#D97706]">// problem</span>
-      <h2 class="mt-2 mb-8 text-3xl font-bold text-[#E8E3D9]">
-        Twoje liczby mówią jedno.<br>Rzeczywistość jest inna.
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Problem</span>
+      <h2 class="mt-2 mb-8 text-3xl font-bold text-[#1C1917]">
+        To nie jest problem programu.<br>To dzieje się przed nim.
       </h2>
-      <div class="space-y-4 text-sm leading-relaxed text-[#C0BAB5]">
-        <p>Firma produkcyjna. Prezes patrzy na raport. Produkt X: <span class="font-semibold text-red-400">minus 130 zł</span> na każdej sztuce. Decyzja wydaje się oczywista: wycofaj.</p>
-        <p>Ale klienci go zamawiają. Coś nie gra.</p>
-        <p>Problem? System rozłożył koszty hali, maszyn i ludzi "po równo" na każdy produkt. Produkt X wygląda na stratę, bo wyprodukowano go mało, więc "zjadł" dużo kosztów stałych na sztukę.</p>
-        <p>Tylko że te koszty i tak zostają. Hala stoi. Maszyny stoją. Ludzie pracują. Wycofanie produktu nie zaoszczędzi ani złotówki na kosztach stałych. Za to pogorszy wynik reszty.</p>
-        <p>Inna perspektywa: po odjęciu materiału i podwykonawców każda sztuka zostawia <span class="font-semibold text-[#27c93f]">170 zł</span>. Pieniądze które zostają w firmie.</p>
-        <p class="mt-2 text-base font-semibold text-[#E8E3D9]">Nie minus 130. <span class="text-[#27c93f]">Plus 170.</span> Ta sama dana. Inna perspektywa.</p>
+      <div class="space-y-4 text-sm leading-relaxed text-[#57534E]">
+        <p>Wyciąg przychodzi jako surowa lista transakcji. Żeby cokolwiek z nim zrobić, ktoś musi przejść go pozycja po pozycji.</p>
+        <p>Każdą transakcję trzeba przypisać do kategorii. Twojej, nie cudzej. Przy rachunku walutowym dochodzi drugi przebieg, bo bank podaje kwoty w euro i nie przelicza ich na złotówki.</p>
+        <p>Na końcu wychodzi kilka liczb. Tyle, ile masz kategorii. I te kilka liczb ktoś wpisuje ręcznie w jedno miejsce.</p>
+        <p><span class="font-semibold text-red-600">Trzy godziny miesięcznie</span> na jednej firmie. Co miesiąc to samo, od nowa.</p>
+        <p>Dlatego to nie zależy od tego, w jakim programie pracujesz. Ta robota dzieje się <span class="text-[#1C1917]">zanim cokolwiek trafi do programu</span>: raz w głowie księgowej, drugi raz w arkuszu.</p>
+        <p class="mt-2 text-base font-semibold text-[#1C1917]">Program nie decyduje, gdzie co należy. <span class="text-[#15803D]">To robi człowiek.</span></p>
       </div>
     </div>
   </section>
 
   <!-- SOLUTION -->
-  <section id="solution" class="border-t border-[#1E1E1E] px-6 py-20">
+  <section id="solution" class="border-t border-[#E7E5E4] px-6 py-20">
     <div class="mx-auto max-w-2xl" data-animate>
-      <span class="font-mono text-xs text-[#D97706]">// rozwiązanie</span>
-      <h2 class="mt-2 mb-10 text-3xl font-bold text-[#E8E3D9]">
-        3 kroki. Na Twoich danych.<br>Bez wymiany systemu.
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Rozwiązanie</span>
+      <h2 class="mt-2 mb-10 text-3xl font-bold text-[#1C1917]">
+        3 kroki. Na Twoich plikach.<br>Bez zmiany programu.
       </h2>
       <div class="space-y-8">
         <div class="flex gap-4">
-          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#D97706]">1.</div>
+          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#B45309]">1.</div>
           <div>
-            <h3 class="font-semibold text-[#E8E3D9]">Diagnoza <span class="font-normal text-[#C0BAB5]">(30 minut, darmowa)</span></h3>
-            <p class="mt-1 text-sm leading-relaxed text-[#C0BAB5]">Rozmawiamy. Co masz w danych, co chcesz widzieć, gdzie boli. Pracujesz na SIMPLE? SQL Server? Excel? Znam te systemy, bo sam na nich pracowałem 16 lat.</p>
+            <h3 class="font-semibold text-[#1C1917]">Rozmowa <span class="font-normal text-[#57534E]">(30 minut, bezpłatna)</span></h3>
+            <p class="mt-1 text-sm leading-relaxed text-[#57534E]">Która firma zjada Ci najwięcej czasu przy wyciągach, jaki ma bank i ile godzin miesięcznie na nią schodzi. Jeśli okaże się, że nie ma czego zdejmować, powiem to wprost.</p>
           </div>
         </div>
         <div class="flex gap-4">
-          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#D97706]">2.</div>
+          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#B45309]">2.</div>
           <div>
-            <h3 class="font-semibold text-[#E8E3D9]">Pierwszy raport <span class="font-normal text-[#C0BAB5]">(2 tygodnie)</span></h3>
-            <p class="mt-1 text-sm leading-relaxed text-[#C0BAB5]">Dostajesz działający raport lub dashboard. Widzisz wynik zanim zdecydujesz o czymkolwiek więcej. Żadnych zobowiązań.</p>
+            <h3 class="font-semibold text-[#1C1917]">Pierwsza firma <span class="font-normal text-[#57534E]">(5 do 7 dni)</span></h3>
+            <p class="mt-1 text-sm leading-relaxed text-[#57534E]">Przekazujesz jeden przykładowy plik i mówisz, jak dzielisz wydatki. Resztę robię ja. Uruchamiam u Ciebie i sprawdzam na Twoich prawdziwych danych, porównując z tym, co dziś liczysz ręcznie.</p>
           </div>
         </div>
         <div class="flex gap-4">
-          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#D97706]">3.</div>
+          <div class="min-w-[2rem] text-right text-2xl font-bold text-[#B45309]">3.</div>
           <div>
-            <h3 class="font-semibold text-[#E8E3D9]">Rozbudowa <span class="font-normal text-[#C0BAB5]">(w Twoim tempie)</span></h3>
-            <p class="mt-1 text-sm leading-relaxed text-[#C0BAB5]">Kolejne raporty, automatyzacja, integracja systemów. Ty decydujesz co i kiedy. Dostajesz kod i wiedzę, nie zależność.</p>
+            <h3 class="font-semibold text-[#1C1917]">Kolejne firmy <span class="font-normal text-[#57534E]">(2 do 3 dni każda)</span></h3>
+            <p class="mt-1 text-sm leading-relaxed text-[#57534E]">Ty decydujesz, które i kiedy. Cena schodzi z każdą kolejną, a opieka ma sufit, więc powyżej ośmiu firm przestaje rosnąć.</p>
           </div>
         </div>
       </div>
@@ -162,55 +162,54 @@ const schemaGraph = {
   </section>
 
   <!-- PROOF -->
-  <section id="proof" class="border-t border-[#1E1E1E] px-6 py-20">
+  <section id="proof" class="border-t border-[#E7E5E4] px-6 py-20">
     <div class="mx-auto max-w-2xl" data-animate>
-      <span class="font-mono text-xs text-[#D97706]">// kto za tym stoi</span>
-      <h2 class="mt-2 mb-10 text-3xl font-bold text-[#E8E3D9]">
-        16 lat w firmie produkcyjnej.<br>Teraz pracuję dla Ciebie.
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Kto za tym stoi</span>
+      <h2 class="mt-2 mb-10 text-3xl font-bold text-[#1C1917]">
+        Szesnaście lat przy cudzych danych.<br>Wiem, jak wyglądają naprawdę.
       </h2>
       <div class="space-y-8 text-sm leading-relaxed">
         <div>
-          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D97706]">Kim jestem</h3>
-          <p class="text-[#C0BAB5]">Paweł Kowalczyk. 16 lat analityk w firmie produkcyjnej, 200+ pracowników. Codziennie: SIMPLE.ERP, SQL Server, Excel. Znam Twoje systemy bo sam na nich pracuję. Nie jestem konsultantem z prezentacją. Jestem analitykiem z zapytaniami SQL.</p>
+          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#B45309]">Kim jestem</h3>
+          <p class="text-[#57534E]">Paweł Kowalczyk. Od 2010 roku pilnuję systemów i danych w firmie produkcyjnej. Ale zlecenia przychodzą w większości od księgowości i kontrolingu: wysyłka faktur do KSeF, uzgodnienie magazynu z księgą, konsolidacja wynagrodzeń, e-Doręczenia, odtworzenie w bazie wartości środka trwałego. To nie jest nowa branża, tylko ta sama robota dla kogoś innego.</p>
         </div>
         <div>
-          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D97706]">Co widziałem</h3>
-          <p class="mb-2 text-[#C0BAB5]">Firma produkcyjna chciała wycofać produkt: <span class="text-red-400">minus 130 zł</span> na sztuce. Po zmianie perspektywy: <span class="text-[#D97706]">plus 170 zł</span> czystego przerobu. Zamiast wycofać, podwoili podaż. Większe zyski.</p>
-          <p class="font-medium text-[#E8E3D9]">Ta sama dana. Inna perspektywa.</p>
+          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#B45309]">Czego nauczyło mnie ostatnie wdrożenie</h3>
+          <p class="mb-2 text-[#57534E]">Do wersji, którą klientka uznała za swoją, poszły <span class="text-[#B45309]">cztery obroty i cztery uzgodnienia</span>. Żaden nie dotyczył poprawności liczenia. Wszystkie poszły na to, żeby wynik dało się przeczytać i sprawdzić.</p>
+          <p class="font-medium text-[#1C1917]">Wynik musi być czytelny i weryfikowalny, nie tylko prawdziwy.</p>
         </div>
         <div>
-          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D97706]">Na czym to stoi</h3>
-          <p class="text-[#C0BAB5]">Decision Intelligence: dyscyplina z MIT i Google, łącząca dane z procesem decyzji. Rachunek przerobowy (Theory of Constraints, Goldratt). Nie wymyśliłem tego. Stosuję to do danych MŚP produkcyjnych w Polsce.</p>
+          <h3 class="mb-2 text-xs font-semibold uppercase tracking-wider text-[#B45309]">Czego nie robię</h3>
+          <p class="text-[#57534E]">Nie jestem księgowym, nie mam uprawnień i nie doradzam podatkowo. Nie księguję i nie zastępuję weryfikacji. Nie obiecuję rewolucji. Znika przepisywanie i liczenie, nie kontrola. Nadal patrzysz na wynik i nadal wpisujesz go sama.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- HOMIK -->
-  <section id="homik" class="border-t border-[#1E1E1E] px-6 py-20">
+  <section id="homik" class="border-t border-[#E7E5E4] px-6 py-20">
     <div class="mx-auto max-w-3xl" data-animate>
-      <span class="font-mono text-xs text-[#D97706]">// następny krok</span>
-      <h2 class="mt-2 mb-4 text-center text-3xl font-bold text-[#E8E3D9]">Od czego zacząć?</h2>
-      <p class="mb-12 text-center text-sm text-[#C0BAB5]">Wybierz to co pasuje do Ciebie. Zero presji.</p>
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Następny krok</span>
+      <h2 class="mt-2 mb-4 text-center text-3xl font-bold text-[#1C1917]">Od czego zacząć?</h2>
+      <p class="mb-12 text-center text-sm text-[#57534E]">Wybierz to co pasuje do Ciebie. Zero presji.</p>
 
       <!-- Quiz terminal -->
       <div id="quiz" class="mb-6">
-        <h3 class="mb-2 text-center text-xl font-bold text-[#E8E3D9]">
-          Wiesz na czym Twoja firma
-          <span class="bg-[#D97706] px-1 text-[#0C0C0C]">zarabia</span>, a na czym
-          <span class="bg-[#D97706] px-1 text-[#0C0C0C]">traci</span>?
+        <h3 class="mb-2 text-center text-xl font-bold text-[#1C1917]">
+          Ile kosztuje Cię ręczne rozliczanie
+          <span class="bg-[#B45309] px-1 text-[#FAFAF9]">wyciągów</span>?
         </h3>
-        <p class="mb-6 text-center text-sm text-[#C0BAB5]">5 pytań. Wynik od razu. Zero maili.</p>
-        <TerminalQuiz />
+        <p class="mb-6 text-center text-sm text-[#57534E]">Cztery pytania. Wynik od razu, na miejscu. Nic nie wysyłam i nic nie zapisuję.</p>
+        <Kalkulator />
       </div>
 
       <!-- Discovery -->
-      <div class="my-12 rounded border border-[#1E1E1E] py-8 text-center">
-        <p class="mb-4 text-sm text-[#C0BAB5]">Wolisz porozmawiać? 30 minut. Pokażę Ci co widzę w Twoich danych.</p>
-        <a href="/kontakt" class="inline-block rounded border border-[#D97706] px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wide text-[#D97706] transition-colors hover:bg-[#D97706] hover:text-[#0C0C0C]">
+      <div class="my-12 rounded border border-[#E7E5E4] py-8 text-center">
+        <p class="mb-4 text-sm text-[#57534E]">Wolisz porozmawiać? 30 minut o tym, która firma zjada Ci najwięcej czasu przy wyciągach.</p>
+        <a href="/kontakt" class="inline-block rounded border border-[#B45309] px-6 py-3 text-sm font-semibold text-[#B45309] transition-colors hover:bg-[#B45309] hover:text-[#FAFAF9]">
           Umów discovery
         </a>
-        <p class="mt-2 text-xs text-[#C0BAB5]">Darmowe. Bez zobowiązań.</p>
+        <p class="mt-2 text-xs text-[#57534E]">Darmowe. Bez zobowiązań.</p>
       </div>
 
       <!-- Usługi -->
@@ -218,8 +217,8 @@ const schemaGraph = {
 
       <!-- Plan B -->
       <div class="mt-8 text-center">
-        <p class="text-sm text-[#C0BAB5]">Nie jesteś gotowy? Zero presji.</p>
-        <a href="/blog" class="font-mono text-sm text-[#D97706] transition-colors hover:text-[#F59E0B]">
+        <p class="text-sm text-[#57534E]">Nie jesteś gotowy? Zero presji.</p>
+        <a href="/blog" class="font-mono text-sm text-[#B45309] transition-colors hover:text-[#D97706]">
           Przeczytaj bloga &rarr;
         </a>
       </div>
@@ -227,29 +226,29 @@ const schemaGraph = {
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="border-t border-[#1E1E1E] px-6 py-20">
+  <section id="faq" class="border-t border-[#E7E5E4] px-6 py-20">
     <div class="mx-auto max-w-2xl" data-animate>
-      <span class="font-mono text-xs text-[#D97706]">// pytania</span>
-      <h2 class="mt-2 mb-10 text-center text-3xl font-bold text-[#E8E3D9]">
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Pytania</span>
+      <h2 class="mt-2 mb-10 text-center text-3xl font-bold text-[#1C1917]">
         Pytania, które zadajesz<br>zanim zdecydujesz
       </h2>
       <div class="space-y-3">
         {faqs.map((faq) => (
-          <details class="group border border-[#1E1E1E]">
-            <summary class="cursor-pointer px-5 py-4 text-sm font-semibold text-[#E8E3D9] transition-colors hover:bg-[#1A1A1A]">
+          <details class="group border border-[#E7E5E4]">
+            <summary class="cursor-pointer px-5 py-4 text-sm font-semibold text-[#1C1917] transition-colors hover:bg-[#F5F5F4]">
               {faq.question}
             </summary>
-            <div class="px-5 pb-4 text-sm leading-relaxed text-[#C0BAB5]">
+            <div class="px-5 pb-4 text-sm leading-relaxed text-[#57534E]">
               {faq.answer}
             </div>
           </details>
         ))}
       </div>
       <div class="mt-10 space-y-3 text-center">
-        <p class="text-sm text-[#C0BAB5]">Masz inne pytanie?</p>
-        <p class="text-sm"><a href="mailto:pawel@datasmith.pl" class="text-[#D97706] hover:text-[#F59E0B]">pawel@datasmith.pl</a></p>
+        <p class="text-sm text-[#57534E]">Masz inne pytanie?</p>
+        <p class="text-sm"><a href="mailto:pawel@datasmith.pl" class="text-[#B45309] hover:text-[#D97706]">pawel@datasmith.pl</a></p>
         <div class="pt-2">
-          <a href="/kontakt" class="inline-block rounded bg-[#D97706] px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wide text-[#0C0C0C] transition-colors hover:bg-[#F59E0B]">
+          <a href="/kontakt" class="inline-block rounded bg-[#B45309] px-6 py-3 text-sm font-semibold text-[#FAFAF9] transition-colors hover:bg-[#D97706]">
             Umów 30-min discovery
           </a>
         </div>
@@ -259,14 +258,14 @@ const schemaGraph = {
 
   <!-- BLOG (zachowany) -->
   {latestPosts.length > 0 && (
-    <section id="blog" class="border-t border-[#1E1E1E] px-6 py-24">
+    <section id="blog" class="border-t border-[#E7E5E4] px-6 py-24">
       <div class="mx-auto max-w-5xl">
         <div class="mb-10 flex items-end justify-between">
           <div>
-            <span class="font-mono text-xs text-[#D97706]">// blog</span>
-            <h2 class="mt-2 text-3xl font-bold text-[#E8E3D9]">Ostatnie wpisy</h2>
+            <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Blog</span>
+            <h2 class="mt-2 text-3xl font-bold text-[#1C1917]">Ostatnie wpisy</h2>
           </div>
-          <a href="/blog" class="font-mono text-sm text-[#C0BAB5] hover:text-[#D97706]">
+          <a href="/blog" class="font-mono text-sm text-[#57534E] hover:text-[#B45309]">
             Wszystkie &rarr;
           </a>
         </div>

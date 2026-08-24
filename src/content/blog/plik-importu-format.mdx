@@ -1,0 +1,74 @@
+---
+title: "Plik do importu nie chciał wejść. Zabrakło pustej kolumny na końcu."
+description: "Dwanaście działów, dwanaście układów tego samego arkusza, jedno wąskie gardło co miesiąc. Najwięcej czasu zjadło nie liczenie, tylko odtworzenie formatu pliku, którego nikt nigdzie nie opisał."
+date: 2026-08-11
+tags: ["import", "listy płac", "Excel", "biuro rachunkowe"]
+image: "/images/blog/plik-importu-format.png"
+---
+
+Co miesiąc kilkanaście działów przysyła arkusz z rozliczeniem dniówek i premii. Trzeba je scalić w jeden plik i wprowadzić do systemu.
+
+Każdy dział ma **inny układ**. Inne nazwy arkuszy, inne nagłówki kolumn, inna liczba pustych wierszy na górze, zanim zaczną się dane. Nikt tego nie ustalał. Po prostu tak się przez lata ułożyło i każdy robi po swojemu.
+
+To była robota, która wracała co miesiąc i nikomu się nie podobała.
+
+## Zaczęło się od tego, że stare narzędzie umarło
+
+Był stary skrypt, który to scalał. Działał latami.
+
+Przy przesiadce na nowy komputer przestał działać w ogóle. Nie „gorzej" — w ogóle. Inna wersja języka, brakujące biblioteki, sterownik bazy nie ten, ścieżki wpisane na sztywno pod stary sprzęt.
+
+Narzędzie było krytyczne dla comiesięcznej roboty i **nikt nie zauważył, że jego działanie zależy od jednej maszyny**, dopóki ta maszyna nie zniknęła.
+
+To jest ten sam wzorzec co arkusz, który rozumie tylko jedna osoba. Tyle że tu zamiast osoby był laptop.
+
+## Najciekawsze wyszło na końcu
+
+Scalanie arkuszy było przewidywalne. Wczytać, ujednolicić nagłówki, poskładać. Męczące, ale bez zagadek.
+
+Potem trzeba było zapisać wynik w formacie, który przyjmie system.
+
+I tu zaczęła się prawdziwa robota. Plik nie chciał wejść, a komunikat błędu nie mówił dlaczego.
+
+Okazało się, że format wymaga kompletu drobiazgów, których nie ma w żadnej instrukcji:
+
+- średnik jako separator, nie przecinek
+- przecinek jako znak dziesiętny, nie kropka
+- kodowanie sprzed unicode, bo inaczej polskie znaki zamieniają się w krzaczki
+- zakończenia wierszy w wariancie windowsowym
+- liczby zapisane tak, jak zapisałby je arkusz w formacie ogólnym, bez końcówek
+- **pusta kolumna na samym końcu każdego wiersza**
+
+Ostatnia pozycja zajęła najwięcej czasu. Plik wyglądał na poprawny, otwierał się bez zarzutu, dane były na miejscu. Import go odrzucał.
+
+Znalazłem to porównując mój plik z plikiem, który ktoś kiedyś zrobił ręcznie i który działał. Różnica była jedna: średnik na końcu wiersza, po którym nic nie ma.
+
+## Skąd bierze się taki format
+
+Nikt go nie zaprojektował. On się **osadził**.
+
+Ktoś kiedyś wyeksportował dane z arkusza, plik zadziałał, i od tamtej pory ten kształt jest wymaganiem. Nie ma dokumentu, który by go opisywał, bo nigdy nie było powodu, żeby go spisać. Wystarczyło, że ktoś robił to ręcznie i pamiętał.
+
+Dopóki jest ta osoba i ten arkusz, wszystko działa.
+
+## Rzecz, która mnie zawstydziła
+
+Przy okazji zajrzałem do starego skryptu porządniej niż zwykle.
+
+Było w nim wpisane hasło do bazy. Czystym tekstem, w kodzie.
+
+To akurat wiedziałem i planowałem naprawić. Czego nie wiedziałem: **to samo hasło leżało w plikach roboczych, które narzędzie zapisuje automatycznie w tle**. Trzy kopie, o których nie pamiętałem, że w ogóle istnieją.
+
+Wyczyszczenie samego skryptu nie wystarczyłoby. Hasło zostałoby w miejscach, do których nikt nie zagląda.
+
+Wyniosłem je do pliku poza projektem, poza katalogiem, który się gdziekolwiek synchronizuje.
+
+## Co z tego wynika
+
+Jeśli w Twoim biurze jest plik, który „trzeba zapisać dokładnie tak", zapytaj, gdzie jest to zapisane.
+
+Jeśli odpowiedź brzmi „Kasia wie", to nie jest procedura. To jest osoba.
+
+Nadal łapię się na tym, że przy takich zadaniach najpierw zabieram się za logikę, bo jest ciekawsza, a formatem zajmuję się na końcu, jakby był formalnością. Za każdym razem okazuje się, że to format zjada wieczór.
+
+A u Ciebie format pliku do importu jest gdzieś opisany, czy trzeba go odtwarzać z pliku, który akurat zadziałał?

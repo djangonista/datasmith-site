@@ -1,17 +1,20 @@
 ---
+import LogoMark from './LogoMark.astro';
+
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-[#1E1E1E] py-12">
+<footer class="border-t border-[#E7E5E4] py-12">
   <div class="mx-auto max-w-5xl px-6">
     <div class="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
       <!-- Brand -->
       <div>
-        <a href="/" class="font-mono text-lg font-bold text-[#E8E3D9] hover:text-[#D97706]">
-          DataSmith<span class="text-[#D97706]">.pl</span>
+        <a href="/" class="group inline-flex items-center gap-2.5 font-mono text-lg font-bold text-[#1C1917] hover:text-[#B45309]">
+          <LogoMark size={22} class="text-[#B45309]" />
+          <span>DataSmith<span class="text-[#B45309]">.pl</span></span>
         </a>
-        <p class="mt-1 font-mono text-xs text-[#C0BAB5]">
-          Każdy problem z danymi ma rozwiązanie.
+        <p class="mt-1.5 text-sm text-[#57534E]">
+          Robota, która dzieje się zanim cokolwiek trafi do programu.
         </p>
       </div>
 
@@ -21,7 +24,7 @@ const year = new Date().getFullYear();
           href="https://www.linkedin.com/in/pawel-kowalczyk-ds"
           target="_blank"
           rel="noopener noreferrer"
-          class="font-mono text-sm text-[#C0BAB5] transition-colors hover:text-[#D97706]"
+          class="text-sm font-medium text-[#57534E] transition-colors hover:text-[#B45309]"
         >
           LinkedIn
         </a>
@@ -29,7 +32,7 @@ const year = new Date().getFullYear();
           href="https://x.com/plastyq"
           target="_blank"
           rel="noopener noreferrer"
-          class="font-mono text-sm text-[#C0BAB5] transition-colors hover:text-[#D97706]"
+          class="text-sm font-medium text-[#57534E] transition-colors hover:text-[#B45309]"
         >
           X / Twitter
         </a>
@@ -37,34 +40,34 @@ const year = new Date().getFullYear();
           href="https://github.com/djangonista"
           target="_blank"
           rel="noopener noreferrer"
-          class="font-mono text-sm text-[#C0BAB5] transition-colors hover:text-[#D97706]"
+          class="text-sm font-medium text-[#57534E] transition-colors hover:text-[#B45309]"
         >
           GitHub
         </a>
         <a
           href="mailto:pawel@datasmith.pl"
-          class="font-mono text-sm text-[#C0BAB5] transition-colors hover:text-[#D97706]"
+          class="text-sm font-medium text-[#57534E] transition-colors hover:text-[#B45309]"
         >
           Email
         </a>
       </div>
     </div>
 
-    <div class="mt-8 border-t border-[#1E1E1E] pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-      <p class="font-mono text-xs text-[#C0BAB5]">
+    <div class="mt-8 border-t border-[#E7E5E4] pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <p class="font-mono text-xs text-[#57534E]">
         © {year} DataSmith. Paweł Kowalczyk. Wszelkie prawa zastrzeżone.
       </p>
       <div class="flex items-center gap-4">
         <a
           href="/polityka-prywatnosci"
-          class="font-mono text-xs text-[#C0BAB5] transition-colors hover:text-[#D97706]"
+          class="font-mono text-xs text-[#57534E] transition-colors hover:text-[#B45309]"
         >
           Polityka prywatności
         </a>
         <a
           id="footer-cookie-settings"
           href="#"
-          class="font-mono text-xs text-[#C0BAB5] transition-colors hover:text-[#D97706]"
+          class="font-mono text-xs text-[#57534E] transition-colors hover:text-[#B45309]"
         >
           Ustawienia cookies
         </a>

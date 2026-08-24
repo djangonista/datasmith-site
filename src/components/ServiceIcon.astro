@@ -1,0 +1,80 @@
+---
+/**
+ * ServiceIcon — ikony usług, jedna rodzina wizualna z LogoMark.
+ * Ten sam język: wypełnione belki i kreski, zero cienkich konturów,
+ * zero generycznych ikonek z bibliotek. Kolor przez currentColor.
+ */
+interface Props {
+  id: string;
+  size?: number;
+  class?: string;
+}
+const { id, size = 48, class: cls = '' } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 32 32"
+  fill="none"
+  aria-hidden="true"
+  class={cls}
+>
+  {id === 'klasyfikator-wyciagow' && (
+    <>
+      {/* wiele pozycji po lewej */}
+      <rect x="1"  y="5"  width="12" height="2.4" rx="1.2" fill="currentColor" opacity="0.4" />
+      <rect x="1"  y="10" width="12" height="2.4" rx="1.2" fill="currentColor" opacity="0.4" />
+      <rect x="1"  y="15" width="12" height="2.4" rx="1.2" fill="currentColor" opacity="0.4" />
+      <rect x="1"  y="20" width="12" height="2.4" rx="1.2" fill="currentColor" opacity="0.4" />
+      <rect x="1"  y="25" width="12" height="2.4" rx="1.2" fill="currentColor" opacity="0.4" />
+      {/* klamra zbierajaca */}
+      <path d="M16 6 L18.5 6 L18.5 15 L20.5 15 L18.5 15 L18.5 26 L16 26"
+            stroke="currentColor" stroke-width="1.6" opacity="0.55" />
+      {/* jedna suma */}
+      <rect x="22" y="13.4" width="9" height="4.2" rx="2.1" fill="currentColor" />
+    </>
+  )}
+
+  {id === 'wyliczanie-wynagrodzen' && (
+    <>
+      <rect x="4"  y="3"  width="24" height="3" rx="1.5" fill="currentColor" opacity="0.35" />
+      <rect x="4"  y="9"  width="24" height="3" rx="1.5" fill="currentColor" opacity="0.35" />
+      {/* pozycja nietypowa */}
+      <rect x="4"  y="15" width="24" height="3" rx="1.5" fill="currentColor" />
+      <rect x="4"  y="21" width="24" height="3" rx="1.5" fill="currentColor" opacity="0.35" />
+      {/* kreska i suma */}
+      <rect x="3"  y="26.5" width="26" height="1.6" rx="0.8" fill="currentColor" opacity="0.8" />
+    </>
+  )}
+
+  {id === 'mostek-danych' && (
+    <>
+      <rect x="1"  y="9"  width="10" height="14" rx="2.5" fill="currentColor" opacity="0.35" />
+      <rect x="21" y="9"  width="10" height="14" rx="2.5" fill="currentColor" opacity="0.35" />
+      {/* tlumaczenie w obie strony */}
+      <path d="M12 13 L20 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      <path d="M20 13 l-3 -2.4 l0 4.8 z" fill="currentColor" />
+      <path d="M20 19 L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      <path d="M12 19 l3 -2.4 l0 4.8 z" fill="currentColor" />
+    </>
+  )}
+
+  {id === 'arkusze-duchy' && (
+    <>
+      {[0, 1, 2].map((r) =>
+        [0, 1, 2].map((c) => (
+          <rect
+            x={2 + c * 10}
+            y={4 + r * 8.5}
+            width="9"
+            height="7.5"
+            rx="1.5"
+            fill="currentColor"
+            opacity={r === 1 && c === 1 ? 1 : 0.28}
+          />
+        ))
+      )}
+    </>
+  )}
+</svg>

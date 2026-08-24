@@ -4,9 +4,12 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
+  // strony unlisted nadal sie generuja (adresy dzialaja),
+  // ale nie pojawiaja sie w polecanych pod artykulem
+  const listed = posts.filter((p) => !p.data.unlisted);
   return posts.map((post) => ({
     params: { slug: post.slug },
-    props: { post, allPosts: posts },
+    props: { post, allPosts: listed },
   }));
 }
 

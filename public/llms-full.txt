@@ -1,12 +1,16 @@
 # DataSmith.pl — Full Content
 
-> DataSmith to serwis Pawla Kowalczyka specjalizujacy sie w automatyzacji danych dla firm produkcyjnych MSP w Polsce.
+> DataSmith to serwis Pawla Kowalczyka. Zdejmuje z biur rachunkowych reczna robote, ktora wraca co miesiac.
 
 ## O autorze
 
-Pawel Kowalczyk — analityk danych z 16-letnim doswiadczeniem w produkcji (ERP, SQL Server, procesy planistyczne). Buduje automatyzacje dla firm produkcyjnych — zeby dane naprawde przekladaly sie na decyzje, a nie tylko na kolejny raport do szuflady.
+Pawel Kowalczyk — od 2010 roku pilnuje systemow i danych w firmie produkcyjnej. Zlecenia przychodza w wiekszosci od ksiegowosci i kontrolingu: wysylka faktur do KSeF, uzgodnienie magazynu z ksiega, konsolidacja wynagrodzen, powiadomienia z e-Doreczen, odtworzenie w bazie wartosci srodka trwalego. Szesnascie lat rozwiazywania problemow ksiegowych wewnatrz jednej firmy. Nie jest ksiegowym, nie ma uprawnien i nie doradza podatkowo.
 
-Podejscie: badacz, nie ekspert. Dokumentuje droge publicznie — co testuje w praktyce, co dziala, co nie dziala i dlaczego.
+Od 2026 roku buduje narzedzia dla biur rachunkowych: rozliczanie wyciagow bankowych, listy plac przy nietypowych regulaminach wynagradzania, mostki miedzy systemami, ktore nie rozumieja swoich formatow.
+
+Czego nie robi: nie ksieguje, nie doradza podatkowo, nie zastepuje weryfikacji przez ksiegowa. Znika przepisywanie i liczenie, nie kontrola.
+
+Dokumentuje droge publicznie — co testuje w praktyce, co dziala i co nie zadzialalo.
 
 - Email: pawel@datasmith.pl
 - LinkedIn: https://www.linkedin.com/in/pawel-kowalczyk-ds
@@ -17,99 +21,75 @@ Podejscie: badacz, nie ekspert. Dokumentuje droge publicznie — co testuje w pr
 
 ## Uslugi
 
-### 1. Raport na Automacie (od 2 000 PLN + 400/mies)
-Automatyczne raporty zarzadcze — dane z ERP lub bazy danych, agregacje, wykresy, porownania rok do roku. Profesjonalny PDF z logo firmy gotowy automatycznie kazdego ranka. Technologie: Python, SQL, LaTeX, PDF.
+### 1. Klasyfikator wyciagow bankowych (800 zl pierwsza firma / 500 zl od drugiej do piatej / 350 zl od szostej + opieka od 60 zl mies., sufit 350 zl)
+Wyciag z banku wchodzi, gotowe sumy na kategorie wychodza. Reguly przypisania ustalone raz, wedlug podzialu wydatkow klientki. Kwoty w euro przeliczone na zlotowki po srednim kursie NBP z dnia poprzedzajacego transakcje, z cofnieciem przy weekendach i swietach. Na wyjsciu tyle liczb, ile kategorii. Nie zalezy od programu ksiegowego, bo dzieje sie przed nim. Przypadki zlozone (wiele bankow, wyciagi walutowe): 1 200–1 500 zl.
 
-### 2. Mostek Danych (1 000–2 000 PLN)
-Laczenie systemow, ktore nie rozmawiaja ze soba. Konwersja formatow miedzy bankiem, ERP i innymi systemami — raz zbudowany, dziala na stale. Bez recznego przepisywania, bez bledow. Technologie: Python, ETL, API.
+### 2. Wyliczanie wynagrodzen (2 200 zl)
+Listy plac przy nietypowym regulaminie wynagradzania, ktorego standardowy program nie obsluguje. Liczenie wychodzi wtedy do arkusza i wraca recznie. Logika trafia do jednego miejsca, razem z dokumentacja, skad wyszla kazda kwota.
 
-### 3. Narzedzie Bazodanowe (2 000–4 000 PLN)
-Dedykowane aplikacje z interfejsem graficznym do zarzadzania danymi. Jeden plik, zero instalacji, bez czekania na IT. Stary program przestal dzialac? Kazda zmiana danych wymaga programisty? To rozwiazanie. Technologie: Python, tkinter, SQL Server.
+### 3. Mostek miedzy systemami (wycena po rozmowie)
+Bank wystawia plik w swoim formacie, a program go nie rozpoznaje. W druga strone bywa tak samo. Tlumaczenie w obie strony, dopasowane do tego, czego oczekuje kazda ze stron. Raz ustawione, dziala co miesiac.
 
-### 4. MCP Server / API→AI (2 000–3 000 PLN)
-Serwery Model Context Protocol — AI z dostepem do danych firmowych. Pytasz po polsku, dostajesz odpowiedz z wlasnych danych. Polaczenie miedzy AI a systemem firmy. Technologie: MCP, Python, AI, Claude.
-
-### 5. Arkusze Duchy (2 000–5 000 PLN) [wkrotce]
-Kontrola nad arkuszami Excel odziedziczonymi po poprzednim pracowniku. Dokumentacja, naprawa, eliminacja ryzyka awarii. Technologie: Excel, VBA, Python.
-
-### 6. Audyt Jakosci Danych (1 500–3 000 PLN) [wkrotce]
-Duplikaty, luki, niespolnosci miedzy systemami. Raport z konkretnymi rekomendacjami. Technologie: Python, Pandas, SQL.
+### 4. Arkusze, ktorych nikt nie rozumie (wycena po rozmowie)
+Arkusz odziedziczony po kims, kto odszedl. Dziala, wiec sie go nie rusza, do dnia w ktorym przestanie dzialac. Opisanie logiki, naprawa, kontrola wyniku. Zostaje to samo narzedzie, tylko przestaje byc zagadka.
 
 ---
 
 ## Realizacje (Case Studies)
 
-### Case 1: Dane uwiezione w bazie — 100 000 pomiarow
-- Klient: Firma produkcyjna
-- Problem: Stary program przestal dzialac po zmianie serwera. Kontrolerzy jakosci musieli prosic IT o kazde sprawdzenie. Albo nie sprawdzali wcale.
-- Rozwiazanie: Dedykowana aplikacja z interfejsem graficznym. Filtr po dacie, produkcie, serii. Jeden plik .exe, zero instalacji.
-- Wynik: 100 000 wynikow kontroli jakosci dostepnych natychmiast. Przy reklamacji odpowiedz w 10 sekund, nie w 2 dniach.
+### Case 1: Wyciag jednej firmy — 3 godziny na 8 minut
+- Klient: biuro rachunkowe obslugujace okolo 40 firm (anonimizacja), luty 2026
+- Problem: co miesiac ktos przechodzil wyciag pozycja po pozycji, przypisywal kazda transakcje do jednej z czterech kategorii ustalonych przez klientke i sumowal je recznie. Przy rachunku walutowym dochodzil drugi przebieg, bo bank podaje kwoty w euro i nie przelicza ich na zlotowki.
+- Rozwiazanie: reguly przypisania ustalone raz, kursy NBP pobierane automatycznie, jedna suma na kategorie na wyjsciu.
+- Wynik: 8 minut zamiast 3 godzin, razem z weryfikacja. Wynik porownany z recznym arkuszem, zgodnosc 100%.
+- Lekcja z wdrozenia: do wersji, ktora klientka uznala za swoja, poszly cztery obroty i cztery uzgodnienia. Zaden nie dotyczyl poprawnosci liczenia. Wszystkie poszly na to, zeby wynik dalo sie przeczytac i sprawdzic.
 
-### Case 2: Wyciagi bankowe — 3h na 8 sekund
-- Klient: Biuro rachunkowe
-- Problem: Co miesiac 3 godziny na reczne przepisywanie wyciagow bankowych w PLN i EUR. Podatne na bledy.
-- Rozwiazanie: Automat wczytuje plik z banku, przelicza kursy walut i generuje gotowy arkusz do zaksiegowania.
-- Wynik: 8 sekund zamiast 3 godzin. Identyczne wyniki jak recznie, zweryfikowane na rzeczywistych danych.
+### Case 2: Mostek miedzy bankiem a systemem
+- Klient: firma produkcyjna (anonimizacja)
+- Problem: bank wystawial plik w swoim formacie, ktorego system nie rozpoznawal. W druga strone przelewy wyeksportowane z systemu byly dla banku nieczytelne.
+- Rozwiazanie: tlumaczenie formatu w obie strony, dopasowane do standardu oczekiwanego przez kazda ze stron.
+- Wynik: import i eksport bez recznego przepisywania co miesiac.
 
-### Case 3: Automatyczny import wyciagow do ERP
-- Klient: Firma produkcyjna
-- Problem: Bank i system ERP firmy mowily roznymi jezykami. Import wyciagow wymagal recznej pracy co miesiac.
-- Rozwiazanie: Konwerter formatu bankowego do formatu importu systemu ERP. Raz skonfigurowany, dziala na stale.
-- Wynik: Automatyczny import. Zero recznej pracy, zero bledow przepisywania.
+### Referencje
+Publicznej referencji imiennej brak (stan 2026-08-21). Dla pierwszego klienta spoza kregu znajomych obowiazuje oferta pilotazowa: nizsza cena wdrozenia w zamian za pisemna referencje i zgode na jawny opis.
 
 ---
-
 ## FAQ
 
 ### Dla kogo sa moje uslugi?
-Dla wlascicieli i kierownikow malych i srednich firm produkcyjnych. Takich, ktorzy maja dane w ERP, Excelu lub bazach danych, ale te dane nie przekladaja sie na szybkie decyzje. Szczegolnie dla firm bez rozbudowanego dzialu IT.
+Dla wlascicielek i wlascicieli biur rachunkowych obslugujacych kilkanascie do kilkudziesieciu firm, u ktorych pojedynczy trudny klient zjada nieproporcjonalnie duzo czasu na recznym klasyfikowaniu i sumowaniu wyciagow. Szczegolnie gdy dochodzi rachunek walutowy.
 
-### Ile kosztuje automatyzacja raportow?
-Typowy projekt "Raport na Automacie" zaczyna sie od 2 000 PLN jednorazowo + 400 PLN/miesiac za utrzymanie. Mostek Danych to 1 000 do 2 000 PLN. Koncowa cena zalezy od liczby zrodel danych i zlozonosci. Pierwsza rozmowa (30 min) jest bezplatna.
+### Ile to kosztuje?
+Klasyfikator wyciagow: 800 zl za pierwsza firme, 500 zl od drugiej do piatej, 350 zl od szostej. Opieka miesieczna 60 zl za pierwsza firme i 40 zl za kazda kolejna, z sufitem 350 zl miesiecznie niezaleznie od liczby firm. Wyliczanie wynagrodzen: 2 200 zl. Pierwsza rozmowa, 30 minut, bezplatna.
 
-### Jak wyglada wspolpraca?
-Zaczynamy od bezplatnej rozmowy (30 min). Opisujesz problem. W ciagu 48h dostajesz brief z wycena. Buduje rozwiazanie iteracyjnie, z Twoim feedbackiem. Na koniec dostajesz gotowe narzedzie i dokumentacje.
+### Czy to znaczy, ze przestane patrzec na wyciag?
+Nie. Nadal patrzysz na wynik i nadal wpisujesz go sama. Znika przechodzenie pozycji i liczenie, nie kontrola.
 
-### Czy potrzebuje dzialu IT zeby wdrozyc rozwiazanie?
-Nie. Narzedzia dzialaja samodzielnie. Jeden plik .exe, skrypt Python lub automatyczny raport PDF. Zero instalacji serwerow, zero zmian w istniejacym ERP. Projektowane tak, zeby dzialaly obok obecnego stacku.
+### Pracuje w innym programie niz wiekszosc. To zadziala?
+Tak, bo to dzieje sie przed programem. Wynikiem jest kilka liczb, tyle ile kategorii, i te liczby i tak wpisujesz recznie w konkretne miejsce. Nie ma znaczenia, czy to Optima, Fakir, Symfonia czy arkusz.
 
 ### Jak dlugo trwa wdrozenie?
-Pilotazowy projekt to 2 do 4 tygodni. Prosty mostek danych lub konwerter formatow, nawet kilka dni. Zalezy od zlozonosci zrodel danych i wymagan.
+Pierwsza firma: 5 do 7 dni od przekazania przykladowego pliku. Kazda kolejna: 2 do 3 dni, jesli bank i format sie powtarzaja. Gwarancja: poprawki do skutku przez 30 dni od uruchomienia.
 
----
+### Czy moje dane sa bezpieczne?
+Przetwarzanie odbywa sie lokalnie. Pliki nie sa wysylane na zewnetrzne serwery. Umowa o poufnosci przed przekazaniem czegokolwiek.
 
 ## Blog
 
-### Uchwyt: od odczucia problemu do rzeczywistej zmiany (2026-05-19)
-Rentownosc to nie problem — to atrybut firmy. Wlasciciel mowiac "mam problem z rentownoscia" obserwuje zly stan atrybutu, nie ma jeszcze diagnozy. Firma rozumiana jak maszyna: system obiektow z atrybutami, ktore mozna zmienic. Trzy kluczowe pokretla z Theory of Constraints: Przerob (ile swiezych pieniedzy wplywa), Inwentarz (ile jest uwiezionych), Naklady Operacyjne (ile wyplywa). Wiekszost wlascicieli MSP zna jedno: koszty. Koszty maja dokument (faktura, wyciag, arkusz). Przerob nie ma swojego dokumentu — w slowniku wiekszosci w ogole nie istnieje. Stad uwaga idzie tam gdzie cos widac, a pokretlo z najwieksza dzwignia stoi nieruszone. Mapa Pokretel to narzedzie diagnostyczne: pokazuje co rzadzi wynikami, przez ktore atrybuty, w jakiej kolejnosci. Nie zmienia firmy. Sprawia, ze wlasciciel widzi co ma do dyspozycji i gdzie sa mechanizmy laczace decyzje z wynikami. Pokretla juz sa w kazdej firmie — ktos lub cos nimi kreci, swiadomie albo nie.
-URL: https://datasmith.pl/blog/uchwyt-od-odczucia-do-zmiany
-
-### Zbierasz dane. Pewnosc rosnie. Wyniki te same. (2026-05-13)
-Paradoks Slovica (1973): zawodowi typerzy koni wyscigowych — przy 5 zmiennych trafnosc prognoz 17%, przy 40 zmiennych: nadal 17%, pewnosc siebie podwoila sie. Wiecej danych nie poprawia wynikow, poprawia przekonanie, ze sie wie. Goldratt (Haystack Syndrome): informacja to odpowiedz na zadane pytanie — dane bez pytania to szum. Firmy myla system informatyczny z informacyjnym. Test Value of Information (VoI): kiedy ostatnio twoj system zmienil twoja decyzje (nie: sprawdziles dane — ale zmienil decyzje)? Case -130/+170: ten sam produkt, w rachunku kosztow strata 130 zl na sztuce, w rachunku przerobowym (Throughput Accounting TOC) zysk 170 zl przerobu — 300 zl roznicy na tej samej transakcji, te same dane, inne pytanie. Trzy miary TOC wystarczajace do zarzadzania: T (Przerob) ile swiezych pieniedzy wplywa, OE (Naklady Operacyjne) ile wyplywa, I (Inwentarz) ile jest uwiezionych. Wyjscie praktyczne: audyt tego co juz jest (co zbieramy, co mozna polaczyc w odpowiedzi na T/OE/I, czego brak) — czesto dane sa, brakuje innego pytania. Uczciwe zastrzezenie: zbyt waski zestaw pytan na starcie moze pomijac to, czego jeszcze nie wiesz ze warto pytac.
-URL: https://datasmith.pl/blog/zbierasz-dane-pewnosc-rosnie-wyniki-te-same
+### Lepszy raport zrobilem, usuwajac z niego rzeczy (2026-07-08)
+Autor wzial raport, ktory robi od lat, i zaczal go rozmontowywac. Usunal os, trzydziesci szesc etykiet i polowe kolorow. Raport zrobil sie lepszy. Teza: produktem raportu jest decyzja odbiorcy, nie pokaz warsztatu. Kazdy element, ktory nie zmienia decyzji, zabiera uwage elementowi, ktory ja zmienia. Ten sam wniosek wrocil pozniej we wdrozeniu u biura rachunkowego: cztery obroty i cztery uzgodnienia poszly nie na poprawnosc liczenia, tylko na to, zeby wynik dalo sie przeczytac i sprawdzic.
+URL: https://datasmith.pl/blog/lepszy-raport-przez-usuwanie
 
 ### Problem lezy w ludziach, czy w sciezce? (2026-04-29)
 Wracajacy problem w firmie czesto nie lezy w ludziach, tylko w architekturze procesu. Test trzech wymian: jesli wymieniles trzy osoby na tym samym stanowisku a problem wraca, to architektura. Hipoteza "architektura ujawnia": dobra architektura procesu nie tylko wymusza zachowania, ale przede wszystkim pokazuje, gdzie sa bledy ludzkie, a gdzie systemowe. Autorytety: Lewin (B = f(P,E), 1936), Ross (FAE, 1977), Wood (43% zachowan to reakcje na kontekst, 2019), Clear (Atomic Habits), Goldratt (Haystack Syndrome, 1990). Case osobisty autora: 5 lokalizacji zadan przed (notatnik plus dwa maile plus Google Keep plus kalendarz) zamienione na jeden INBOX z filtrem 4 kryteriow (pilnosc, waznosc, ciezar czasowy, wklad do celu) i ograniczeniem do trzech zadan w robocie. Trzy zarzuty wobec architektury (toksyczny pracownik, sumienie, kreatywnosc) z uczciwymi odpowiedziami. Paradoks otwarty: nie zaprojektujesz wszystkiego, wartosci sumienie i przelom zostaja w czlowieku, ale w wiekszosci wracajacych problemow architektura pokaze gdzie patrzec. Wpis kontynuuje linie myslowa "Najwiekszej pracy" (decyzja jest projektowalna), pokazujac jak ja projektowac.
 URL: https://datasmith.pl/blog/problem-w-ludziach-czy-sciezce
 
-### Najwieksza praca Twojej firmy nie ma nazwy (2026-04-14)
-Szef w MSP wykonuje codziennie prace, ktorej nie nazywa: podejmowanie decyzji. Od jej jakosci zalezy wszystko. Wpis o sufitcie zlozonosci (biologiczny limit mozgu 4-7 zmiennych naraz, a decyzje MSP maja 15-20), nazwaniu pracy decyzyjnej (analogia do tego, jak Drucker nazwal zarzadzanie w latach 50-tych) i dwoch rozroznieniach na start: co w ogole jest decyzja (test Kozyrkov: koszt wycofania) oraz ktore decyzje sa kluczowe (TOC Goldratta: waskie gardlo). Autorytety: Miller, Gartner 2021, Pratt, Kozyrkov, Drucker, Goldratt. Zastrzezenia uczciwie wbudowane (Pratt jako rzeczniczka szkoly DI, Gartner korporacyjny, Sarah jako postac opisana przez coacha). Konkretny pierwszy krok: kartka, 3 decyzje powtarzalne, test Kozyrkov, jedna regula.
-URL: https://datasmith.pl/blog/najwieksza-praca-twojej-firmy
-
-### 100 000 wynikow kontroli jakosci. Nikt nie mogl ich przejrzec. (2026-03-25)
-Firma produkcyjna miala lata danych jakosciowych w bazie SQL. Program do ich przegladania przestal dzialac. Stare narzedzie napisane kilka lat temu w innej technologii. Po zmianie serwera bazy danych i nowych kolumnach program sie nie uruchomil. Nie bylo kogo poprosic o naprawe. Od tego momentu ponad 100 000 rekordow jakosciowych istnialo, ale bylo niedostepnych. Kontroler jakosci chcial sprawdzic parametry serii z zeszlego miesiaca — musial napisac do informatyka. Odpowiedz wracala po godzinach albo dniach. Rozwiazanie: nowe narzedzie w Python z prostym interfejsem graficznym. Filtr po dacie, produkcie, serii. Jeden plik .exe, 12 MB. Zero instalacji.
-URL: https://datasmith.pl/blog/dane-uwiezione
-
-### 168 ton CO2. Liczba, ktorej firma nie miala. (2026-03-11)
-Kierownik ds. ESG dostal zadanie: policzyc ile firma wyemitowala CO2 w 2025 roku. ERP mial setki faktur za paliwo ale tylko w PLN, bez litrow i kg. Przetlumaczenie PLN na litry, litrow na kg CO2 wg wskaznikow GHG Protocol. Pierwsza wersja: 52 t CO2. Wlasciwa: 168 t CO2. Roznica? Wozki widlowe na LPG — pominiecie ich dalo wynik ponad 3x za maly. Dane byly w ERP od poczatku, nikt ich nigdy nie zestawial.
-URL: https://datasmith.pl/blog/slad-weglowy
-
 ### Arkusz-duch: kto naprawde zarzadza Twoja firma? (2026-03-04)
 88% arkuszy Excel w firmach zawiera bledy (badania Raymonda Panko, University of Hawaii). Wiekszosc dowie sie o tym za pozno. Zjawisko person-lock: jeden czlowiek jest jedynym zrodlem wiedzy o narzedziu krytycznym dla calej firmy. Dopoki jest — wszystko gra. Kiedy odchodzi — zostaje arkusz-duch. Obslugiwany z lekiem, modyfikowany ostroznie, albo wcale.
 URL: https://datasmith.pl/blog/arkusze-duchy
 
-### Wyciagi bankowe: 3 godziny miesiecznie w 8 sekund (2026-02-20)
-Wlascicielka biura rachunkowego co miesiac spedzala 2-3 godziny na przepisywaniu wyciagow bankowych do Excela. PLN i EUR z roznych bankow, inne kolumny, inne daty, kurs NBP do przeliczenia. Rozwiazanie: skrypt Python ktory wczytuje PDF, wyciaga tabele transakcji, normalizuje kolumny, laczy z API NBP dla kursow walut, eksportuje do Excela. Wynik: 8 sekund zamiast 3 godzin.
+### Wyciagi bankowe: 3 godziny miesiecznie w 8 minut (2026-02-20)
+Wlascicielka biura rachunkowego co miesiac spedzala 2-3 godziny na przepisywaniu wyciagow bankowych do Excela. PLN i EUR z roznych bankow, inne kolumny, inne daty, kurs NBP do przeliczenia. Robota polegala na przejsciu wyciagu pozycja po pozycji, przypisaniu kazdej transakcji do jednej z kategorii ustalonych przez klientke i zsumowaniu ich. Przy rachunku walutowym dochodzil drugi przebieg, bo bank podaje kwoty w euro bez przeliczenia. Rozwiazanie: reguly przypisania ustalone raz, kursy pobierane z API NBP (sredni kurs z dnia poprzedzajacego transakcje), jedna suma na kategorie na wyjsciu. Wynik: 8 minut zamiast 3 godzin, razem z weryfikacja, zgodnosc z recznym arkuszem 100%.
 URL: https://datasmith.pl/blog/wyciagi-bankowe
 
 ---

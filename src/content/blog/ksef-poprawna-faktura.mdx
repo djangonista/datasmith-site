@@ -1,0 +1,71 @@
+---
+title: "Faktura z KSeF jest poprawna. To nie znaczy, że da się ją przypisać."
+description: "KSeF sprawdza, czy faktura jest zgodna ze schematem. Nie sprawdza, czy niesie informację, której potrzebujesz, żeby ją przypisać. To dwie różne rzeczy i różnicę widać dopiero przy księgowaniu."
+date: 2026-08-21
+tags: ["KSeF", "faktury", "biuro rachunkowe", "dane"]
+image: "/images/blog/ksef-poprawna-faktura.png"
+---
+
+Od kwietnia wysyłam faktury sprzedaży do KSeF w firmie, w której pilnuję systemów. Przez pierwsze tygodnie liczyłem, że najtrudniejsze będzie uruchomienie. Tokeny, certyfikat, uprawnienia, testy na środowisku demonstracyjnym.
+
+To była najłatwiejsza część.
+
+Trudne zaczęło się wtedy, gdy faktury już szły i wszystkie były poprawne.
+
+## Poprawna to nie to samo co kompletna
+
+KSeF sprawdza jedno: czy plik zgadza się ze schematem. Czy pola obowiązkowe są wypełnione, czy typy się zgadzają, czy struktura jest taka, jaka ma być.
+
+Nie sprawdza, czy w tej fakturze jest informacja, której ktoś po drugiej stronie potrzebuje.
+
+Bo obok pól obowiązkowych schemat ma pola **fakultatywne**. Numer zamówienia klienta, dodatkowy opis, oznaczenie działu. Formalnie wolno je zostawić puste. Faktura przejdzie walidację, dostanie numer i będzie żyła w systemie jak każda inna.
+
+Tylko że po drugiej stronie ktoś ma teraz dokument, którego nie ma do czego przypiąć.
+
+## Jak to wyglądało u mnie
+
+Zanim ruszyliśmy z wysyłką, obszedłem odbiorców i zapytałem każdego z osobna, czego potrzebuje w fakturze poza obowiązkowym minimum.
+
+Odpowiedzi były różne. Jeden potrzebował numeru zamówienia w konkretnym polu. Drugi przysłał dwustronicowy dokument z własnymi wymaganiami. Trzeci nie miał żadnych, bo dopasowuje po kwocie i dacie.
+
+Nie było jednego standardu. Był standard schematu i **osobna umowa z każdym odbiorcą** o tym, co w tym schemacie wypełnić.
+
+To jest ta część, o której nie mówi się przy okazji terminów i obowiązków. Wdrożenie KSeF to nie było przełączenie przełącznika. To było kilkanaście rozmów o tym, co ma się znaleźć w polu, którego nikt nie musi wypełniać.
+
+## Trzeci uczestnik faktury
+
+Jest jeszcze druga warstwa i przy niej większość ludzi się zatrzymuje.
+
+Faktura w KSeF może mieć trzeciego uczestnika, obok sprzedawcy i nabywcy. Kogoś, kto jest odbiorcą, ale nie jest podatnikiem. Kogoś, kto płaci, choć nie kupuje. Jednostkę podrzędną, która dostaje towar, podczas gdy podatnikiem jest jednostka nadrzędna.
+
+Każdy taki przypadek ma w schemacie swój **kod roli**. Faktor, odbiorca, wystawca w cudzym imieniu, dokonujący płatności, jednostka samorządowa po stronie wystawcy, jednostka samorządowa po stronie odbiorcy, członek grupy VAT.
+
+Trafiłem na to przy sprzedaży do jednostki samorządowej, gdzie towar szedł do oddziału terenowego, a podatnikiem był urząd nadrzędny. Sam dokument wyglądał zwyczajnie. Rozstrzygnięcie polegało na tym, żeby wskazać właściwą rolę, a potem znaleźć w systemie dwa pola, które ją wyzwalają.
+
+Dwa zaznaczenia. Reszta zrobiła się sama.
+
+Zajęło mi to więcej czasu niż uruchomienie całej wysyłki.
+
+## Co z tego wynika dla kogoś, kto te faktury odbiera
+
+Jeśli prowadzisz biuro rachunkowe, dostajesz te dokumenty z drugiej strony. I zobaczysz dokładnie to, co nadawca wypełnił, ani jednego pola więcej.
+
+Kiedy faktura nie chce się z niczym zgodzić, są trzy możliwości, a tylko jedna z nich to błąd.
+
+Pierwsza: pole, którego potrzebujesz, jest w schemacie, ale nadawca go nie wypełnił, bo nie musiał. Wtedy to nie jest usterka systemu, tylko brak uzgodnienia między dwiema firmami.
+
+Druga: pole jest wypełnione, ale nie tam, gdzie szukasz. Numer zamówienia potrafi wylądować w trzech różnych miejscach schematu i każde z nich jest dopuszczalne.
+
+Trzecia: na fakturze jest trzeci uczestnik z rolą, o której nie wiedziałaś, i dlatego nabywca nie zgadza się z tym, kto faktycznie odebrał towar.
+
+Żadnej z tych trzech nie widać po tym, że faktura przeszła walidację. Wszystkie trzy wyglądają identycznie: dokument jest, jest poprawny, i nie pasuje.
+
+## Czego się z tego nauczyłem
+
+Miałem w głowie, że wdrożenie formatu to zadanie techniczne. Ustawić, przetestować, odhaczyć.
+
+Techniczna była jedna trzecia. Reszta to było ustalanie z ludźmi, co ma trafić w miejsca, których nikt nie musi wypełniać, i rozstrzyganie, kto właściwie jest kim na dokumencie.
+
+Nadal łapię się na tym, że najpierw sprawdzam konfigurację, a dopiero potem pytam, czego druga strona potrzebuje. Kolejność powinna być odwrotna.
+
+A u Ciebie faktury z KSeF wpadają gładko, czy zdarza się, że dokument jest poprawny i mimo to nie ma do czego pasować?

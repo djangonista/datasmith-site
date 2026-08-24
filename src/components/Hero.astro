@@ -1,67 +1,94 @@
 ---
 ---
 
-<section id="heroSection" class="relative overflow-hidden px-6 py-24 md:py-36" style="min-height: 70vh;">
-  <!-- Radar canvas background -->
-  <canvas id="radarCanvas" class="pointer-events-none absolute inset-0 h-full w-full"></canvas>
+<section id="heroSection" class="relative overflow-hidden px-6 py-20 md:py-28">
+  <!--
+    Radar wyłączony 2026-08-21 przy zmianie pozycjonowania na biura rachunkowe.
+    Powód: animowany radar z etykietami technicznymi to najmocniejszy sygnał
+    „technologia i AI", a persona jest wobec takich obietnic sceptyczna.
+    Kod rysujący zostaje niżej, zakomentowany, żeby dało się wrócić.
+    <canvas id="radarCanvas" class="pointer-events-none absolute inset-0 h-full w-full"></canvas>
+  -->
 
-  <div class="relative z-10 mx-auto max-w-5xl">
-    <!-- Label -->
-    <div class="hero-item mb-6 inline-flex items-center gap-2 rounded-full border border-[#D97706]/20 bg-[#D97706]/5 px-3 py-1" style="--hero-delay: 0ms">
-      <span class="blip-dot h-1.5 w-1.5 rounded-full bg-[#D97706]"></span>
-      <span class="font-mono text-xs text-[#D97706]">Decision Intelligence dla MŚP</span>
+  <div class="relative z-10 mx-auto grid max-w-5xl items-start gap-12 lg:grid-cols-[1.15fr_1fr]">
+    <!-- Kolumna lewa: przekaz -->
+    <div>
+      <!-- Label -->
+      <div class="hero-item mb-6 inline-flex items-center gap-2 rounded-full border border-[#B45309]/25 bg-[#B45309]/8 px-3 py-1" style="--hero-delay: 0ms">
+        <span class="h-1.5 w-1.5 rounded-full bg-[#B45309]"></span>
+        <span class="text-xs font-medium text-[#B45309]">Dla biur rachunkowych</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero-item text-4xl font-bold leading-tight text-[#1C1917] md:text-5xl" style="--hero-delay: 80ms">
+        <em class="not-italic text-[#B45309]">Wyciąg</em> z banku wchodzi.<br />
+        Gotowe sumy wychodzą.
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="hero-item mt-6 text-lg leading-relaxed text-[#57534E]" style="--hero-delay: 160ms">
+        Dla biur rachunkowych, w których ktoś co miesiąc przechodzi wyciąg pozycja po pozycji,
+        przypisuje transakcje do kategorii i sumuje je ręcznie.
+        Jedna firma potrafi zająć trzy godziny. Po wdrożeniu zajmuje osiem minut.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-item mt-8 flex flex-wrap items-center gap-4" style="--hero-delay: 280ms">
+        <a
+          href="#quiz"
+          class="rounded bg-[#B45309] px-6 py-3 text-sm font-semibold text-[#FAFAF9] transition-all hover:bg-[#D97706]"
+        >
+          Policz, ile Cię to kosztuje
+        </a>
+        <a
+          href="#problem"
+          class="rounded border border-[#E7E5E4] px-6 py-3 text-sm font-medium text-[#57534E] transition-all hover:border-[#1C1917]/25 hover:text-[#1C1917]"
+        >
+          Jak to działa &darr;
+        </a>
+      </div>
     </div>
 
-    <!-- Headline -->
-    <h1 class="hero-item max-w-3xl text-4xl font-bold leading-tight text-[#E8E3D9] md:text-5xl lg:text-6xl" style="--hero-delay: 80ms">
-      <em class="not-italic text-[#D97706]">Widoczność</em><br />
-      zamiast zgadywania
-    </h1>
+    <!-- Kolumna prawa: co wchodzi i co wychodzi. Zajmuje miejsce po radarze -->
+    <div class="hero-item lg:mt-2" style="--hero-delay: 200ms">
+      <div class="overflow-hidden rounded-lg border border-[#E7E5E4] bg-white shadow-sm">
 
-    <!-- Subheadline -->
-    <p class="hero-item mt-6 max-w-2xl text-lg leading-relaxed text-[#C0BAB5] md:text-xl" style="--hero-delay: 160ms">
-      Dane, które mówią Twoim językiem. Dla prezesów MŚP produkcyjnych,
-      którzy chcą widzieć na czym tracą i na czym zarabiają. Na Twoich danych. Bez wymiany systemu.
-    </p>
+        <!-- WEJŚCIE -->
+        <div class="border-b border-[#E7E5E4] px-5 py-4">
+          <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-[#57534E]">Wyciąg z banku</p>
+          <div class="space-y-1.5 font-mono text-xs text-[#57534E]">
+            <div class="flex justify-between gap-3"><span class="truncate">02.02 &nbsp;PRZELEW WYCH.</span><span class="shrink-0">-1 240,00</span></div>
+            <div class="flex justify-between gap-3"><span class="truncate">03.02 &nbsp;ZAKUP KARTĄ</span><span class="shrink-0">-89,40</span></div>
+            <div class="flex justify-between gap-3"><span class="truncate">03.02 &nbsp;PRZELEW EUR</span><span class="shrink-0">-450,00 &euro;</span></div>
+            <div class="flex justify-between gap-3"><span class="truncate">04.02 &nbsp;OPŁATA</span><span class="shrink-0">-32,00</span></div>
+            <div class="flex justify-between gap-3 opacity-45"><span class="truncate">05.02 &nbsp;PRZELEW WYCH.</span><span class="shrink-0">-2 100,00</span></div>
+            <div class="flex justify-between gap-3 opacity-20"><span class="truncate">05.02 &nbsp;ZAKUP KARTĄ</span><span class="shrink-0">-214,90</span></div>
+          </div>
+          <p class="mt-3 text-xs text-[#57534E]">i jeszcze kilkaset pozycji</p>
+        </div>
 
-    <!-- Case teaser -->
-    <div class="hero-item mt-8 max-w-lg rounded border border-[#1E1E1E] bg-[#111111] p-5" style="--hero-delay: 200ms">
-      <p class="mb-2 text-sm text-[#C0BAB5]">Produkt wyglądał na nierentowny. Do wycofania.</p>
-      <p class="mb-1 text-lg"><span class="font-bold text-red-400">-130 zł</span> <span class="text-sm text-[#C0BAB5]">na każdej sztuce wg rachunku kosztów</span></p>
-      <p class="mb-3 text-lg"><span class="font-bold text-[#27c93f]">+170 zł</span> <span class="text-sm text-[#C0BAB5]">czystego przerobu po zmianie perspektywy</span></p>
-      <p class="mt-2 border-t border-[#1E1E1E] pt-2 text-sm font-semibold text-[#E8E3D9]">Decyzja: zamiast wycofać, podwoić podaż. Większe zyski.</p>
-    </div>
+        <!-- PRZEJŚCIE -->
+        <div class="flex items-center justify-center gap-3 bg-[#FAFAF9] py-2.5">
+          <span id="flowArrow" class="text-lg text-[#B45309]">&darr;</span>
+          <span class="text-xs font-semibold text-[#B45309]">8 minut</span>
+        </div>
 
-    <!-- CTAs -->
-    <div class="hero-item mt-8 flex flex-wrap items-center gap-4" style="--hero-delay: 280ms">
-      <a
-        href="#quiz"
-        class="rounded bg-[#D97706] px-6 py-3 font-mono text-sm font-semibold text-[#0C0C0C] transition-all hover:bg-[#F59E0B] hover:shadow-[0_0_20px_rgba(217,119,6,0.3)]"
-      >
-        Sprawdź swoją firmę
-      </a>
-      <a
-        href="#problem"
-        class="rounded border border-[#1E1E1E] px-6 py-3 font-mono text-sm text-[#C0BAB5] transition-all hover:border-[#E8E3D9]/20 hover:text-[#E8E3D9]"
-      >
-        Jak to działa &darr;
-      </a>
-    </div>
-
-    <!-- Stats -->
-    <div class="hero-item mt-16 flex flex-wrap gap-8 pt-10" style="--hero-delay: 360ms">
-      <div>
-        <p class="stat-num text-[#D97706]">-130 &rarr; +170</p>
-        <p class="stat-desc">Jedna zmiana perspektywy</p>
+        <!-- WYJŚCIE -->
+        <div class="border-t border-[#E7E5E4] px-5 py-4">
+          <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-[#57534E]">Gotowe sumy na kategorie</p>
+          <div id="sumsList" class="space-y-2 text-sm">
+            <div class="sum-row flex justify-between gap-3"><span class="text-[#1C1917]">Materiały</span><span class="sum-val font-mono font-semibold text-[#1C1917]" data-sum="12480">12 480,00</span></div>
+            <div class="sum-row flex justify-between gap-3"><span class="text-[#1C1917]">Usługi obce</span><span class="sum-val font-mono font-semibold text-[#1C1917]" data-sum="4310.5">4 310,50</span></div>
+            <div class="sum-row flex justify-between gap-3"><span class="text-[#1C1917]">Wynagrodzenia</span><span class="sum-val font-mono font-semibold text-[#1C1917]" data-sum="28900">28 900,00</span></div>
+            <div class="sum-row flex justify-between gap-3"><span class="text-[#1C1917]">Pozostałe</span><span class="sum-val font-mono font-semibold text-[#1C1917]" data-sum="612.3">612,30</span></div>
+          </div>
+          <p class="mt-3 text-xs text-[#57534E]">Kategorie są Twoje. Euro przeliczone po średnim kursie NBP.</p>
+        </div>
       </div>
-      <div>
-        <p class="stat-num text-[#E8E3D9]">16 lat</p>
-        <p class="stat-desc">W produkcji, z ERP i SQL</p>
-      </div>
-      <div>
-        <p class="stat-num text-[#E8E3D9]">2 tygodnie</p>
-        <p class="stat-desc">Do pierwszego raportu</p>
-      </div>
+
+      <p class="mt-3 text-center text-xs text-[#57534E]">
+        Przykład poglądowy. U klientki: <span class="font-semibold text-[#1C1917]">3 godziny miesięcznie na 8 minut</span>, zgodność z ręcznym arkuszem 100%.
+      </p>
     </div>
   </div>
 </section>
@@ -87,43 +114,124 @@
     line-height: 1;
   }
   .stat-desc {
-    margin-top: 0.25rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: #C0BAB5;
-    letter-spacing: 0.05em;
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    color: #57534E;
   }
 
   /* Badge dot blink */
   @keyframes blipBlink {
-    0%, 100% { opacity: 1; box-shadow: 0 0 6px #D97706; }
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px #B45309; }
     50%       { opacity: 0.3; box-shadow: none; }
   }
   .blip-dot { animation: blipBlink 2.4s ease-in-out infinite; }
+
+  /* ── Sumy pojawiają się po policzeniu ── */
+  .sums-pending .sum-row {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  .sums-run .sum-row {
+    animation: sumIn 0.45s ease forwards;
+  }
+  .sums-run .sum-row:nth-child(1) { animation-delay: 0ms; }
+  .sums-run .sum-row:nth-child(2) { animation-delay: 240ms; }
+  .sums-run .sum-row:nth-child(3) { animation-delay: 480ms; }
+  .sums-run .sum-row:nth-child(4) { animation-delay: 720ms; }
+
+  @keyframes sumIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Strzałka pulsuje raz, w momencie liczenia */
+  .arrow-run { animation: arrowNudge 0.9s ease-out 1; }
+  @keyframes arrowNudge {
+    0%   { transform: translateY(-3px); opacity: 0.4; }
+    45%  { transform: translateY(2px);  opacity: 1; }
+    100% { transform: translateY(0);    opacity: 1; }
+  }
 
   /* Respektuj prefer-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
     .hero-item { animation: none; opacity: 1; transform: none; }
     .blip-dot  { animation: none; }
     #radarCanvas { display: none; }
+    .sums-pending .sum-row { opacity: 1; transform: none; }
+    .sums-run .sum-row, .arrow-run { animation: none; }
   }
 </style>
 
 <script is:inline>
 (function () {
+  var list  = document.getElementById('sumsList');
+  var arrow = document.getElementById('flowArrow');
+  if (!list) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vals   = Array.prototype.slice.call(list.querySelectorAll('.sum-val'));
+  var fmt    = new Intl.NumberFormat('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  if (reduce) return;              // brak ruchu: zostaja gotowe liczby z HTML
+
+  list.classList.add('sums-pending');
+  vals.forEach(function (el) { el.textContent = '—'; });
+
+  function countUp(el, target, delay) {
+    var DUR = 1500;
+    setTimeout(function () {
+      var t0 = null;
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / DUR);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt.format(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = fmt.format(target);
+      }
+      requestAnimationFrame(step);
+    }, delay);
+  }
+
+  function run() {
+    list.classList.remove('sums-pending');
+    list.classList.add('sums-run');
+    if (arrow) arrow.classList.add('arrow-run');
+    vals.forEach(function (el, i) {
+      countUp(el, parseFloat(el.getAttribute('data-sum')), 240 * i);
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { io.disconnect(); setTimeout(run, 550); }
+      });
+    }, { threshold: 0.35 });
+    io.observe(list);
+  } else {
+    run();
+  }
+})();
+</script>
+
+<!-- RADAR WYŁĄCZONY 2026-08-21. Kod zachowany, żeby dało się wrócić.
+<script is:inline>
+(function () {
   const SIGNAL_DEFS = [
-    ['ERP',             0.25, 0.38],
-    ['SQL Server',      0.72, 0.58],
-    ['KPI',             1.20, 0.44],
-    ['Decyzja',         1.68, 0.70],
-    ['Automatyzacja',   2.20, 0.52],
-    ['Raport PDF',      2.75, 0.34],
-    ['OEE',             3.30, 0.65],
-    ['Dane → Decyzje', 3.85, 0.28],
-    ['Python',          4.40, 0.56],
-    ['MCP / AI',        4.95, 0.76],
-    ['ETL',             5.50, 0.42],
-    ['Mostek danych',   6.00, 0.62],
+    ['Wyciąg bankowy',     0.25, 0.38],
+    ['Kategorie',          0.72, 0.58],
+    ['Kurs NBP',           1.20, 0.44],
+    ['Sumy na kategorie',  1.68, 0.70],
+    ['Rozliczanie wyciągów', 2.20, 0.52],
+    ['Listy płac',         2.75, 0.34],
+    ['Zamknięcie miesiąca', 3.30, 0.65],
+    ['Ręczne przepisywanie', 3.85, 0.28],
+    ['Excel',              4.40, 0.56],
+    ['Weryfikacja',        4.95, 0.76],
+    ['Import',             5.50, 0.42],
+    ['Mostek danych',      6.00, 0.62],
   ];
 
   const signals = SIGNAL_DEFS.map(([label, angle, baseDist]) => ({
@@ -360,3 +468,4 @@
   frame();
 })();
 </script>
+-->

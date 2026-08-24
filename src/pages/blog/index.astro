@@ -3,29 +3,29 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && !data.unlisted);
 const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <BaseLayout
   title="Blog — DataSmith"
-  description="Automatyzacje, SQL, Python, AI. Konkretne rozwiązania problemów z danymi. Build in public."
+  description="Ręczna robota z danymi w biurze rachunkowym i to, jak ją zdejmuję. Razem z tym, co nie zadziałało."
 >
   <div class="px-6 py-16">
     <div class="mx-auto max-w-5xl">
       <!-- Header -->
       <div class="mb-12">
-        <span class="font-mono text-xs text-[#D97706]">// blog</span>
-        <h1 class="mt-2 text-4xl font-bold text-[#E8E3D9]">Build in Public</h1>
-        <p class="mt-3 max-w-xl text-[#C0BAB5]">
-          Dokumentuję rozwiązywanie realnych problemów z danymi. Automatyzacje, narzędzia,
-          przemyślenia. Co tydzień.
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Blog</span>
+        <h1 class="mt-2 text-4xl font-bold text-[#1C1917]">Robota na widoku</h1>
+        <p class="mt-3 max-w-xl text-[#57534E]">
+          Opisuję ręczną robotę z danymi i to, jak ją zdejmuję. Razem z tym, co nie zadziałało.
+          Publikuję wtedy, kiedy jest co pokazać, nie według kalendarza.
         </p>
       </div>
 
       {posts.length === 0 ? (
-        <div class="rounded border border-[#1E1E1E] bg-[#111111] p-12 text-center">
-          <p class="font-mono text-[#C0BAB5]">Wkrótce pierwsze wpisy.</p>
+        <div class="rounded border border-[#E7E5E4] bg-[#F5F5F4] p-12 text-center">
+          <p class="font-mono text-[#57534E]">Wkrótce pierwsze wpisy.</p>
         </div>
       ) : (
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

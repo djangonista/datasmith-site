@@ -1,0 +1,71 @@
+---
+title: "Czternaście dni biegnie, nawet jeśli nikt nie zajrzał do skrzynki"
+description: "Pismo w e-Doręczeniach uznaje się za doręczone po czternastu dniach niezależnie od tego, czy ktoś je otworzył. Rozwiązanie nie wymagało napisania ani jednej linijki kodu. Wymagało ustalenia, kto ma uprawnienia."
+date: 2026-08-18
+tags: ["e-Doręczenia", "korespondencja", "biuro rachunkowe", "organizacja pracy"]
+image: "/images/blog/e-doreczenia-powiadomienia.png"
+---
+
+Koleżanka obsługująca korespondencję sprawdzała skrzynkę e-Doręczeń przez przeglądarkę. Otwierała, logowała się, patrzyła, zamykała. Kilka razy dziennie, na wszelki wypadek.
+
+Bo skrzynka nie daje żadnego sygnału, że coś przyszło.
+
+Przy zwykłej poczcie to byłaby niewygoda. Przy e-Doręczeniach jest inaczej: **pismo uznaje się za doręczone po czternastu dniach, niezależnie od tego, czy ktoś je otworzył.** Termin biegnie sam.
+
+Więc zaglądanie na wszelki wypadek nie było przesadą. Było jedyną obroną, jaką miała.
+
+## Pierwsze, co zrobiłem, to sprawdziłem, czy jest co budować
+
+Odruch mam taki, że siadam do skryptu. Pobrać, sprawdzić, wysłać maila.
+
+Zanim usiadłem, przejrzałem ustawienia samej skrzynki.
+
+Powiadomienia mailowe są w e-Doręczeniach **wbudowane**. Dostawca wysyła wiadomość na adres podany w ustawieniach skrzynki. Jest też wariant SMS-owy. Nic nie trzeba budować, trzeba włączyć.
+
+Cała robota sprowadzała się do trzech rzeczy: ustalić, kto jest administratorem skrzynki, zdecydować, na jaki adres kierować powiadomienia, i wpisać go w ustawieniach.
+
+**Zadanie okazało się nie techniczne, tylko uprawnieniowe.**
+
+## Gdzie to naprawdę mogło się wyłożyć
+
+Zostawało doprowadzić powiadomienie tam, gdzie ona i tak patrzy, czyli do jej skrzynki mailowej. Reguła, kategoria, oflagowanie.
+
+Reguła potrzebuje adresu nadawcy. I tu jest pułapka, w którą łatwo wpaść: **adres nadawcy powiadomień trzeba odczytać z pierwszego prawdziwego powiadomienia, a nie zgadnąć.**
+
+Reguła zbudowana na zgadniętym nadawcy nie wyrzuci błędu. Po prostu nigdy się nie uruchomi. Wszystko będzie wyglądało na skonfigurowane, a wiadomości będą wpadać jak każde inne i ginąć w tłumie.
+
+Dlatego test musiał poprzedzić regułę, nie odwrotnie.
+
+Druga rzecz: nadawcę trzeba dopisać do bezpiecznych. Bez tego filtr wiadomości-śmieci zabierze powiadomienie do osobnego folderu i po dwóch tygodniach wrócimy do sprawdzania w przeglądarce.
+
+## Rzecz, której o mało nie zepsułem
+
+Chciałem, żeby reguła przenosiła powiadomienia do osobnego podfolderu. Porządek, czysta skrzynka odbiorcza, wszystko na swoim miejscu.
+
+To był dokładnie ten sam problem, który likwidowaliśmy.
+
+Podfolder to **kolejne miejsce do sprawdzania**. Zamiast zaglądać do przeglądarki, zaglądałaby do podfolderu. Ta sama czynność, ta sama pamięć, ten sam termin biegnący w tle.
+
+Powiadomienie zostało w skrzynce odbiorczej. Dostało kolor i flagę, ale nie ruszyło się z miejsca, w którym ona i tak patrzy.
+
+## Jedno ustawienie, które warto zrobić od razu inaczej
+
+Pole na adres przyjmuje jeden adres. Naturalny odruch to wpisać adres osoby, która się tym zajmuje.
+
+Lepiej wpisać **alias albo grupę**, na przykład wewnętrzny adres zbiorczy dla korespondencji.
+
+Powód jest prosty: urlop, choroba, zmiana stanowiska. Przy adresie osobistym każda z tych rzeczy oznacza wejście do ustawień skrzynki, czyli znowu sprawę uprawnień administratora. Przy grupie zmienia się skład grupy i nikt nie musi niczego przestawiać w e-Doręczeniach.
+
+Ten sam wzorzec przydaje się przy innych systemach z jednym polem na kontakt.
+
+## Co z tego zostaje dla biura rachunkowego
+
+Jeśli prowadzisz korespondencję za klientów albo masz własną skrzynkę e-Doręczeń, mechanizm jest ten sam.
+
+Sprawdź trzy rzeczy: czy powiadomienia w ogóle są włączone, na jaki adres idą, i czy ten adres przeżyje czyjś urlop.
+
+Nic z tego nie wymaga programisty. Wymaga tylko, żeby ktoś raz przez to przeszedł i sprawdził na żywym piśmie, że wiadomość faktycznie dochodzi.
+
+Nadal łapię się na tym, że zanim sprawdzę, czy funkcja już istnieje, mam w głowie gotowy skrypt. Tym razem sprawdziłem najpierw. Nie zawsze tak robię.
+
+A u Ciebie powiadomienia z e-Doręczeń przychodzą tam, gdzie i tak patrzysz, czy trzeba do nich zaglądać osobno?

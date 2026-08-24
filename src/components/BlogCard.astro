@@ -20,7 +20,7 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
 <a
   href={`/blog/${slug}`}
   data-animate
-  class="group flex flex-col rounded border border-[#1E1E1E] bg-[#111111] transition-all duration-200 hover:-translate-y-1 hover:border-[#D97706]/30 hover:bg-[#131313] hover:shadow-[0_4px_24px_rgba(217,119,6,0.07)]"
+  class="group flex flex-col rounded border border-[#E7E5E4] bg-[#F5F5F4] transition-all duration-200 hover:-translate-y-1 hover:border-[#B45309]/30 hover:bg-[#FFFFFF] hover:shadow-[0_6px_24px_rgba(28,25,23,0.08)]"
 >
   {image && (
     <div class="overflow-hidden rounded-t">
@@ -34,11 +34,11 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
 
   <div class="flex flex-1 flex-col p-5">
     <div class="flex items-center justify-between gap-2">
-      <time class="font-mono text-xs text-[#C0BAB5]">{formattedDate}</time>
+      <time class="font-mono text-xs text-[#57534E]">{formattedDate}</time>
       {tags.length > 0 && (
         <div class="flex gap-1">
           {tags.slice(0, 2).map((tag) => (
-            <span class="rounded bg-[#0C0C0C] px-1.5 py-0.5 font-mono text-xs text-[#C0BAB5]">
+            <span class="rounded bg-[#FAFAF9] px-1.5 py-0.5 font-mono text-xs text-[#57534E]">
               {tag}
             </span>
           ))}
@@ -46,13 +46,13 @@ const formattedDate = date.toLocaleDateString('pl-PL', {
       )}
     </div>
 
-    <h3 class="mt-3 text-base font-semibold text-[#E8E3D9] transition-colors group-hover:text-[#D97706]">
+    <h3 class="mt-3 text-base font-semibold text-[#1C1917] transition-colors group-hover:text-[#B45309]">
       {title}
     </h3>
 
-    <p class="mt-2 flex-1 text-sm leading-relaxed text-[#C0BAB5]">{description}</p>
+    <p class="mt-2 flex-1 text-sm leading-relaxed text-[#57534E]">{description}</p>
 
-    <span class="mt-4 font-mono text-xs text-[#D97706]">
+    <span class="mt-4 font-mono text-xs text-[#B45309]">
       Czytaj dalej &rarr;
     </span>
   </div>

@@ -1,7 +1,10 @@
 ---
+import LogoMark from './LogoMark.astro';
+
 const navLinks = [
   { href: '/#uslugi', label: 'Usługi' },
-  { href: '/#case-studies', label: 'Realizacje' },
+  // Realizacje zdjete 2026-08-21: sekcja nie jest renderowana na stronie glownej,
+  // wiec link prowadzil donikad. Wraca razem z sekcja.
   { href: '/o-mnie', label: 'O mnie' },
   { href: '/blog', label: 'Blog' },
   { href: '/kontakt', label: 'Kontakt' },
@@ -10,14 +13,15 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-[#1E1E1E] bg-[#0C0C0C]/90 backdrop-blur-sm">
+<header class="sticky top-0 z-50 border-b border-[#E7E5E4] bg-[#FAFAF9]/90 backdrop-blur-sm">
   <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
     <!-- Logo -->
-    <a href="/" class="group flex items-center gap-2">
-      <span class="font-mono text-lg font-bold text-[#E8E3D9] transition-colors group-hover:text-[#D97706]">
+    <a href="/" class="group flex items-center gap-2.5">
+      <LogoMark size={22} class="text-[#B45309] transition-transform group-hover:scale-105" />
+      <span class="font-mono text-lg font-bold text-[#1C1917] transition-colors group-hover:text-[#B45309]">
         DataSmith
       </span>
-      <span class="font-mono text-xs text-[#D97706]">.pl</span>
+      <span class="font-mono text-xs text-[#B45309]">.pl</span>
     </a>
 
     <!-- Nav links -->
@@ -26,7 +30,7 @@ const currentPath = Astro.url.pathname;
         <li>
           <a
             href={href}
-            class="font-mono text-sm text-[#C0BAB5] transition-colors hover:text-[#E8E3D9]"
+            class="text-sm font-medium text-[#57534E] transition-colors hover:text-[#1C1917]"
           >
             {label}
           </a>
@@ -37,7 +41,7 @@ const currentPath = Astro.url.pathname;
     <!-- CTA -->
     <a
       href="/kontakt"
-      class="hidden rounded border border-[#D97706] px-4 py-1.5 font-mono text-sm text-[#D97706] transition-all hover:bg-[#D97706] hover:text-[#0C0C0C] md:block"
+      class="hidden rounded border border-[#B45309] px-4 py-1.5 text-sm font-semibold text-[#B45309] transition-all hover:bg-[#B45309] hover:text-[#FAFAF9] md:block"
     >
       Porozmawiajmy
     </a>
@@ -48,18 +52,18 @@ const currentPath = Astro.url.pathname;
       class="flex flex-col gap-1.5 p-1 md:hidden"
       aria-label="Menu"
     >
-      <span class="block h-0.5 w-6 bg-[#E8E3D9]"></span>
-      <span class="block h-0.5 w-6 bg-[#E8E3D9]"></span>
-      <span class="block h-0.5 w-4 bg-[#E8E3D9]"></span>
+      <span class="block h-0.5 w-6 bg-[#1C1917]"></span>
+      <span class="block h-0.5 w-6 bg-[#1C1917]"></span>
+      <span class="block h-0.5 w-4 bg-[#1C1917]"></span>
     </button>
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden border-t border-[#1E1E1E] px-6 py-4 md:hidden">
+  <div id="mobile-menu" class="hidden border-t border-[#E7E5E4] px-6 py-4 md:hidden">
     <ul class="flex flex-col gap-4">
       {navLinks.map(({ href, label }) => (
         <li>
-          <a href={href} class="font-mono text-sm text-[#C0BAB5] hover:text-[#E8E3D9]">
+          <a href={href} class="text-sm font-medium text-[#57534E] hover:text-[#1C1917]">
             {label}
           </a>
         </li>
@@ -67,7 +71,7 @@ const currentPath = Astro.url.pathname;
       <li>
         <a
           href="/kontakt"
-          class="inline-block rounded border border-[#D97706] px-4 py-1.5 font-mono text-sm text-[#D97706]"
+          class="inline-block rounded border border-[#B45309] px-4 py-1.5 text-sm font-semibold text-[#B45309]"
         >
           Porozmawiajmy
         </a>

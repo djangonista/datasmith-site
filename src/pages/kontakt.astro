@@ -25,7 +25,7 @@ const contactPageSchema = {
 
 <BaseLayout
   title="Kontakt — DataSmith"
-  description="Masz problem z danymi? Napisz, omówimy Twój przypadek."
+  description="Napisz, która firma zjada Ci najwięcej czasu przy wyciągach. Odpowiadam w ciągu 24 godzin."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -34,69 +34,70 @@ const contactPageSchema = {
   <div class="px-6 py-16">
     <div class="mx-auto max-w-5xl">
       <div class="mb-12">
-        <span class="font-mono text-xs text-[#D97706]">// kontakt</span>
-        <h1 class="mt-2 text-4xl font-bold text-[#E8E3D9]">Porozmawiajmy</h1>
-        <p class="mt-3 max-w-xl text-[#C0BAB5]">
-          Opisz problem. Odpowiem w ciągu 24h. Pierwsze 30 minut rozmowy discovery jest bezpłatne.
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Kontakt</span>
+        <h1 class="mt-2 text-4xl font-bold text-[#1C1917]">Porozmawiajmy</h1>
+        <p class="mt-3 max-w-xl text-[#57534E]">
+          Napisz, co robisz ręcznie. Odpowiadam w ciągu 24 godzin, a pierwsze trzydzieści minut rozmowy jest bezpłatne.
         </p>
       </div>
 
       <div class="grid gap-8 md:grid-cols-2">
         <!-- Contact info -->
         <div class="flex flex-col gap-6">
-          <div class="rounded border border-[#1E1E1E] bg-[#111111] p-6">
+          <div class="rounded border border-[#E7E5E4] bg-[#F5F5F4] p-6">
             <div class="mb-4 flex items-center gap-4">
               <img
                 src="/images/pawel.jpg"
                 alt="Paweł Kowalczyk"
-                class="h-16 w-16 rounded-full border-2 border-[#D97706]/40 object-cover"
+                class="h-16 w-16 rounded-full border-2 border-[#B45309]/40 object-cover"
               />
-              <h2 class="font-mono text-sm font-semibold text-[#E8E3D9]">Paweł Kowalczyk</h2>
+              <h2 class="text-base font-bold text-[#1C1917]">Paweł Kowalczyk</h2>
             </div>
-            <p class="mb-4 text-sm text-[#C0BAB5]">
-              Analityk danych i problem solver. Specjalizuję się w automatyzacji procesów
-              danych dla MŚP. Python, SQL, AI.
+            <p class="mb-4 text-sm text-[#57534E]">
+              Zdejmuję z biur rachunkowych ręczną robotę, która wraca co miesiąc.
+              Rozliczanie wyciągów bankowych, listy płac przy nietypowych regulaminach.
+              Szesnaście lat przy systemach i danych.
             </p>
             <div class="flex flex-col gap-3">
               <a
                 href="mailto:pawel@datasmith.pl"
-                class="flex items-center gap-3 font-mono text-sm text-[#C0BAB5] hover:text-[#D97706]"
+                class="flex items-center gap-3 text-sm font-medium text-[#57534E] hover:text-[#B45309]"
               >
-                <span class="text-[#D97706]">@</span>
+                <span class="text-[#B45309]">@</span>
                 pawel@datasmith.pl
               </a>
               <a
                 href="https://www.linkedin.com/in/pawel-kowalczyk-ds"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 font-mono text-sm text-[#C0BAB5] hover:text-[#D97706]"
+                class="flex items-center gap-3 text-sm font-medium text-[#57534E] hover:text-[#B45309]"
               >
-                <span class="text-[#D97706]">in</span>
+                <span class="text-[#B45309]">in</span>
                 LinkedIn
               </a>
               <a
                 href="https://x.com/plastyq"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 font-mono text-sm text-[#C0BAB5] hover:text-[#D97706]"
+                class="flex items-center gap-3 text-sm font-medium text-[#57534E] hover:text-[#B45309]"
               >
-                <span class="text-[#D97706]">X</span>
+                <span class="text-[#B45309]">X</span>
                 @plastyq
               </a>
             </div>
           </div>
 
-          <div class="rounded border border-[#1E1E1E] bg-[#111111] p-6">
-            <h3 class="mb-3 font-mono text-sm font-semibold text-[#E8E3D9]">Jak wygląda współpraca?</h3>
+          <div class="rounded border border-[#E7E5E4] bg-[#F5F5F4] p-6">
+            <h3 class="mb-3 text-base font-bold text-[#1C1917]">Jak wygląda współpraca?</h3>
             <ol class="flex flex-col gap-2">
               {[
-                'Discovery call (30 min, bezpłatnie). Opisujesz problem',
-                'Otrzymujesz brief + wycenę w ciągu 48h',
-                'Buduję rozwiązanie iteracyjnie, z feedbackiem',
-                'Dostajesz gotowe narzędzie + dokumentację',
+                'Rozmowa, trzydzieści minut, bezpłatnie. Mówisz, ile godzin Ci to zjada',
+                'Dostajesz wycenę w ciągu 48 godzin. Jeśli nie ma czego zdejmować, mówię to wprost',
+                'Buduję i sprawdzam na Twoich prawdziwych plikach, porównując z tym, co liczysz ręcznie',
+                'Dostajesz narzędzie, instrukcję na jedną kartkę i poprawki przez 30 dni',
               ].map((step, i) => (
-                <li class="flex gap-3 text-sm text-[#C0BAB5]">
-                  <span class="shrink-0 font-mono text-[#D97706]">{String(i + 1).padStart(2, '0')}.</span>
+                <li class="flex gap-3 text-sm text-[#57534E]">
+                  <span class="shrink-0 font-mono text-[#B45309]">{String(i + 1).padStart(2, '0')}.</span>
                   {step}
                 </li>
               ))}
@@ -105,8 +106,8 @@ const contactPageSchema = {
         </div>
 
         <!-- Contact form -->
-        <div class="rounded border border-[#1E1E1E] bg-[#111111] p-6">
-          <h2 class="mb-6 font-mono text-sm font-semibold text-[#E8E3D9]">Napisz mi</h2>
+        <div class="rounded border border-[#E7E5E4] bg-[#F5F5F4] p-6">
+          <h2 class="mb-6 text-base font-bold text-[#1C1917]">Napisz mi</h2>
           <form
             id="contact-form"
             action="https://formspree.io/f/xwvndevk"
@@ -115,49 +116,49 @@ const contactPageSchema = {
           >
             <input type="hidden" name="_subject" value="Nowe zapytanie — datasmith.pl" />
             <div>
-              <label class="mb-1.5 block font-mono text-xs text-[#C0BAB5]">Imię i firma</label>
+              <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-[#57534E]">Imię i firma</label>
               <input
                 type="text"
                 name="name"
                 required
-                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#C0BAB5] focus:border-[#D97706] focus:outline-none"
+                class="w-full rounded border border-[#E7E5E4] bg-[#FAFAF9] px-4 py-2.5 text-sm text-[#1C1917] placeholder-[#57534E] focus:border-[#B45309] focus:outline-none"
                 placeholder="Jan Kowalski, Firma Sp. z o.o."
               />
             </div>
             <div>
-              <label class="mb-1.5 block font-mono text-xs text-[#C0BAB5]">Email</label>
+              <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-[#57534E]">Email</label>
               <input
                 type="email"
                 name="email"
                 required
-                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#C0BAB5] focus:border-[#D97706] focus:outline-none"
+                class="w-full rounded border border-[#E7E5E4] bg-[#FAFAF9] px-4 py-2.5 text-sm text-[#1C1917] placeholder-[#57534E] focus:border-[#B45309] focus:outline-none"
                 placeholder="jan@firma.pl"
               />
             </div>
             <div>
-              <label class="mb-1.5 block font-mono text-xs text-[#C0BAB5]">Opisz problem</label>
+              <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-[#57534E]">Opisz problem</label>
               <textarea
                 name="message"
                 required
                 rows="5"
-                class="w-full rounded border border-[#1E1E1E] bg-[#0C0C0C] px-4 py-2.5 font-mono text-sm text-[#E8E3D9] placeholder-[#C0BAB5] focus:border-[#D97706] focus:outline-none resize-none"
-                placeholder="Co robisz ręcznie, co zajmuje za dużo czasu? Jaki system używasz?..."
+                class="w-full rounded border border-[#E7E5E4] bg-[#FAFAF9] px-4 py-2.5 text-sm text-[#1C1917] placeholder-[#57534E] focus:border-[#B45309] focus:outline-none resize-none"
+                placeholder="Która firma zjada najwięcej czasu przy wyciągach? Ile godzin miesięcznie na nią schodzi?"
               ></textarea>
             </div>
             <button
               type="submit"
               id="submit-btn"
-              class="rounded bg-[#D97706] px-6 py-3 font-mono text-sm font-semibold text-[#0C0C0C] transition-all hover:bg-[#F59E0B] disabled:opacity-50 disabled:cursor-not-allowed"
+              class="rounded bg-[#B45309] px-6 py-3 text-sm font-semibold text-[#FAFAF9] transition-all hover:bg-[#D97706] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Wyślij wiadomość
             </button>
-            <p class="font-mono text-xs text-[#C0BAB5]">
+            <p class="text-xs text-[#57534E]">
               Odpowiadam w ciągu 24h w dni robocze.
             </p>
           </form>
           <div id="form-success" class="hidden flex-col gap-3 py-4">
-            <p class="font-mono text-sm text-[#D97706]">✓ Wiadomość wysłana.</p>
-            <p class="font-mono text-xs text-[#C0BAB5]">Odezwę się w ciągu 24h.</p>
+            <p class="text-sm font-semibold text-[#B45309]">✓ Wiadomość wysłana.</p>
+            <p class="text-xs text-[#57534E]">Odezwę się w ciągu 24h.</p>
           </div>
         </div>
       </div>

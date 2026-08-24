@@ -1,0 +1,390 @@
+---
+/**
+ * Kalkulator — taśma z kalkulatora biurowego.
+ * Zastępuje TerminalQuiz (okno konsoli), który mówił „programista".
+ * Ta sama mechanika: wiersz po wierszu, po kolei. Inny przedmiot: rolka papieru.
+ *
+ * Pyta o liczbę godzin ZANIM pokaże cenę. To jest zasada sprzedaży 2b
+ * zapisana w kodzie: cena nie pada przed liczbą godzin klienta.
+ *
+ * Cennik zgodny z dane/oferta.md (stan 2026-08-21):
+ *   wdrożenie  800 / 500 (2-5) / 350 (6+)
+ *   opieka     60 + 40 za każdą kolejną, sufit 350/mies
+ */
+---
+
+<div class="tape-wrap">
+  <!-- wałek maszyny -->
+  <div class="tape-machine">
+    <div class="tape-roller"></div>
+  </div>
+
+  <!-- taśma -->
+  <div class="tape" id="tapeBody"></div>
+
+  <!-- ząbkowany brzeg oderwanej taśmy -->
+  <div class="tape-tear"></div>
+</div>
+
+<style is:global>
+  .tape-wrap {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .tape-machine {
+    background: #57534E;
+    border-radius: 6px 6px 0 0;
+    padding: 0.55rem 0.75rem 0.4rem;
+  }
+  .tape-roller {
+    height: 5px;
+    border-radius: 3px;
+    background: repeating-linear-gradient(
+      90deg,
+      #78716C 0 4px,
+      #44403C 4px 8px
+    );
+  }
+
+  .tape {
+    background: #FFFDF7;
+    background-image: repeating-linear-gradient(
+      180deg,
+      rgba(120, 113, 108, 0.035) 0 1px,
+      transparent 1px 22px
+    );
+    box-shadow: 0 8px 24px rgba(28, 25, 23, 0.09);
+    padding: 1.1rem 1.25rem 1.4rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: #1C1917;
+    min-height: 300px;
+  }
+
+  /* ząbkowana krawędź oderwania */
+  .tape-tear {
+    height: 10px;
+    background: #FFFDF7;
+    box-shadow: 0 8px 18px rgba(28, 25, 23, 0.07);
+    -webkit-mask-image: linear-gradient(45deg, transparent 33%, #000 33%),
+                        linear-gradient(-45deg, transparent 33%, #000 33%);
+    mask-image: linear-gradient(45deg, transparent 33%, #000 33%),
+                linear-gradient(-45deg, transparent 33%, #000 33%);
+    -webkit-mask-size: 12px 12px;
+    mask-size: 12px 12px;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    transform: scaleY(-1);
+  }
+
+  .tape-line {
+    animation: printLine 0.25s ease-out;
+  }
+  @keyframes printLine {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tp-label   { color: #57534E; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.66rem; }
+  .tp-row     { display: flex; justify-content: space-between; gap: 0.75rem; }
+  .tp-val     { font-weight: 700; }
+  .tp-rule    { border-top: 1px solid #A8A29E; margin: 0.45rem 0 0.3rem; }
+  .tp-rule-d  { border-top: 3px double #57534E; margin: 0.5rem 0 0.35rem; }
+  .tp-accent  { color: #B45309; font-weight: 700; }
+  .tp-quiet   { color: #78716C; font-size: 0.68rem; }
+  .tp-spacer  { height: 0.55rem; }
+
+  .tp-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FFFFFF;
+    border: 2px solid #B45309;
+    border-radius: 3px;
+    padding: 0.5rem 0.7rem;
+    margin-top: 0.35rem;
+    box-shadow: 0 1px 0 rgba(180, 83, 9, 0.25);
+  }
+  .tp-field:focus-within { box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15); }
+
+  .tp-input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1C1917;
+    text-align: right;
+    padding: 0;
+    outline: none;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  .tp-input::-webkit-outer-spin-button,
+  .tp-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .tp-input::placeholder { color: #A8A29E; font-weight: 400; }
+
+  .tp-unit { font-size: 0.7rem; color: #78716C; white-space: nowrap; }
+  .tp-hint { font-size: 0.66rem; color: #78716C; margin-top: 0.3rem; }
+
+  .tp-btn {
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.55rem 1.1rem;
+    border: 2px solid #57534E;
+    border-radius: 3px;
+    background: #FFFFFF;
+    color: #44403C;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tp-btn:hover { background: #57534E; color: #FFFDF7; }
+  .tp-btn-main {
+    border-color: #B45309;
+    background: #B45309;
+    color: #FFFDF7;
+    box-shadow: 0 2px 0 #92400E;
+  }
+  .tp-btn-main:hover { background: #D97706; border-color: #D97706; }
+  .tp-btn-main:active { transform: translateY(1px); box-shadow: 0 1px 0 #92400E; }
+
+  .tp-cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.55rem 1.1rem;
+    background: #B45309;
+    color: #FFFDF7;
+    text-decoration: none;
+  }
+  .tp-cta:hover { background: #D97706; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tape-line { animation: none; }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var tape = document.getElementById('tapeBody');
+  if (!tape) return;
+
+  var fmt0 = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 0 });
+  var fmt1 = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 1 });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var A = { firmy: null, godziny: null, stawka: null, sprawdza: null };
+
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms); }); }
+
+  function add(html) {
+    var d = document.createElement('div');
+    d.className = 'tape-line';
+    d.innerHTML = html;
+    tape.appendChild(d);
+    return d;
+  }
+  function row(label, value, cls) {
+    return add('<div class="tp-row"><span>' + label + '</span><span class="tp-val ' + (cls || '') + '">' + value + '</span></div>');
+  }
+  function label(t) { return add('<div class="tp-label">' + t + '</div>'); }
+  function spacer()  { return add('<div class="tp-spacer"></div>'); }
+  function rule(d)   { return add('<div class="' + (d ? 'tp-rule-d' : 'tp-rule') + '"></div>'); }
+
+  // ── pytanie liczbowe ──────────────────────────────────────────────
+  function askNumber(text, opts) {
+    opts = opts || {};
+    return new Promise(function (resolve) {
+      label(text);
+      var wrap = add('');
+      var field = document.createElement('div');
+      field.className = 'tp-field';
+      var input = document.createElement('input');
+      input.className = 'tp-input';
+      input.type = 'number';
+      input.min = '0';
+      input.step = opts.step || '1';
+      input.setAttribute('inputmode', 'decimal');
+      input.placeholder = opts.placeholder || '0';
+      field.appendChild(input);
+      if (opts.unit) {
+        var u = document.createElement('span');
+        u.className = 'tp-unit';
+        u.textContent = opts.unit;
+        field.appendChild(u);
+      }
+      wrap.appendChild(field);
+      var hint = document.createElement('div');
+      hint.className = 'tp-hint';
+      hint.textContent = opts.skippable
+        ? 'Wpisz liczbę albo pomiń'
+        : 'Wpisz liczbę i naciśnij Dalej';
+      wrap.appendChild(hint);
+
+      var btns = add('');
+      btns.style.cssText = 'display:flex;gap:0.5rem;margin:0.5rem 0 0.2rem;';
+
+      var ok = document.createElement('button');
+      ok.className = 'tp-btn tp-btn-main';
+      ok.textContent = 'Dalej';
+      btns.appendChild(ok);
+
+      var skip = null;
+      if (opts.skippable) {
+        skip = document.createElement('button');
+        skip.className = 'tp-btn';
+        skip.textContent = 'Pomiń';
+        btns.appendChild(skip);
+      }
+
+      function done(val) {
+        wrap.remove();
+        btns.remove();
+        row('&nbsp;&nbsp;&gt;', val === null ? 'POMINIĘTE' : fmt1.format(val), val === null ? 'tp-quiet' : '');
+        spacer();
+        resolve(val);
+      }
+      ok.addEventListener('click', function () {
+        var v = parseFloat(input.value.replace(',', '.'));
+        if (isNaN(v) || v <= 0) { input.focus(); return; }
+        done(v);
+      });
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') ok.click(); });
+      if (skip) skip.addEventListener('click', function () { done(null); });
+      input.focus();
+      tape.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  // ── pytanie tak / nie ─────────────────────────────────────────────
+  function askYesNo(text) {
+    return new Promise(function (resolve) {
+      label(text);
+      var btns = add('');
+      btns.style.cssText = 'display:flex;gap:0.5rem;margin:0.4rem 0 0.2rem;';
+      ['Tak', 'Nie'].forEach(function (t) {
+        var b = document.createElement('button');
+        b.className = 'tp-btn' + (t === 'Tak' ? ' tp-btn-main' : '');
+        b.textContent = t;
+        b.addEventListener('click', function () {
+          btns.remove();
+          row('&nbsp;&nbsp;&gt;', t.toUpperCase(), '');
+          spacer();
+          resolve(t === 'Tak');
+        });
+        btns.appendChild(b);
+      });
+    });
+  }
+
+  // ── cennik z dane/oferta.md ───────────────────────────────────────
+  function kosztWdrozenia(n) {
+    n = Math.round(n);
+    var c = 800;
+    var srodek = Math.min(Math.max(n - 1, 0), 4);
+    c += srodek * 500;
+    c += Math.max(n - 5, 0) * 350;
+    return c;
+  }
+  function opiekaMies(n) {
+    return Math.min(60 + 40 * (Math.max(Math.round(n), 1) - 1), 350);
+  }
+
+  // ── wynik ─────────────────────────────────────────────────────────
+  async function wynik() {
+    var n  = A.firmy;
+    var h  = A.godziny;
+    var st = A.stawka;
+
+    var hMies = n * h;
+    var hRok  = hMies * 12;
+
+    rule(false);
+    label('Podsumowanie');
+    row('Godzin miesięcznie', fmt1.format(hMies), 'tp-accent');
+    await sleep(400);
+    row('Godzin rocznie', fmt0.format(hRok), 'tp-accent');
+    await sleep(400);
+
+    if (hRok >= 40) {
+      var tyg = hRok / 40;
+      row('&nbsp;&nbsp;to tyle, co', fmt1.format(tyg) + ' tyg. pracy', 'tp-quiet');
+      await sleep(500);
+    }
+
+    var wdr = kosztWdrozenia(n);
+    var op  = opiekaMies(n);
+
+    if (st) {
+      var kosztRok = hRok * st;
+      rule(false);
+      row('Koszt roczny', fmt0.format(kosztRok) + ' zł', 'tp-accent');
+      await sleep(600);
+
+      rule(true);
+      label('Po wdrożeniu');
+      row('Wdrożenie ' + fmt0.format(n) + ' firm', fmt0.format(wdr) + ' zł');
+      await sleep(350);
+      row('Opieka miesięcznie', fmt0.format(op) + ' zł');
+      await sleep(500);
+
+      // zostaje ok. 10% czasu na weryfikacje (u klientki 8 min z 180)
+      var oszczMies = hMies * st * 0.9 - op;
+      if (oszczMies > 0) {
+        var mies = wdr / oszczMies;
+        rule(false);
+        row('Zwrot po', (mies < 1 ? 'niecałym mies.' : fmt1.format(mies) + ' mies.'), 'tp-accent');
+        add('<div class="tp-quiet" style="margin-top:0.35rem">Licząc, że zostaje ok. 10% czasu na sprawdzenie wyniku. U klientki zostało 8 minut ze 180.</div>');
+      } else {
+        add('<div class="tp-quiet" style="margin-top:0.35rem">Przy tej skali opieka zjada oszczędność. Nie warto, i mówię to wprost.</div>');
+      }
+    } else {
+      rule(true);
+      add('<div class="tp-quiet">Bez stawki nie policzę złotówek. Ale ' + fmt0.format(hRok) + ' godzin rocznie to liczba, którą możesz pomnożyć sama.</div>');
+      spacer();
+      row('Wdrożenie ' + fmt0.format(n) + ' firm', fmt0.format(wdr) + ' zł');
+      row('Opieka miesięcznie', fmt0.format(op) + ' zł');
+    }
+
+    await sleep(500);
+    spacer();
+
+    if (A.sprawdza) {
+      add('<div class="tp-quiet">Skoro sprawdzasz wynik drugi raz, to czytelność liczy się u Ciebie tak samo jak czas. U mnie jest częścią dostawy, nie dodatkiem.</div>');
+      spacer();
+    }
+
+    rule(false);
+    add('<div class="tp-quiet">Liczby są Twoje. Nic nie zostało wysłane ani zapisane.</div>');
+    add('<a class="tp-cta" href="/kontakt">Sprawdźmy to na Twoim pliku</a>');
+    tape.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  // ── przebieg ──────────────────────────────────────────────────────
+  async function start() {
+    label('Ile Cię kosztuje ręczne rozliczanie wyciągów');
+    spacer();
+
+    A.firmy   = await askNumber('1. Ile firm, u których wyciąg przechodzisz ręcznie', { unit: 'firm', placeholder: 'np. 3' });
+    A.godziny = await askNumber('2. Ile godzin miesięcznie zajmuje jedna taka firma', { step: '0.5', unit: 'godz. / mies.', placeholder: 'np. 3' });
+    A.stawka  = await askNumber('3. Ile kosztuje godzina Twojej pracy', { skippable: true, unit: 'zł / godz.', placeholder: 'np. 120' });
+    A.sprawdza = await askYesNo('4. Czy sprawdzasz potem wynik drugi raz');
+
+    await wynik();
+  }
+
+  start();
+})();
+</script>
