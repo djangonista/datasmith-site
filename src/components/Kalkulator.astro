@@ -204,6 +204,8 @@
   function rule(d)   { return add('<div class="' + (d ? 'tp-rule-d' : 'tp-rule') + '"></div>'); }
 
   // ── pytanie liczbowe ──────────────────────────────────────────────
+  // Pierwsze pytanie bez fokusu i przewijania: inaczej strona po wczytaniu skacze do kalkulatora
+  var uzyty = false;
   function askNumber(text, opts) {
     opts = opts || {};
     return new Promise(function (resolve) {
@@ -250,6 +252,7 @@
       }
 
       function done(val) {
+        uzyty = true;
         wrap.remove();
         btns.remove();
         row('&nbsp;&nbsp;&gt;', val === null ? 'POMINIĘTE' : fmt1.format(val), val === null ? 'tp-quiet' : '');
@@ -263,8 +266,10 @@
       });
       input.addEventListener('keydown', function (e) { if (e.key === 'Enter') ok.click(); });
       if (skip) skip.addEventListener('click', function () { done(null); });
-      input.focus();
-      tape.scrollIntoView({ block: 'nearest' });
+      if (uzyty) {
+        input.focus();
+        tape.scrollIntoView({ block: 'nearest' });
+      }
     });
   }
 
