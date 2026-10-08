@@ -5,13 +5,13 @@
   <div class="mx-auto max-w-5xl">
     <div class="rounded border border-[#B45309]/20 bg-[#F5F5F4] p-8 md:p-12">
       <div class="mx-auto max-w-xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Newsletter</span>
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#B45309]">Biuletyn</span>
         <h2 class="mt-3 text-2xl font-bold text-[#1C1917] md:text-3xl">
-          Build in Public
+          Bliżej Ideału
         </h2>
         <p class="mt-3 text-[#57534E]">
-          Piszę gdy mam coś konkretnego do pokazania: rozwiązanie problemu z danymi,
-          demo automatyzacji, case study z projektu. Bez spamu, bez harmonogramu.
+          Robota, która dzieje się, zanim cokolwiek trafi do programu, i o tym,
+          jak przybliżyć ją do ideału. Dla właścicielek i właścicieli biur rachunkowych.
         </p>
 
         <form id="ac-form" class="mt-8 flex flex-col gap-3" novalidate>
@@ -54,14 +54,19 @@
               class="mt-0.5 shrink-0 accent-[#B45309]"
             />
             <span class="text-xs text-[#57534E]">
-              Chcę być na liście. Rozumiem, że mogę zrezygnować w każdej chwili.
+              Chcę dostawać biuletyn „Bliżej Ideału” od Pawła Kowalczyka (DataSmith) na podany adres e-mail.
+              Mogę się wypisać w każdej chwili. Zasady:
+              <a href="/polityka-prywatnosci" class="text-[#B45309] underline hover:text-[#D97706]">polityka prywatności</a>.
             </span>
           </label>
+          <p id="ac-error" class="hidden text-left text-xs text-[#B91C1C]" role="alert">
+            Nie udało się zapisać. Spróbuj ponownie albo napisz na pawel@datasmith.pl.
+          </p>
         </form>
 
         <div id="ac-success" class="mt-8 hidden">
-          <p class="text-sm font-semibold text-[#B45309]">✓ Zapisano.</p>
-          <p class="mt-1 font-mono text-xs text-[#57534E]">Sprawdź skrzynkę. Wyślę potwierdzenie.</p>
+          <p class="text-sm font-semibold text-[#B45309]">✓ Prawie gotowe.</p>
+          <p class="mt-1 font-mono text-xs text-[#57534E]">Sprawdź skrzynkę i kliknij »Potwierdzam zapis«.</p>
         </div>
       </div>
     </div>
@@ -72,19 +77,25 @@
   const form = document.getElementById('ac-form') as HTMLFormElement;
   const btn = document.getElementById('ac-btn') as HTMLButtonElement;
   const successDiv = document.getElementById('ac-success') as HTMLDivElement;
+  const errorP = document.getElementById('ac-error') as HTMLParagraphElement;
+  let timeoutId: number | undefined;
 
   function showSuccess() {
+    clearTimeout(timeoutId);
     form.style.display = 'none';
     successDiv.classList.remove('hidden');
   }
 
-  // AC callbacks — called by server response JS
-  (window as any)._show_thank_you = showSuccess;
-  (window as any)._show_error = function() {
+  function showError() {
+    clearTimeout(timeoutId);
     btn.disabled = false;
     btn.textContent = 'Zapisz się';
-    alert('Coś poszło nie tak. Spróbuj ponownie.');
-  };
+    errorP.classList.remove('hidden');
+  }
+
+  // AC callbacks — called by server response JS
+  (window as any)._show_thank_you = showSuccess;
+  (window as any)._show_error = showError;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -99,6 +110,7 @@
       return;
     }
 
+    errorP.classList.add('hidden');
     btn.disabled = true;
     btn.textContent = 'Zapisuję...';
 
@@ -110,7 +122,9 @@
     });
 
     const script = document.createElement('script');
-    script.onerror = () => setTimeout(showSuccess, 500);
+    script.onerror = showError;
+    // Brak odpowiedzi AC w 15 s = błąd, nie sukces
+    timeoutId = window.setTimeout(showError, 15000);
     script.src = `https://pawelkowalczyk.activehosted.com/proc.php?${params.join('&')}&jsonp=true`;
     document.head.appendChild(script);
   });

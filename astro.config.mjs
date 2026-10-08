@@ -12,6 +12,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   integrations: [mdx(), sitemap({
+    filter: (page) => !page.includes('/biuletyn-potwierdzony'),
     serialize(item) {
       item.lastmod = new Date().toISOString();
       return item;
